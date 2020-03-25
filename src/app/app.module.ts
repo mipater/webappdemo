@@ -11,6 +11,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { IaTestComponent } from './main/ia-test/ia-test.component';
 import { FooterComponent } from './main/footer/footer.component';
+import { InformativaComponent } from './main/informativa/informativa.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './main/footer/footer.component';
     HomeComponent,
     ErrorPageComponent,
     IaTestComponent,
-    FooterComponent
+    FooterComponent,
+    InformativaComponent
   ],
   imports: [
     BrowserModule,
