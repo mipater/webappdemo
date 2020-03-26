@@ -1,0 +1,27 @@
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.progress-bar[aria-valuenow="25"] {
+  background-color: #354A54;
+}
+
+.bg-dark {
+  background-image: linear-gradient(#354A54,#354A54 60%,#354A54);
+}
+
+.color-blue {
+  color: #2fa4e7;
+}
+
+.color-dark {
+  color: #354A54;
+}
+
+.color-green {
+  color: #006D60;
+}
+
+.color-brown {
+  color: #954B00;
+}
