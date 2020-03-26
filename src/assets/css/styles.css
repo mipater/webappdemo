@@ -30,3 +30,7 @@ body {
 .color-brown {
   color: #954B00;
 }
+
+.progress-bar[aria-valuenow="10"] {
+  background-color: #354A54;
+}
