@@ -4,6 +4,7 @@
 
 body {
   background-color: #E6F4F1;
+  overflow-x: hidden;
 }
 
 .progress-bar[aria-valuenow="25"] {
