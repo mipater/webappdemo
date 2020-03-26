@@ -12,9 +12,9 @@ import {CanDeactivateGuard} from './main/ia-test/can-deactivate-guard.service';
 const appRoutes = [
   {path: '', component: HomeComponent},
   {path: 'privacy', component: InformativaComponent},
-  {path: 'test', canDeactivateChild: [CanDeactivateGuard], component: IaTestComponent, children: [
+  {path: 'test', canDeactivate: [CanDeactivateGuard], component: IaTestComponent, children: [
       {path: '', component: HometestComponent},
-      {path: '1', component: Question1Component},
+      {path: '1', canDeactivate: [CanDeactivateGuard], component: Question1Component},
     ]},
   {path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not Found!'}},
   {path: '**', redirectTo: '/not-found'}

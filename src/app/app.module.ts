@@ -14,6 +14,7 @@ import { FooterComponent } from './main/footer/footer.component';
 import { InformativaComponent } from './main/informativa/informativa.component';
 import { Question1Component } from './main/ia-test/question1/question1.component';
 import { HometestComponent } from './main/ia-test/hometest/hometest.component';
+import {CanDeactivateGuard} from './main/ia-test/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HometestComponent } from './main/ia-test/hometest/hometest.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

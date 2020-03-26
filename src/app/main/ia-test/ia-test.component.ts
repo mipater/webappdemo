@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import {CanComponentDeactivate} from './can-deactivate-guard.service';
+import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {relativeToRootDirs} from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
   selector: 'app-ia-test',
   templateUrl: './ia-test.component.html',
   styleUrls: ['./ia-test.component.css']
 })
-export class IaTestComponent implements OnInit {
+export class IaTestComponent implements OnInit, CanComponentDeactivate {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
-  ngOnInit(): void {
+  canDeactivate(): (Observable<boolean> | Promise<boolean> | boolean) {
+    return true;
+  };
+
+  ngOnInit() {
   }
 
 }
