@@ -11,10 +11,6 @@ body {
   background-color: #E6F4F1;
 }
 
-.progress-bar[aria-valuenow="25"] {
-  background-color: #354A54;
-}
-
 .bg-dark {
   background-image: linear-gradient(#354A54,#354A54 60%,#354A54);
 }

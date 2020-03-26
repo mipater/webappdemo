@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-question1',
   templateUrl: './question1.component.html',
-  styleUrls: ['./question1.component.css']
+  styleUrls: ['./question1.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class Question1Component implements OnInit {
 
