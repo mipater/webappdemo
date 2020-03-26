@@ -2,6 +2,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  background-color: #E6F4F1;
+}
+
 .progress-bar[aria-valuenow="25"] {
   background-color: #354A54;
 }
