@@ -1,7 +1,6 @@
 #main-strip {
   padding: 10% 0;
-  background-image: -webkit-gradient(linear,left top, left bottom,from(#12719e),color-stop(60%, #879593),to(#12719e));
-  background-image: linear-gradient(#DDA167,#d2c584 60%,#DDA167);
+  background-image: linear-gradient(#5899B6,#5899B6 60%,#efefef);
   background-position: center;
   background-size: cover;
 }
