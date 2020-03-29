@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {BsModalRef, ModalModule} from 'ngx-bootstrap';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './main/header/header.component';
@@ -14,7 +15,9 @@ import { FooterComponent } from './main/footer/footer.component';
 import { InformativaComponent } from './main/informativa/informativa.component';
 import { Question1Component } from './main/ia-test/question1/question1.component';
 import { HometestComponent } from './main/ia-test/hometest/hometest.component';
-import {CanDeactivateGuard} from './main/ia-test/can-deactivate-guard.service';
+import {UnsavedChangesGuard} from './main/ia-test/can-deactivate-guard.service';
+
+import { ConfirmLeaveComponent } from './main/confirm-leave/confirm-leave.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +30,20 @@ import {CanDeactivateGuard} from './main/ia-test/can-deactivate-guard.service';
     FooterComponent,
     InformativaComponent,
     Question1Component,
-    HometestComponent
+    HometestComponent,
+    ConfirmLeaveComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ModalModule.forRoot()
   ],
-  providers: [CanDeactivateGuard],
+  entryComponents: [
+    ConfirmLeaveComponent
+  ],
+  providers: [BsModalRef, UnsavedChangesGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

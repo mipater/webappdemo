@@ -1,6 +1,8 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CanComponentDeactivate} from '../can-deactivate-guard.service';
+import {ModalService} from '../modal.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-question1',
@@ -9,13 +11,15 @@ import {CanComponentDeactivate} from '../can-deactivate-guard.service';
 })
 export class Question1Component implements OnInit, CanComponentDeactivate {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private modalService: ModalService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
   canDeactivate(): (Observable<boolean> | Promise<boolean> | boolean) {
-    return true;
+    this.modalService.open();
+    return this.modalService.navigateAwaySelection;
   };
 
 }

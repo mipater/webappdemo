@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import {CanComponentDeactivate} from './can-deactivate-guard.service';
-import {Observable} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+
 import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {ModalService} from './modal.service';
+
 
 @Component({
   selector: 'app-ia-test',
@@ -11,13 +14,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class IaTestComponent implements OnInit, CanComponentDeactivate {
 
   constructor(private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private modalService: ModalService) { }
+
+  ngOnInit() {}
 
   canDeactivate(): (Observable<boolean> | Promise<boolean> | boolean) {
-    return true;
+    this.modalService.open();
+    return this.modalService.navigateAwaySelection;
   };
-
-  ngOnInit() {
-  }
 
 }

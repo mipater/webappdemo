@@ -7,12 +7,13 @@ export interface CanComponentDeactivate {
 }
 
 @Injectable({providedIn: 'root'})
-export class CanDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
+export class UnsavedChangesGuard implements CanDeactivate<CanComponentDeactivate> {
   canDeactivate(component: CanComponentDeactivate,
                 currentRoute: ActivatedRouteSnapshot,
                 currentState: RouterStateSnapshot,
                 nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return component.canDeactivate();
+    return component.canDeactivate ? component.canDeactivate() : true;
   }
 
 }
+
