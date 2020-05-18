@@ -1,0 +1,77 @@
+<div class="progress mb-5" style="background-color: #b3cfcf;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+       [ngStyle]="{'width.%': wizardStatus.progressBarValue}"
+       attr.aria-valuenow="{{ wizardStatus.progressBarValue }}"
+       attr.aria-valuemin="{{ wizardStatus.progressBarValue }}"
+       aria-valuemax="100">{{ wizardStatus.progressBarValue }}%
+  </div>
+</div>
+
+<form [formGroup]="wizard" (ngSubmit)="onSubmit()">
+
+  <!--First Question-->
+  <div formGroupName="personalInfo">
+    <h3 class="py-2">Iniziamo dalle tue informazioni personali</h3>
+
+    <div class="row">
+      <div class="col-12">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="eta">Età</label>
+          <select class="form-control" id="eta" formControlName="eta">
+            <option>18-25</option>
+            <option>26-35</option>
+            <option>36-45</option>
+            <option>46 in sù</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="sesso">Sesso</label>
+          <select class="form-control" id="sesso" formControlName="sesso">
+            <option>Uomo</option>
+            <option>Donna</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+          <small id="emailHelp" class="form-text text-muted">Non condivideremo mai l'email con nessuno.</small>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div formGroupName="sportCategory"></div>
+
+  <button
+    type="button" class="btn btn-primary"
+    [disabled]="wizardStatus.activeQuestion === 1 && !wizard.valid"
+    (click)="onPreviousQuestion()"
+  >Indietro
+  </button>
+  <button
+    type="button" class="btn btn-primary"
+    [disabled]="!wizard.valid"
+    *ngIf="!wizardStatus.wizardEnded; else showEndBtn"
+    (click)="onNextQuestion()"
+  >Avanti
+  </button>
+
+  <ng-template #showEndBtn>
+    <button class="btn btn-primary" [disabled]="!wizard.valid && wizardStatus.wizardEnded">Termina</button>
+  </ng-template>
+
+</form>

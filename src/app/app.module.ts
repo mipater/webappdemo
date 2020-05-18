@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BsModalRef, ModalModule} from 'ngx-bootstrap';
 
 import {AppComponent} from './app.component';
@@ -18,6 +18,7 @@ import { HometestComponent } from './main/ia-test/hometest/hometest.component';
 import {UnsavedChangesGuard} from './main/ia-test/can-deactivate-guard.service';
 
 import { ConfirmLeaveComponent } from './main/confirm-leave/confirm-leave.component';
+import { StepwizardComponent } from './main/ia-test/stepwizard/stepwizard.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +32,13 @@ import { ConfirmLeaveComponent } from './main/confirm-leave/confirm-leave.compon
     InformativaComponent,
     Question1Component,
     HometestComponent,
-    ConfirmLeaveComponent
+    ConfirmLeaveComponent,
+    StepwizardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     ModalModule.forRoot()
