@@ -5,3 +5,7 @@ input.ng-invalid.ng-dirty, select.ng-invalid.ng-dirty {
 input.ng-valid.ng-dirty, select.ng-valid.ng-dirty {
   border: 1px solid green;
 }
+
+label {
+  font-weight: 600;
+}

@@ -8,17 +8,37 @@ import {WizardService} from '../../../services/wizard.service';
   styleUrls: ['./stepwizard.component.css']
 })
 export class StepwizardComponent implements OnInit {
-  wizard: FormGroup;
-  wizardStatus = {
-    activeQuestion: 1,
-    wizardEnded: false,
-    progressBarValue: 0
-  };
+  wizardForm: FormGroup;
+  wizard;
 
   constructor(private wizardService: WizardService) { }
 
   ngOnInit(): void {
-    this.wizard = new FormGroup({
+    this.wizard = this.wizardService.init();
+    this.initForm();
+  }
+
+  onSubmit() {
+    console.log(this.wizardForm);
+  }
+
+  onNextQuestion() {
+    if (!this.wizard.isEnded) {
+      this.wizard.progressBarValue += 8;
+      ++this.wizard.activeQuestion;
+      // this.wizardService.addQuestionAnswer();
+    }
+  }
+
+  onPreviousQuestion() {
+    if (this.wizard.activeQuestion > 1) {
+      this.wizard.progressBarValue -= 8;
+      --this.wizard.activeQuestion;
+    }
+  }
+
+  initForm() {
+    this.wizardForm = new FormGroup({
       personalInfo: new FormGroup({
         name: new FormControl(null, Validators.required),
         eta: new FormControl(null, Validators.required),
@@ -30,24 +50,5 @@ export class StepwizardComponent implements OnInit {
       }),
 
     });
-  }
-
-  onSubmit() {
-    console.log(this.wizard);
-  }
-
-  onNextQuestion() {
-    if (!this.wizardStatus.wizardEnded) {
-      this.wizardStatus.progressBarValue += 8;
-      ++this.wizardStatus.activeQuestion;
-      // this.wizardService.addQuestionAnswer();
-    }
-  }
-
-  onPreviousQuestion() {
-    if (this.wizardStatus.activeQuestion > 1) {
-      this.wizardStatus.progressBarValue -= 8;
-      --this.wizardStatus.activeQuestion;
-    }
   }
 }

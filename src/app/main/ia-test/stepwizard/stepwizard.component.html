@@ -1,13 +1,13 @@
 <div class="progress mb-5" style="background-color: #b3cfcf;">
   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-       [ngStyle]="{'width.%': wizardStatus.progressBarValue}"
-       attr.aria-valuenow="{{ wizardStatus.progressBarValue }}"
-       attr.aria-valuemin="{{ wizardStatus.progressBarValue }}"
-       aria-valuemax="100">{{ wizardStatus.progressBarValue }}%
+       [ngStyle]="{'width.%': wizard.progressBarValue}"
+       attr.aria-valuenow="{{ wizard.progressBarValue }}"
+       attr.aria-valuemin="{{ wizard.progressBarValue }}"
+       aria-valuemax="100">{{ wizard.progressBarValue }}%
   </div>
 </div>
 
-<form [formGroup]="wizard" (ngSubmit)="onSubmit()">
+<form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
 
   <!--First Question-->
   <div formGroupName="personalInfo">
@@ -56,22 +56,24 @@
 
   <div formGroupName="sportCategory"></div>
 
-  <button
-    type="button" class="btn btn-primary"
-    [disabled]="wizardStatus.activeQuestion === 1 && !wizard.valid"
-    (click)="onPreviousQuestion()"
-  >Indietro
-  </button>
-  <button
-    type="button" class="btn btn-primary"
-    [disabled]="!wizard.valid"
-    *ngIf="!wizardStatus.wizardEnded; else showEndBtn"
-    (click)="onNextQuestion()"
-  >Avanti
-  </button>
+  <div class="d-flex flex-row justify-content-between">
+    <button
+      type="button" class="btn btn-primary px-5"
+      [disabled]="wizard.activeQuestion === 1"
+      (click)="onPreviousQuestion()"
+    >Indietro
+    </button>
+    <button
+      type="button" class="btn btn-primary px-5"
+      [disabled]="!wizardForm.valid"
+      *ngIf="!wizard.wizardEnded; else showEndBtn"
+      (click)="onNextQuestion()"
+    >Avanti
+    </button>
+  </div>
 
   <ng-template #showEndBtn>
-    <button class="btn btn-primary" [disabled]="!wizard.valid && wizardStatus.wizardEnded">Termina</button>
+    <button class="btn btn-primary" [disabled]="!wizardForm.valid && wizard.isEnded">Termina</button>
   </ng-template>
 
 </form>

@@ -3,10 +3,19 @@ import {Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class WizardService {
-  private wizardAnswers = new Map<number, string>();
-  recipesChanged = new Subject<string>();
+  private wizard = {
+    activeQuestion: 1,
+    isEnded: false,
+    progressBarValue: 0,
+    answers: new Map<number, string>()
+  };
+  questionAnswered = new Subject<string>();
+
+  init() {
+    return this.wizard;
+  }
 
   addQuestionAnswer(key: number, value: string) {
-    this.wizardAnswers.set(key, value)
+    this.wizard.answers.set(key, value)
   }
 }
