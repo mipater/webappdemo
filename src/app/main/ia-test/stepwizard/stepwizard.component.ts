@@ -10,10 +10,13 @@ import {WizardService} from '../../../services/wizard.service';
 export class StepwizardComponent implements OnInit {
   wizardForm: FormGroup;
   wizard;
+  counter = 0;
+  wizardHistory = []
 
   constructor(private wizardService: WizardService) { }
 
   ngOnInit(): void {
+    // inizializzare il wizard con i suoi valori
     this.wizard = this.wizardService.init();
     this.initForm();
   }
@@ -24,9 +27,7 @@ export class StepwizardComponent implements OnInit {
 
   onNextQuestion() {
     if (!this.wizard.isEnded) {
-      this.wizard.progressBarValue += 8;
-      ++this.wizard.activeQuestion;
-      // this.wizardService.addQuestionAnswer();
+      // this.wizardHistory.push();
     }
   }
 
