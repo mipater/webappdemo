@@ -1,3 +1,5 @@
+@import '~angular-archwizard/archwizard.css';
+
 .font-roboto {
   font-family: 'Roboto', sans-serif;
 }
@@ -35,3 +37,10 @@ body {
 .progress-bar[aria-valuenow="10"] {
   background-color: #354A54;
 }
+
+aw-wizard .wizard-steps {
+  display: block;
+}
+
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current .step-indicator {
+  background-color: #cdd021; }

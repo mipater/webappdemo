@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BsModalRef, ModalModule} from 'ngx-bootstrap';
+import { ArchwizardModule } from 'angular-archwizard';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './main/header/header.component';
@@ -41,6 +42,7 @@ import { StepwizardComponent } from './main/ia-test/stepwizard/stepwizard.compon
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    ArchwizardModule,
     ModalModule.forRoot()
   ],
   entryComponents: [

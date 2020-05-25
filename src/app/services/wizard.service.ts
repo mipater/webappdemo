@@ -6,6 +6,7 @@ import {Question} from '../main/shared/question.model';
 export class WizardService {
   private wizard = {
     isEnded: false,
+    activeQuestion: 1,
     questions: new Array<Question>(),
   };
   questionAnswered = new Subject<string>();

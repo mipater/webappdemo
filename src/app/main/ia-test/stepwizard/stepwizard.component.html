@@ -1,79 +1,92 @@
-<div class="progress mb-5" style="background-color: #b3cfcf;">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-       [ngStyle]="{'width.%': wizard.progressBarValue}"
-       attr.aria-valuenow="{{ wizard.progressBarValue }}"
-       attr.aria-valuemin="{{ wizard.progressBarValue }}"
-       aria-valuemax="100">{{ wizard.progressBarValue }}%
-  </div>
-</div>
+<aw-wizard [navBarLayout]="'small'">
 
-<form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
+<!--  <div class="progress mb-5" style="background-color: #b3cfcf;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+         [ngStyle]="{'width.%': wizard.progressBarValue}"
+         attr.aria-valuenow="{{ wizard.progressBarValue }}"
+         attr.aria-valuemin="{{ wizard.progressBarValue }}"
+         aria-valuemax="100">{{ wizard.progressBarValue }}%
+    </div>
+  </div>-->
 
-  <!--First Question-->
-  <div formGroupName="personalInfo">
-    <h3 class="py-2">Iniziamo dalle tue informazioni personali</h3>
+  <form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
 
-    <div class="row">
-      <div class="col-12">
+    <aw-wizard-step stepTitle="Personal Info" [canExit]='true' [navigationSymbol]="{ symbol: '1' }">
+      <!--First Question-->
+      <div formGroupName="personalInfo">
+        <h3 class="py-2">Iniziamo dalle tue informazioni personali</h3>
 
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            formControlName="name"
-            class="form-control">
-        </div>
+        <div class="row">
+          <div class="col-12">
 
-        <div class="form-group">
-          <label for="eta">Età</label>
-          <select class="form-control" id="eta" formControlName="eta">
-            <option>18-25</option>
-            <option>26-35</option>
-            <option>36-45</option>
-            <option>46 in sù</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control">
+            </div>
 
-        <div class="form-group">
-          <label for="sesso">Sesso</label>
-          <select class="form-control" id="sesso" formControlName="sesso">
-            <option>Uomo</option>
-            <option>Donna</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="eta">Età</label>
+              <select class="form-control" id="eta" formControlName="eta">
+                <option>18-25</option>
+                <option>26-35</option>
+                <option>36-45</option>
+                <option>46 in sù</option>
+              </select>
+            </div>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
-          <small id="emailHelp" class="form-text text-muted">Non condivideremo mai l'email con nessuno.</small>
+            <div class="form-group">
+              <label for="sesso">Sesso</label>
+              <select class="form-control" id="sesso" formControlName="sesso">
+                <option>Uomo</option>
+                <option>Donna</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+              <small id="emailHelp" class="form-text text-muted">Non condivideremo mai l'email con nessuno.</small>
+            </div>
+
+          </div>
         </div>
 
       </div>
+    </aw-wizard-step>
+
+    <aw-wizard-step>
+      <!--Second Question-->
+      <div formGroupName="sportCategory"></div>
+    </aw-wizard-step>
+
+    <div class="d-flex flex-row justify-content-between">
+      <button
+        type="button" class="btn btn-primary px-5"
+        [disabled]="wizard.activeQuestion !== 1 && 1==2"
+        (click)="onPreviousQuestion()"
+        awPreviousStep
+      >Indietro
+      </button>
+      <button
+        type="button" class="btn btn-primary px-5"
+        [disabled]="!wizardForm.valid"
+        *ngIf="!wizard.wizardEnded; else showEndBtn"
+        (click)="onNextQuestion()"
+        awNextStep
+      >Avanti
+      </button>
     </div>
 
-  </div>
+    <ng-template #showEndBtn>
+      <button class="btn btn-primary">Termina</button>
+    </ng-template>
 
-  <div formGroupName="sportCategory"></div>
+  </form>
 
-  <div class="d-flex flex-row justify-content-between">
-    <button
-      type="button" class="btn btn-primary px-5"
-      [disabled]="wizard.activeQuestion === 1"
-      (click)="onPreviousQuestion()"
-    >Indietro
-    </button>
-    <button
-      type="button" class="btn btn-primary px-5"
-      [disabled]="!wizardForm.valid"
-      *ngIf="!wizard.wizardEnded; else showEndBtn"
-      (click)="onNextQuestion()"
-    >Avanti
-    </button>
-  </div>
+</aw-wizard>
 
 
-    <button class="btn btn-primary" >Termina</button>
-
-
-</form>
