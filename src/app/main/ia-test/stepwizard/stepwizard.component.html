@@ -1,18 +1,4 @@
-<div class="row">
-  <div class="col-10 col-md-8 col-xl-6 mx-auto">
-
-
 <aw-wizard [navBarLayout]="'small'">
-
-  <!--  <div class="progress mb-5" style="background-color: #b3cfcf;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-           [ngStyle]="{'width.%': wizard.progressBarValue}"
-           attr.aria-valuenow="{{ wizard.progressBarValue }}"
-           attr.aria-valuemin="{{ wizard.progressBarValue }}"
-           aria-valuemax="100">{{ wizard.progressBarValue }}%
-      </div>
-    </div>-->
-
   <form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
     <!--First Question-->
     <aw-wizard-step stepTitle="Personal Info" [navigationSymbol]="{ symbol: '1' }">
@@ -52,10 +38,11 @@
           <small id="emailHelp" class="form-text text-muted">Non condivideremo mai l'email con nessuno.</small>
         </div>
 
-        <div class="form-check w-50">
+        <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="privacy" formControlName="privacy">
           <label class="form-check-label" for="privacy">
-            Acconsento al trattamento dei miei dati per l'erogazione minima del servizio senza il quale non potrebbe essere erogato (
+            Acconsento al trattamento dei miei dati per l'erogazione minima del servizio senza il quale non potrebbe
+            essere erogato (
             <a routerLink="/privacy">Informativa</a>
             )
           </label>
@@ -78,25 +65,29 @@
       <h3 class="py-2">In quale categoria di sportivo ti rivedi di più</h3>
 
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="sportCategory" id="noSport" value="noSport" formControlName="sportCategory">
+        <input class="form-check-input" type="radio" name="sportCategory" id="noSport" value="noSport"
+               formControlName="sportCategory">
         <label class="form-check-label" for="noSport">
           Non Pratico Sport
         </label>
       </div>
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="sportCategory" id="amaSport" value="amaSport" formControlName="sportCategory">
+        <input class="form-check-input" type="radio" name="sportCategory" id="amaSport" value="amaSport"
+               formControlName="sportCategory">
         <label class="form-check-label" for="amaSport">
           Sportivo Amatoriale (Non partecipo a competizioni sportive e mi alleno quando mi va)
         </label>
       </div>
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="sportCategory" id="agoSport" value="agoSport" formControlName="sportCategory">
+        <input class="form-check-input" type="radio" name="sportCategory" id="agoSport" value="agoSport"
+               formControlName="sportCategory">
         <label class="form-check-label" for="agoSport">
           Sportivo Agonista (Mi alleno preparandomi per competizioni sportive ma non è il mio primo lavoro)
         </label>
       </div>
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="sportCategory" id="proSport" value="proSport" formControlName="sportCategory">
+        <input class="form-check-input" type="radio" name="sportCategory" id="proSport" value="proSport"
+               formControlName="sportCategory">
         <label class="form-check-label" for="proSport">
           Sportivo professionista (Pratico sport per lavoro)
         </label>
@@ -117,13 +108,8 @@
       </div>
     </aw-wizard-step>
 
-
     <button class="btn btn-primary">Termina</button>
 
-
   </form>
-
 </aw-wizard>
-  </div>
-</div>
 

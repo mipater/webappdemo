@@ -14,7 +14,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { IaTestComponent } from './main/ia-test/ia-test.component';
 import { FooterComponent } from './main/footer/footer.component';
 import { InformativaComponent } from './main/informativa/informativa.component';
-import { Question1Component } from './main/ia-test/question1/question1.component';
 import { HometestComponent } from './main/ia-test/hometest/hometest.component';
 import {UnsavedChangesGuard} from './main/ia-test/can-deactivate-guard.service';
 
@@ -31,7 +30,6 @@ import { StepwizardComponent } from './main/ia-test/stepwizard/stepwizard.compon
     IaTestComponent,
     FooterComponent,
     InformativaComponent,
-    Question1Component,
     HometestComponent,
     ConfirmLeaveComponent,
     StepwizardComponent
