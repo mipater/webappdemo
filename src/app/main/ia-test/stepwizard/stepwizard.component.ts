@@ -10,8 +10,6 @@ import {WizardService} from '../../../services/wizard.service';
 export class StepwizardComponent implements OnInit {
   wizardForm: FormGroup;
   wizard;
-  counter = 0;
-  wizardHistory = []
 
   constructor(private wizardService: WizardService) { }
 
@@ -25,30 +23,16 @@ export class StepwizardComponent implements OnInit {
     console.log(this.wizardForm);
   }
 
-  onNextQuestion() {
-    if (!this.wizard.isEnded) {
-      // this.wizardHistory.push();
-    }
-  }
-
-  onPreviousQuestion() {
-    if (this.wizard.activeQuestion > 1) {
-      this.wizard.progressBarValue -= 8;
-      --this.wizard.activeQuestion;
-    }
-  }
-
   initForm() {
     this.wizardForm = new FormGroup({
       personalInfo: new FormGroup({
         name: new FormControl(null, Validators.required),
         eta: new FormControl(null, Validators.required),
         sesso: new FormControl(null, Validators.required),
-        email: new FormControl(null, [Validators.required, Validators.email])
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        privacy: new FormControl(null, [Validators.required, Validators.pattern('true')])
       }),
-      sportCategory: new FormGroup({
-
-      }),
+      sportCategory: new FormControl(null, Validators.required),
 
     });
   }
