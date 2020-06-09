@@ -17,10 +17,10 @@ export class WizardService {
 
   addQuestionAnswers(questionName: string, answer: any) {
     // trova la domanda tramite nome e inserisce le risposte
-    const question = this.wizard.questions.find((q) => {return q.name === questionName;})
+    const question = this.wizard.questions.find((q) => {return q.name === questionName;});
     answer.forEach((a) => {
       question.answers.push(a);
-    })
+    });
 
   }
 

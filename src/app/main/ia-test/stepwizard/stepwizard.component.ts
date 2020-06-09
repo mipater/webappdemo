@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, AfterViewChecked, Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {WizardService} from '../../../services/wizard.service';
 import {CanComponentDeactivate} from '../can-deactivate-guard.service';
 import {Observable} from 'rxjs';
 import {ModalService} from '../modal.service';
+import {WizardComponent} from 'angular-archwizard';
+import {CustomNavigationMode} from './custom-navigation-mode';
 
 @Component({
   selector: 'app-stepwizard',
   templateUrl: './stepwizard.component.html',
   styleUrls: ['./stepwizard.component.css']
 })
-export class StepwizardComponent implements OnInit, CanComponentDeactivate  {
+export class StepwizardComponent implements OnInit, CanComponentDeactivate, AfterViewChecked  {
+  navigationMode = new CustomNavigationMode();
+  @ViewChild(WizardComponent)
+  public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
   wizard;
 
@@ -37,7 +42,7 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate  {
         privacy: new FormControl(null, [Validators.required, Validators.pattern('true')])
       }),
       sportCategory: new FormControl(null, Validators.required),
-
+      trainingRegularity: new FormControl(null, Validators.required),
     });
   }
 
@@ -46,4 +51,17 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate  {
     return this.modalService.navigateAwaySelection;
   };
 
+  finalizeStep() {
+    console.log(this.wizardComponent)
+    // Se la domanda corrente è sulla categoria sportivo e la risposta è 'sport amatoriale' allora va alla domanda secondaria
+    if (this.wizardComponent.currentStep.stepTitle === 'Categoria Sport' && this.wizardForm.get('sportCategory').value === 'amaSport') {
+      this.wizardComponent.goToStep(this.wizardComponent.getIndexOfStepWithId('2.1'));
+    } else {
+      this.wizardComponent.goToStep(3);
+    }
+  }
+
+  ngAfterViewChecked(): void {
+    console.log(this.wizardComponent.currentStepIndex);
+  }
 }
