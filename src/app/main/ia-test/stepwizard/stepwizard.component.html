@@ -1,4 +1,4 @@
-<aw-wizard [navBarLayout]="'small'" [awNavigationMode]="navigationMode">
+<aw-wizard [navBarLayout]="'small'" [disableNavigationBar]="true">
   <form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
     <!--First Question-->
     <aw-wizard-step stepTitle="Personal Info" [navigationSymbol]="{ symbol: '1' }">
@@ -153,6 +153,7 @@
         <button
           type="button" class="btn btn-primary px-5"
           awPreviousStep
+          (finalize)="finalizeStep()"
         >Indietro
         </button>
         <button
