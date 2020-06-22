@@ -43,6 +43,11 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate, Afte
       }),
       sportCategory: new FormControl(null, Validators.required),
       trainingRegularity: new FormControl(null, Validators.required),
+      fisionomy: new FormGroup({
+        weight: new FormControl(null, [Validators.required, Validators.pattern('([4-8][0-9]|9[0-9]|[12][0-9]{2}|300)')]),
+        height: new FormControl(null, [Validators.required, Validators.pattern('(8[0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|250)')]),
+        // bodyType: new FormControl(null, Validators.required)
+      })
     });
   }
 

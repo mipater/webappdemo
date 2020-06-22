@@ -1,4 +1,14 @@
 <aw-wizard [navBarLayout]="'small'" [disableNavigationBar]="true">
+
+  <div class="progress mb-5" style="background-color: #b3cfcf;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+         [ngStyle]="{'width.%': 0}"
+         attr.aria-valuenow="0"
+         attr.aria-valuemin="0"
+         aria-valuemax="100">0%
+    </div>
+  </div>
+
   <form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
     <!--First Question-->
     <aw-wizard-step stepTitle="Personal Info" [navigationSymbol]="{ symbol: '1' }">
@@ -149,6 +159,40 @@
 
       <h3 class="py-2">Parliamo della tua fisionomia</h3>
 
+      <div formGroupName="fisionomy">
+        <div class="form-group">
+
+          <label for="name">Peso</label>
+          <input
+            type="number"
+            min="40"
+            max="300"
+            id="weight"
+            formControlName="weight"
+            class="form-control">
+          <small id="weight" class="form-text text-muted">Fondamentale per la formula.</small>
+        </div>
+        <div class="form-group">
+          <label for="name">Altezza</label>
+          <input
+            type="number"
+            min="80"
+            max="250"
+            id="height"
+            formControlName="height"
+            class="form-control">
+          <small id="height" class="form-text text-muted">Fondamentale per la dose.</small>
+        </div>
+
+        <h4 class="py-3">In quale corporatura ti rivedi?</h4>
+        <div class="d-flex">
+          <div class="w-50">Sottopeso</div>
+          <div class="w-50">Normopeso</div>
+          <div class="w-50">Sovrappeso</div>
+          <div class="w-50">In Obesità</div>
+        </div>
+
+      </div>
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
@@ -158,6 +202,7 @@
         </button>
         <button
           type="button" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('fisionomy').valid"
           awNextStep
         >Avanti
         </button>

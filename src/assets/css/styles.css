@@ -44,3 +44,7 @@ aw-wizard .wizard-steps {
 
 aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current .step-indicator {
   background-color: #cdd021; }
+
+aw-wizard-navigation-bar {
+  display: none;
+}
