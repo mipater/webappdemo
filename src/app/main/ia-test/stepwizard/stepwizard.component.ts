@@ -58,15 +58,14 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate, Afte
     // Se la domanda corrente è sulla categoria sportivo e la risposta è 'sport amatoriale' allora va alla domanda secondaria
     if (this.wizardForm.get('sportCategory').value === 'amaSport') {
       this.wizardComponent.goToStep(step2optIndex);
-      console.log(1)
     } else if (curIndex < step2optIndex){
-      this.wizardComponent.goToStep(this.wizardComponent.currentStepIndex - 1);
+      this.wizardComponent.goToStep(this.wizardComponent.currentStepIndex + 2);
     } else {
       this.wizardComponent.goToStep(this.wizardComponent.currentStepIndex - 2);
     }
   }
 
   ngAfterViewChecked(): void {
-    console.log(this.wizardComponent.currentStepIndex);
+    // console.log(this.wizardComponent.currentStepIndex);
   }
 }
