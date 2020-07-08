@@ -9,3 +9,30 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty {
 label {
   font-weight: 600;
 }
+
+.custom-control-label::after, .custom-control-label::before {
+  display: none;
+}
+
+.squareRadio {
+  background-color: #6f99a4;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  -o-transition: transform .2s;
+  transition: transform .2s;
+  transition: transform .2s,-webkit-transform .2s;
+  padding: 16px;
+  font-family: Oswald,sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: .75rem;
+}
