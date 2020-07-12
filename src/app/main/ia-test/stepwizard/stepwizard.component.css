@@ -15,6 +15,7 @@ label {
 }
 
 .squareRadio {
+  cursor: pointer;
   background-color: #6f99a4;
   display: -ms-flexbox;
   display: flex;
@@ -35,4 +36,10 @@ label {
   -ms-flex-direction: column;
   flex-direction: column;
   padding: .75rem;
+  width: 45%;
+  margin: 1% auto;
+}
+
+.squareRadio input, .squareRadio label {
+  cursor: pointer;
 }

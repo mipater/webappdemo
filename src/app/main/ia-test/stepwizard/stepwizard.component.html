@@ -189,27 +189,29 @@
         <h4 class="py-3">In quale corporatura ti rivedi?</h4>
 
         <div class="form-group d-flex flex-wrap">
-          <div class="custom-control custom-radio w-50 squareRadio">
+          <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
             <input type="radio" id="underWeight" name="bodyType" class="custom-control-input"
                    value="underWeight" formControlName="bodyType">
             <label class="custom-control-label" for="underWeight">Sottopeso</label>
           </div>
-          <div class="custom-control custom-radio w-50 squareRadio">
+          <div class="custom-control custom-radio squareRadio">
             <input type="radio" id="normalWeight" name="bodyType" class="custom-control-input"
                    value="normalWeight" formControlName="bodyType">
             <label class="custom-control-label" for="normalWeight">Normopeso</label>
           </div>
-          <div class="custom-control custom-radio w-50 squareRadio">
+          <div class="custom-control custom-radio squareRadio">
             <input type="radio" id="overWeight" name="bodyType" class="custom-control-input"
                    value="overWeight" formControlName="bodyType">
             <label class="custom-control-label" for="overWeight">Sovrappeso</label>
           </div>
-          <div class="custom-control custom-radio w-50 squareRadio">
+          <div class="custom-control custom-radio squareRadio">
             <input type="radio" id="obese" name="bodyType" class="custom-control-input"
                    value="obese" formControlName="bodyType">
             <label class="custom-control-label" for="obese">Obesità</label>
           </div>
         </div>
+
+        <div [innerHTML]="'<p>Hello World</p>'"></div>
 
       </div>
       <div class="pt-4 d-flex flex-row justify-content-between">

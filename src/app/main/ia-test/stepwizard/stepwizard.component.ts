@@ -12,12 +12,13 @@ import {CustomNavigationMode} from './custom-navigation-mode';
   templateUrl: './stepwizard.component.html',
   styleUrls: ['./stepwizard.component.css']
 })
-export class StepwizardComponent implements OnInit, CanComponentDeactivate, AfterViewChecked  {
+export class StepwizardComponent implements OnInit, CanComponentDeactivate {
   navigationMode = new CustomNavigationMode();
   @ViewChild(WizardComponent)
   public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
   wizard;
+  showSelectBadge = false;
 
   constructor(private wizardService: WizardService,
               private modalService: ModalService) { }
@@ -70,7 +71,9 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate, Afte
     }
   }
 
-  ngAfterViewChecked(): void {
-    // console.log(this.wizardComponent.currentStepIndex);
+  selectedRadioBtn(e) {
+    if (!e.target.classList.contains('squareRadio')){
+
+    }
   }
 }
