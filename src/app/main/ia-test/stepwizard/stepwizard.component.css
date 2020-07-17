@@ -40,6 +40,21 @@ label {
   margin: 1% auto;
 }
 
+.check-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #006D60;
+}
+
 .squareRadio input, .squareRadio label {
   cursor: pointer;
+  text-align: center;
+}
+
+.squareRadio input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
