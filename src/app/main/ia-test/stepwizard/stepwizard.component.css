@@ -68,3 +68,25 @@ label {
   margin: auto;
   display: block;
 }
+
+.firstChoice-icon {
+  background-image:url('/assets/images/badge1.png');
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.secondChoice-icon {
+  background-image:url('/assets/images/badge2.png');
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
