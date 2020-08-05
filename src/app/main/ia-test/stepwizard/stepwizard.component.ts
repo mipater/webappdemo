@@ -89,7 +89,11 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
     if (!firstChoiceEl) {
       badgeToApply = 'firstChoice-icon';
     } else if (firstChoiceEl && !secondChoiceEl) {
+      console.log(e.target.parentElement.value)
       badgeToApply = 'secondChoice-icon';
+      this.wizardForm.patchValue({
+        primaryObjective: ['powerGain']
+      })
     }
 
     if (badgeToApply) {
