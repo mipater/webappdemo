@@ -112,7 +112,7 @@
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('sportCategory').valid"
-          (finalize)="finalizeStep()"
+          (finalize)="finalizeOptionalStep()"
           awNextStep
         >Avanti
         </button>
@@ -220,7 +220,7 @@
         <button
           type="button" class="btn btn-primary px-5"
           awPreviousStep
-          (finalize)="finalizeStep()"
+          (finalize)="finalizeOptionalStep()"
         >Indietro
         </button>
         <button
@@ -235,55 +235,56 @@
     <!--Fourth Question-->
     <aw-wizard-step stepTitle="Obiettivo Principale" [navigationSymbol]="{ symbol: '4' }">
 
-      <h3 class="py-2">Qual è il tuo obiettivo principale?</h3>
+      <h3 class="py-2">Quali sono i tuoi obiettivi?</h3>
+      <p>Scegli fino ad un massimo di 2 in ordine di importanza.</p>
 
         <div class="form-group d-flex flex-wrap">
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="fatMassLoss" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="fatMassLoss" name="primaryObjective" class="custom-control-input"
                    value="fatMassLoss" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/sottopeso.svg">
+            <img class="bodyIcon" src="/assets/images/fatMassLoss.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="underWeight">Diminuzione Massa Grassa</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="immunitaryDefense" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="immunitaryDefense" name="primaryObjective" class="custom-control-input"
                    value="immunitaryDefense" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/sottopeso.svg">
+            <img class="bodyIcon" src="/assets/images/immunitaryDefense.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="underWeight">Difese Immunitarie</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="energyGain" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="energyGain" name="primaryObjective" class="custom-control-input"
                    value="energyGain" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/sottopeso.svg">
+            <img class="bodyIcon" src="/assets/images/energyGain.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="underWeight">Aumento Energia</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="bonesArticulation" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="bonesArticulation" name="primaryObjective" class="custom-control-input"
                    value="bonesArticulation" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/obeso.svg">
+            <img class="bodyIcon" src="/assets/images/bonesArticulation.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="obese">Articolazione e Ossa</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="muscleMassGain" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="muscleMassGain" name="primaryObjective" class="custom-control-input"
                    value="muscleMassGain" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/sottopeso.svg">
+            <img class="bodyIcon" src="/assets/images/muscleMassGain.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="underWeight">Aumento Massa Muscolare</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="resistanceGain" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="resistanceGain" name="primaryObjective" class="custom-control-input"
                    value="resistanceGain" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/sottopeso.svg">
+            <img class="bodyIcon" src="/assets/images/resistanceGain.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="underWeight">Aumento Resistenza</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="powerGain" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="powerGain" name="primaryObjective" class="custom-control-input"
                    value="powerGain" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/normopeso.svg">
+            <img class="bodyIcon" src="/assets/images/powerGain.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="normalWeight">Aumento Forza</label>
           </div>
           <div class="custom-control custom-radio squareRadio" (click)="selectedPrimaryObjective($event)">
-            <input type="radio" id="muscleRecovery" name="primaryObjective" class="custom-control-input"
+            <input type="checkbox" id="muscleRecovery" name="primaryObjective" class="custom-control-input"
                    value="muscleRecovery" formControlName="primaryObjective">
-            <img class="bodyIcon" src="/assets/images/sovrappeso.svg">
+            <img class="bodyIcon" src="/assets/images/muscleRecovery.png">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="overWeight">Recupero Muscolare</label>
           </div>
         </div>
@@ -298,6 +299,27 @@
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('primaryObjective').valid"
           (finalize)="finalizePrimaryObjectiveValues()"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Fifth Question-->
+    <aw-wizard-step stepTitle="Tipologia Sport" [navigationSymbol]="{ symbol: '5' }">
+
+      <h3 class="py-2">Che tipologia di sport pratichi in prevalenza?</h3>
+
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="true"
           awNextStep
         >Avanti
         </button>

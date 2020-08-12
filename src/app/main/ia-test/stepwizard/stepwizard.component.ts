@@ -5,7 +5,6 @@ import {CanComponentDeactivate} from '../can-deactivate-guard.service';
 import {Observable} from 'rxjs';
 import {ModalService} from '../modal.service';
 import {WizardComponent} from 'angular-archwizard';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-stepwizard',
@@ -18,6 +17,9 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
   public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
   wizard;
+
+  private primaryObjectivesValidValues = ['fatMassLoss', 'immunitaryDefense', 'energyGain', 'bonesArticulation', 'muscleMassGain',
+    'resistanceGain', 'powerGain', 'muscleRecovery'];
 
   constructor(private wizardService: WizardService,
               private modalService: ModalService) {
@@ -49,17 +51,44 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
         height: new FormControl(null, [Validators.required, Validators.pattern('(8[0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|250)')]),
         bodyType: new FormControl(null, Validators.required)
       }),
-      primaryObjective: new FormControl(null, Validators.required)
+      primaryObjective: new FormControl(null, [this.forbiddenPrimaryObjectives.bind(this)]),
+      sportType: new FormControl(null, Validators.required)
     });
   }
 
+  // CUSTOM VALIDATORS
+  forbiddenPrimaryObjectives(control: FormControl): { [s: string]: boolean } {
+    const firstChoiceEl = document.querySelector('[firstchoice]');
+    const secondChoiceEl = document.querySelector('[secondchoice]');
+
+    if (firstChoiceEl && secondChoiceEl) {
+      const firstChoiceElVal = firstChoiceEl.getAttribute('value');
+      const secondChoiceElVal = secondChoiceEl.getAttribute('value');
+      let invalidValue = false;
+      [firstChoiceElVal, secondChoiceElVal].forEach(x => {
+        if (!this.primaryObjectivesValidValues.includes(x)) {
+          invalidValue = true;
+        }
+      })
+      if (invalidValue) {
+        return {invalidPrimaryObjectives: true};
+      }
+    } else {
+      return {invalidPrimaryObjectives: true};
+    }
+
+    return null;
+  }
+
+  // Exit Guard
   canDeactivate(): (Observable<boolean> | Promise<boolean> | boolean) {
     this.modalService.open();
     return this.modalService.navigateAwaySelection;
   };
 
-  finalizeStep() {
-    let curIndex = this.wizardComponent.currentStepIndex;
+  // handles navigation between the optional question
+  finalizeOptionalStep() {
+    const curIndex = this.wizardComponent.currentStepIndex;
     const step2optIndex = this.wizardComponent.getIndexOfStepWithId('2.1');
 
     // Se la domanda corrente è sulla categoria sportivo e la risposta è 'sport amatoriale' allora va alla domanda secondaria
@@ -72,10 +101,27 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
+  // question 3 value selection
   selectedFisionomy(e) {
     this.selectedRadioBtn(e);
   }
 
+  // custom radio check icon
+  selectedRadioBtn(e) {
+    if (!e.target.classList.contains('squareRadio')) {
+
+      const existingCheckBadge = document.getElementsByClassName('check-icon');
+      for (let i = 0; i < existingCheckBadge.length; i++) {
+        if (existingCheckBadge[i]) {
+          existingCheckBadge[i].remove();
+        }
+      }
+
+      e.target.parentElement.insertAdjacentHTML('afterbegin', '<svg *ngIf="false" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-square-fill check-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>');
+    }
+  }
+
+  // custom radio multi choice
   selectedPrimaryObjective(e) {
     /* assegno badge 1 se non è stato selezionata nessuna card
      * assegno badge 2 se è stato selezionata già una card
@@ -87,7 +133,7 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
     const secondChoiceEl = document.getElementsByClassName('secondChoice-icon')[0];
     let badgeToApply = null;
 
-    if (!firstChoiceEl) {
+    if (!firstChoiceEl && e.target.getAttribute('firstchoice') === null && e.target.getAttribute('secondchoice') === null) {
       badgeToApply = 'firstChoice-icon';
     } else if (firstChoiceEl && !secondChoiceEl && e.target.getAttribute('firstchoice') === null && e.target.getAttribute('secondchoice') === null) {
       badgeToApply = 'secondChoice-icon';
@@ -112,26 +158,16 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
 
   }
 
-  selectedRadioBtn(e) {
-    if (!e.target.classList.contains('squareRadio')) {
-
-      const existingCheckBadge = document.getElementsByClassName('check-icon');
-      for (let i = 0; i < existingCheckBadge.length; i++) {
-        if (existingCheckBadge[i]) {
-          existingCheckBadge[i].remove();
-        }
-      }
-
-      e.target.parentElement.insertAdjacentHTML('afterbegin', '<svg *ngIf="false" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-square-fill check-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>');
-    }
-  }
-
+  // question 4: save values in form
   finalizePrimaryObjectiveValues() {
-    const firstChoiceEl = document.getElementsByClassName('firstChoice-icon')[0];
-    const secondChoiceEl = document.getElementsByClassName('secondChoice-icon')[0];
+    const firstChoiceEl = document.querySelector('[firstchoice]');
+    const secondChoiceEl = document.querySelector('[secondchoice]');
 
-    this.wizardForm.patchValue({
-      primaryObjective: ['powerGain']
-    })
+    if (firstChoiceEl && secondChoiceEl) {
+      this.wizardForm.patchValue({
+        primaryObjective: [firstChoiceEl.getAttribute('value'), secondChoiceEl.getAttribute('value')]
+      })
+    }
+
   }
 }
