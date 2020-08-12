@@ -52,7 +52,17 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
         bodyType: new FormControl(null, Validators.required)
       }),
       primaryObjective: new FormControl(null, [this.forbiddenPrimaryObjectives.bind(this)]),
-      sportType: new FormControl(null, Validators.required)
+      sportType: new FormGroup({
+        typology: new FormControl(null, Validators.required),
+        frequency: new FormControl(null, [Validators.required, Validators.pattern('([1-5])')])
+      }),
+      practiceTimeDistribution: new FormGroup({
+        workout1: new FormControl(null, Validators.required),
+        workout2: new FormControl(null, Validators.required),
+        workout3: new FormControl(null, Validators.required)
+      }),
+      workoutIntensity: new FormControl(null, [Validators.required, Validators.pattern('([1-5])')]),
+      timeToEatAfterWorkout: new FormControl(null, Validators.required)
     });
   }
 

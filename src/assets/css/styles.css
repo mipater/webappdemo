@@ -4,6 +4,14 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;
