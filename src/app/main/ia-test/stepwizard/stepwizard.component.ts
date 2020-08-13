@@ -4,7 +4,7 @@ import {WizardService} from '../../../services/wizard.service';
 import {CanComponentDeactivate} from '../can-deactivate-guard.service';
 import {Observable} from 'rxjs';
 import {ModalService} from '../modal.service';
-import {WizardComponent} from 'angular-archwizard';
+import {MovingDirection, WizardComponent} from 'angular-archwizard';
 
 @Component({
   selector: 'app-stepwizard',
@@ -16,10 +16,12 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
   @ViewChild(WizardComponent)
   public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
-  wizard;
 
   private primaryObjectivesValidValues = ['fatMassLoss', 'immunitaryDefense', 'energyGain', 'bonesArticulation', 'muscleMassGain',
     'resistanceGain', 'powerGain', 'muscleRecovery'];
+
+  private primaryObjective;
+
 
   constructor(private wizardService: WizardService,
               private modalService: ModalService) {
@@ -27,7 +29,6 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
 
   ngOnInit(): void {
     // inizializzare il wizard con i suoi valori
-    this.wizard = this.wizardService.init();
     this.initForm();
   }
 
@@ -62,12 +63,13 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
         workout3: new FormControl(null, Validators.required)
       }),
       workoutIntensity: new FormControl(null, [Validators.required, Validators.pattern('([1-5])')]),
-      timeToEatAfterWorkout: new FormControl(null, Validators.required)
+      timeToEatAfterWorkout: new FormControl(null, Validators.required),
+      primaryObjectiveDetails: new FormGroup({})
     });
   }
 
   // CUSTOM VALIDATORS
-  forbiddenPrimaryObjectives(control: FormControl): { [s: string]: boolean } {
+  forbiddenPrimaryObjectives(): { [s: string]: boolean } {
     const firstChoiceEl = document.querySelector('[firstchoice]');
     const secondChoiceEl = document.querySelector('[secondchoice]');
 
@@ -90,6 +92,28 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
     return null;
   }
 
+  energyCheckboxValidator(): { [s: string]: boolean } {
+    setTimeout(() => {
+      const neverWeakEl = document.getElementById('neverWeak');
+      const beforeWorkoutEl = document.getElementById('beforeWorkout');
+      const duringWorkoutEl = document.getElementById('duringWorkout');
+      const postWorkoutEl = document.getElementById('postWorkout');
+
+          if (neverWeakEl.classList.contains('ng-valid')) {
+            const neverWeakInput = neverWeakEl as HTMLInputElement;
+            if (neverWeakInput.checked) {
+              [beforeWorkoutEl as HTMLInputElement, duringWorkoutEl as HTMLInputElement, postWorkoutEl as HTMLInputElement].forEach(x => {
+                if (x.checked) {
+                  x.checked = false;
+                }
+              })
+            }
+          }
+
+    }, 0);
+    return null;
+  }
+
   // Exit Guard
   canDeactivate(): (Observable<boolean> | Promise<boolean> | boolean) {
     this.modalService.open();
@@ -109,11 +133,6 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
     } else {
       this.wizardComponent.goToStep(this.wizardComponent.currentStepIndex - 2);
     }
-  }
-
-  // question 3 value selection
-  selectedFisionomy(e) {
-    this.selectedRadioBtn(e);
   }
 
   // custom radio check icon
@@ -179,5 +198,77 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
       })
     }
 
+  }
+
+  // question 9: set primary objective detail question
+  configureStep() {
+    this.primaryObjective = this.wizardForm.get('primaryObjective').value[0];
+    const fg = this.wizardForm.get('primaryObjectiveDetails') as FormGroup;
+
+    switch (this.primaryObjective) {
+      case 'fatMassLoss':
+        this.primaryObjective = 'Bruciare Massa Grassa';
+        fg.addControl('goal', new FormControl(null, Validators.required));
+        fg.addControl('foodPlan', new FormControl(null, Validators.required));
+        break;
+      case 'immunitaryDefense':
+        this.primaryObjective = 'Difese Immunitarie';
+        fg.addControl('illness', new FormControl(null, Validators.required));
+        fg.addControl('portionsOfFruit', new FormControl(null, Validators.required));
+        break;
+      case 'energyGain':
+        this.primaryObjective = 'Aumento Energia';
+        fg.addControl('weakness', new FormControl(null, Validators.required));
+        fg.addControl('timeOfWeakness', new FormControl('', [Validators.required,
+          Validators.pattern('true'), this.energyCheckboxValidator.bind(this)]));
+        break;
+      case 'bonesArticulation':
+        this.primaryObjective = 'Articolazioni e Ossa';
+        fg.addControl('reason', new FormControl(null, Validators.required));
+        break;
+      case 'muscleMassGain':
+        this.primaryObjective = 'Aumento Massa';
+        break;
+      case 'resistanceGain':
+        this.primaryObjective = 'Aumento Resistenza';
+        break;
+      case 'powerGain':
+        this.primaryObjective = 'Aumento Forza';
+        break;
+      case 'muscleRecovery':
+        this.primaryObjective = 'Recupero Muscolare';
+        break;
+    }
+  }
+
+  finalizeCheckboxValue() {
+    if (this.primaryObjective === 'Aumento Energia') {
+      const neverWeakEl = document.getElementById('neverWeak') as HTMLInputElement;
+      const beforeWorkoutEl = document.getElementById('beforeWorkout') as HTMLInputElement;
+      const duringWorkoutEl = document.getElementById('duringWorkout') as HTMLInputElement;
+      const postWorkoutEl = document.getElementById('postWorkout') as HTMLInputElement;
+      const elArr = [neverWeakEl, beforeWorkoutEl, duringWorkoutEl, postWorkoutEl];
+      const checkedEl = [];
+      const values = [];
+
+      elArr.forEach(x => {
+        if (x.checked) {
+          values.push(x.value);
+          checkedEl.push(x)
+        }
+      })
+
+      this.wizardForm.patchValue({
+        primaryObjectiveDetails: {
+          timeOfWeakness: values
+        }
+      })
+
+      elArr.forEach(x => {
+        if (x.checked && !checkedEl.includes(x)) {
+          x.checked = false;
+        }
+      })
+    }
   }
 }

@@ -172,7 +172,7 @@
             id="weight"
             formControlName="weight"
             class="form-control">
-          <small id="weight" class="form-text text-muted">Fondamentale per la formula.</small>
+          <small class="form-text text-muted">Fondamentale per la formula.</small>
         </div>
         <div class="form-group">
           <label for="name">Altezza</label>
@@ -183,31 +183,31 @@
             id="height"
             formControlName="height"
             class="form-control">
-          <small id="height" class="form-text text-muted">Fondamentale per le dosi.</small>
+          <small class="form-text text-muted">Fondamentale per le dosi.</small>
         </div>
 
         <h4 class="py-3">In quale corporatura ti rivedi?</h4>
 
         <div class="form-group d-flex flex-wrap">
-          <div class="custom-control custom-radio squareRadio" (click)="selectedFisionomy($event)">
+          <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
             <input type="radio" id="underWeight" name="bodyType" class="custom-control-input"
                    value="underWeight" formControlName="bodyType">
             <img class="bodyIcon" src="/assets/images/sottopeso.svg">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="underWeight">Sottopeso</label>
           </div>
-          <div class="custom-control custom-radio squareRadio" (click)="selectedFisionomy($event)">
+          <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
             <input type="radio" id="normalWeight" name="bodyType" class="custom-control-input"
                    value="normalWeight" formControlName="bodyType">
             <img class="bodyIcon" src="/assets/images/normopeso.svg">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="normalWeight">Normopeso</label>
           </div>
-          <div class="custom-control custom-radio squareRadio" (click)="selectedFisionomy($event)">
+          <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
             <input type="radio" id="overWeight" name="bodyType" class="custom-control-input"
                    value="overWeight" formControlName="bodyType">
             <img class="bodyIcon" src="/assets/images/sovrappeso.svg">
             <label (click)="$event.stopPropagation()" class="custom-control-label" for="overWeight">Sovrappeso</label>
           </div>
-          <div class="custom-control custom-radio squareRadio" (click)="selectedFisionomy($event)">
+          <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
             <input type="radio" id="obese" name="bodyType" class="custom-control-input"
                    value="obese" formControlName="bodyType">
             <img class="bodyIcon" src="/assets/images/obeso.svg">
@@ -311,21 +311,21 @@
       <div formGroupName="sportType">
         <h3 class="py-2">Che tipologia di sport pratichi in prevalenza?</h3>
 
-        <div class="form-check py-4">
+        <div class="form-check py-3">
           <input class="form-check-input" type="radio" name="typology" id="aerobic" value="aerobic"
                  formControlName="typology">
           <label class="form-check-label" for="aerobic">
             Prevalentemente aerobico (nuoto, running, corsi fitness, ciclismo ecc.)
           </label>
         </div>
-        <div class="form-check py-4">
+        <div class="form-check py-3">
           <input class="form-check-input" type="radio" name="typology" id="mixed" value="mixed"
                  formControlName="typology">
           <label class="form-check-label" for="mixed">
             Aerobico e Anaerobico alternato (crossfit, calcio, tennis, funzionale ecc.)
           </label>
         </div>
-        <div class="form-check py-4">
+        <div class="form-check py-3">
           <input class="form-check-input" type="radio" name="typology" id="anaerobic" value="anaerobic"
                  formControlName="typology">
           <label class="form-check-label" for="anaerobic">
@@ -333,7 +333,7 @@
           </label>
         </div>
 
-        <h4 class="py-2">Quante volte alla settimana?</h4>
+        <h4 class="pt-3 pb-2">Quante volte alla settimana?</h4>
         <div class="form-group">
           <select class="form-control" id="frequency" formControlName="frequency">
             <option>1</option>
@@ -362,12 +362,12 @@
     </aw-wizard-step>
 
     <!--Sixth Question-->
-    <aw-wizard-step stepTitle="Practice Time Distribution" [navigationSymbol]="{ symbol: '6' }">
+    <aw-wizard-step stepTitle="Ripartizione Attività Fisica" [navigationSymbol]="{ symbol: '6' }">
 
       <div formGroupName="practiceTimeDistribution">
         <h3 class="py-2">Come ripartisci la tua attività fisica settimanale?</h3>
 
-        <div class="form-group">
+        <div class="form-group py-1">
           <label for="workout1">Allenamento 1</label>
           <select class="form-control" id="workout1" formControlName="workout1">
             <option>Aerobico</option>
@@ -375,7 +375,7 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group py-1">
           <label for="workout1">Allenamento 2</label>
           <select class="form-control" id="workout2" formControlName="workout2">
             <option>Aerobico</option>
@@ -383,7 +383,7 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group py-1">
           <label for="workout1">Allenamento 3</label>
           <select class="form-control" id="workout3" formControlName="workout3">
             <option>Aerobico</option>
@@ -409,11 +409,11 @@
     </aw-wizard-step>
 
     <!--Seventh Question-->
-    <aw-wizard-step stepTitle="Workout Intensity" [navigationSymbol]="{ symbol: '7' }">
+    <aw-wizard-step stepTitle="Intensità Allenamento" [navigationSymbol]="{ symbol: '7' }">
 
-        <h3 class="py-2">Con quale intensità ti alleni da 1 a 5?</h3>
+        <h3 class="pt-2">Con quale intensità ti alleni da 1 a 5?</h3>
 
-        <div class="form-group">
+        <div class="form-group pt-4">
           <select class="form-control" id="workoutIntensity" formControlName="workoutIntensity">
             <option>1</option>
             <option>2</option>
@@ -439,18 +439,18 @@
     </aw-wizard-step>
 
     <!--Eight Question-->
-    <aw-wizard-step stepTitle="Time To Eat After Workout" [navigationSymbol]="{ symbol: '8' }">
+    <aw-wizard-step stepTitle="Tempo Per Mangiare Dopo Allenamento" [navigationSymbol]="{ symbol: '8' }">
 
       <h3 class="py-2">Dopo quanto tempo dall’allenamento consumi un pasto (pranzo o cena)?</h3>
 
-      <div class="form-check py-4">
+      <div class="form-check py-3">
         <input class="form-check-input" type="radio" name="timeToEatAfterWorkout" id="early" value="early"
                formControlName="timeToEatAfterWorkout">
         <label class="form-check-label" for="early">
           Subito dopo (nel giro di mezz’ora/1 ora)
         </label>
       </div>
-      <div class="form-check py-4">
+      <div class="form-check py-3">
         <input class="form-check-input" type="radio" name="timeToEatAfterWorkout" id="later" value="later"
                formControlName="timeToEatAfterWorkout">
         <label class="form-check-label" for="later">
@@ -467,6 +467,170 @@
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('timeToEatAfterWorkout').valid"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Ninth Question-->
+    <aw-wizard-step (stepEnter)="configureStep()" stepTitle="Dettagli Obiettivo Principale" [navigationSymbol]="{ symbol: '9' }">
+
+      <h3 class="py-2">{{primaryObjective}}: vorrei qualche informazione in più al riguardo</h3>
+
+      <div class="py-2" formGroupName="primaryObjectiveDetails">
+
+        <!--Bruciare Massa Grassa-->
+        <div *ngIf="primaryObjective === 'Bruciare Massa Grassa'">
+          <h5>Nel bruciare i grassi qual è il tuo obiettivo?</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="goal" id="definition" value="definition"
+                   formControlName="goal">
+            <label class="form-check-label" for="definition">Definizione</label>
+          </div>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="radio" name="goal" id="weightLoss" value="weightLoss"
+                   formControlName="goal">
+            <label class="form-check-label" for="weightLoss">Perdita di peso</label>
+          </div>
+
+          <h5 class="pt-2">Stai seguendo già un piano alimentare?</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="foodPlan" id="eatAll" value="eatAll"
+                   formControlName="foodPlan">
+            <label class="form-check-label" for="eatAll">Mangio ciò che voglio</label>
+          </div>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="radio" name="foodPlan" id="eatHealthy" value="eatHealthy"
+                   formControlName="foodPlan">
+            <label class="form-check-label" for="eatHealthy">Mangio sano</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="foodPlan" id="followFoodPlan" value="followFoodPlan"
+                   formControlName="foodPlan">
+            <label class="form-check-label" for="followFoodPlan">Seguo alla lettera il mio piano alimentare</label>
+          </div>
+        </div>
+
+        <!--Difese Immunitarie-->
+        <div *ngIf="primaryObjective === 'Difese Immunitarie'">
+          <h5>In media, durante l'anno, accusi spesso sintomi influenzali o debolezze fisiche?</h5>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="radio" name="illness" id="yes" value="yes"
+                   formControlName="illness">
+            <label class="form-check-label" for="yes">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="illness" id="no" value="no"
+                   formControlName="illness">
+            <label class="form-check-label" for="no">No</label>
+          </div>
+
+          <h5>Quante porzioni di frutta e verdura mangi durante la giornata?</h5>
+          <div class="form-group d-flex flex-wrap">
+            <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
+              <input type="radio" id="enough" name="portionsOfFruit" class="custom-control-input"
+                     value="enough" formControlName="portionsOfFruit">
+              <label (click)="$event.stopPropagation()" class="custom-control-label" for="enough">0-2</label>
+            </div>
+            <div class="custom-control custom-radio squareRadio" (click)="selectedRadioBtn($event)">
+              <input type="radio" id="good" name="portionsOfFruit" class="custom-control-input"
+                     value="good" formControlName="portionsOfFruit">
+              <label (click)="$event.stopPropagation()" class="custom-control-label"
+                     for="good">3-5</label>
+            </div>
+          </div>
+        </div>
+
+        <!--Aumento Energia-->
+        <div *ngIf="primaryObjective === 'Aumento Energia'">
+          <h5>Durante la settimana ti senti spossato o debole?</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="weakness" id="often" value="often"
+                   formControlName="weakness">
+            <label class="form-check-label" for="often">Si spesso</label>
+          </div>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="radio" name="weakness" id="sometimes" value="sometimes"
+                   formControlName="weakness">
+            <label class="form-check-label" for="sometimes">A volte</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="weakness" id="never" value="never"
+                   formControlName="weakness">
+            <label class="form-check-label" for="never">Mai</label>
+          </div>
+
+          <h5 class="pt-3">E nel caso, in che momento della tua performance ti senti a corto di energie?</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="timeOfWeakness" id="neverWeak" value="neverWeak"
+                   formControlName="timeOfWeakness">
+            <label class="form-check-label" for="neverWeak">Non applicabile</label>
+          </div>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="checkbox" name="timeOfWeakness" id="beforeWorkout" value="beforeWorkout"
+                   formControlName="timeOfWeakness">
+            <label class="form-check-label" for="beforeWorkout">Prima di iniziare</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="timeOfWeakness" id="duringWorkout" value="duringWorkout"
+                   formControlName="timeOfWeakness">
+            <label class="form-check-label" for="duringWorkout">Durante l'allenamento</label>
+          </div>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="checkbox" name="timeOfWeakness" id="postWorkout" value="postWorkout"
+                   formControlName="timeOfWeakness">
+            <label class="form-check-label" for="postWorkout">Dopo l'allenamento</label>
+          </div>
+        </div>
+
+        <!--Articolazioni e Ossa-->
+        <div *ngIf="primaryObjective === 'Articolazioni e Ossa'">
+          <h5>Per quale motivo vuoi migliorare la salute delle tue articolazioni e delle ossa?</h5>
+          <div class="form-check pt-3">
+            <input class="form-check-input" type="radio" name="reason" id="prevention" value="prevention"
+                   formControlName="reason">
+            <label class="form-check-label" for="prevention">Per motivi di prevenzione</label>
+          </div>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="radio" name="reason" id="relievePain" value="relievePain"
+                   formControlName="reason">
+            <label class="form-check-label" for="relievePain">Per alleviare dolori o fastidi già presenti</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('primaryObjectiveDetails').valid"
+          (finalize)="finalizeCheckboxValue()"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Tenth Question-->
+    <aw-wizard-step stepTitle="EXAMPLE" [navigationSymbol]="{ symbol: '10' }">
+
+      <h3 class="py-2">Dopo quanto tempo dall’allenamento consumi un pasto (pranzo o cena)?</h3>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="true"
           awNextStep
         >Avanti
         </button>
