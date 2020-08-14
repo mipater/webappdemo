@@ -476,14 +476,14 @@
     <!--Ninth Question-->
     <aw-wizard-step (stepEnter)="configureStep()" stepTitle="Dettagli Obiettivo Principale" [navigationSymbol]="{ symbol: '9' }">
 
-      <h3 class="py-2">{{primaryObjective}}: vorrei qualche informazione in più al riguardo</h3>
+      <h3 class="py-3">{{primaryObjective}}: vorrei qualche informazione in più al riguardo</h3>
 
       <div class="py-2" formGroupName="primaryObjectiveDetails">
 
         <!--Bruciare Massa Grassa-->
         <div *ngIf="primaryObjective === 'Bruciare Massa Grassa'">
           <h5>Nel bruciare i grassi qual è il tuo obiettivo?</h5>
-          <div class="form-check">
+          <div class="form-check py-2">
             <input class="form-check-input" type="radio" name="goal" id="definition" value="definition"
                    formControlName="goal">
             <label class="form-check-label" for="definition">Definizione</label>
@@ -494,8 +494,8 @@
             <label class="form-check-label" for="weightLoss">Perdita di peso</label>
           </div>
 
-          <h5 class="pt-2">Stai seguendo già un piano alimentare?</h5>
-          <div class="form-check">
+          <h5 class="pt-3">Stai seguendo già un piano alimentare?</h5>
+          <div class="form-check py-2">
             <input class="form-check-input" type="radio" name="foodPlan" id="eatAll" value="eatAll"
                    formControlName="foodPlan">
             <label class="form-check-label" for="eatAll">Mangio ciò che voglio</label>
@@ -505,7 +505,7 @@
                    formControlName="foodPlan">
             <label class="form-check-label" for="eatHealthy">Mangio sano</label>
           </div>
-          <div class="form-check">
+          <div class="form-check py-2">
             <input class="form-check-input" type="radio" name="foodPlan" id="followFoodPlan" value="followFoodPlan"
                    formControlName="foodPlan">
             <label class="form-check-label" for="followFoodPlan">Seguo alla lettera il mio piano alimentare</label>
@@ -592,10 +592,110 @@
                    formControlName="reason">
             <label class="form-check-label" for="prevention">Per motivi di prevenzione</label>
           </div>
-          <div class="form-check py-2">
+          <div class="form-check pt-4">
             <input class="form-check-input" type="radio" name="reason" id="relievePain" value="relievePain"
                    formControlName="reason">
             <label class="form-check-label" for="relievePain">Per alleviare dolori o fastidi già presenti</label>
+          </div>
+        </div>
+
+        <!--Aumento Massa-->
+        <div *ngIf="primaryObjective === 'Aumento Massa'">
+          <h5>Segui già una alimentazione mirata al raggiungimento di questo obiettivo?</h5>
+          <div class="form-check pt-3">
+            <input class="form-check-input" type="radio" name="diet" id="yesDiet" value="yesDiet"
+                   formControlName="diet">
+            <label class="form-check-label" for="yesDiet">Si</label>
+          </div>
+          <div class="form-check pt-4">
+            <input class="form-check-input" type="radio" name="diet" id="noDiet" value="noDiet"
+                   formControlName="diet">
+            <label class="form-check-label" for="noDiet">No</label>
+          </div>
+
+          <h5 class="pt-4">Solitamente vedi i risultati del tuo allenamento per aumento della massa…</h5>
+          <div class="form-check pt-3">
+            <input class="form-check-input" type="radio" name="results" id="easy" value="easy"
+                   formControlName="results">
+            <label class="form-check-label" for="easy">Con facilità</label>
+          </div>
+          <div class="form-check pt-4">
+            <input class="form-check-input" type="radio" name="results" id="difficult" value="difficult"
+                   formControlName="results">
+            <label class="form-check-label" for="difficult">Con difficoltà</label>
+          </div>
+        </div>
+
+        <!--Aumento Resistenza-->
+        <div *ngIf="primaryObjective === 'Aumento Resistenza'">
+          <h5>Segui già una alimentazione mirata al raggiungimento di questo obiettivo?</h5>
+          <div class="form-check pt-3">
+            <input class="form-check-input" type="radio" name="goal" id="routine" value="routine"
+                   formControlName="goal">
+            <label class="form-check-label" for="routine">Routine</label>
+          </div>
+          <div class="form-check pt-4">
+            <input class="form-check-input" type="radio" name="goal" id="competition" value="competition"
+                   formControlName="goal">
+            <label class="form-check-label" for="competition">Preparazione a Gare</label>
+          </div>
+
+          <h5 class="pt-4">Riesci a portare a termine il tuo allenamento senza accusare eccessiva fatica?</h5>
+          <div class="form-check pt-3">
+            <input class="form-check-input" type="radio" name="fatigue" id="noFatigue" value="noFatigue"
+                   formControlName="fatigue">
+            <label class="form-check-label" for="noFatigue">Si</label>
+          </div>
+          <div class="form-check pt-4">
+            <input class="form-check-input" type="radio" name="fatigue" id="yesFatigue" value="yesFatigue"
+                   formControlName="fatigue">
+            <label class="form-check-label" for="yesFatigue">No</label>
+          </div>
+        </div>
+
+        <!--Aumento Forza-->
+        <div *ngIf="primaryObjective === 'Aumento Forza'">
+          <h5>All’aumento di quale tipologia di forza sei interessato?</h5>
+          <div class="form-check pt-3">
+            <input class="form-check-input" type="radio" name="goal" id="explosive" value="explosive"
+                   formControlName="goal">
+            <label class="form-check-label" for="explosive">Forza esplosiva</label>
+          </div>
+          <div class="form-check pt-4">
+            <input class="form-check-input" type="radio" name="goal" id="maximal" value="maximal"
+                   formControlName="goal">
+            <label class="form-check-label" for="maximal">Forza massimale</label>
+          </div>
+          <div class="form-check pt-4">
+            <input class="form-check-input" type="radio" name="goal" id="resistance" value="resistance"
+                   formControlName="goal">
+            <label class="form-check-label" for="resistance">Forza resistente</label>
+          </div>
+        </div>
+
+        <!--Recupero Muscolare-->
+        <div *ngIf="primaryObjective === 'Recupero Muscolare'">
+          <h5>Senti spesso dolori muscolari entro 1-3 giorni dall'allenamento?</h5>
+          <div class="form-check py-2">
+            <input class="form-check-input" type="radio" name="muscularPain" id="yesMuscularPain" value="yesMuscularPain"
+                   formControlName="muscularPain">
+            <label class="form-check-label" for="yesMuscularPain">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="muscularPain" id="noMuscularPain" value="noMuscularPain"
+                   formControlName="muscularPain">
+            <label class="form-check-label" for="noMuscularPain">No</label>
+          </div>
+
+          <h5>Se sì, con quale intensità, da 1 a 5?</h5>
+          <div class="form-group pt-4">
+            <select class="form-control" id="painIntensity" formControlName="painIntensity">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
           </div>
         </div>
 
@@ -610,7 +710,7 @@
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('primaryObjectiveDetails').valid"
-          (finalize)="finalizeCheckboxValue()"
+          (finalize)="finalizeEnergyCheckboxValue()"
           awNextStep
         >Avanti
         </button>
@@ -618,9 +718,30 @@
     </aw-wizard-step>
 
     <!--Tenth Question-->
-    <aw-wizard-step stepTitle="EXAMPLE" [navigationSymbol]="{ symbol: '10' }">
+    <aw-wizard-step stepTitle="Dieta" [navigationSymbol]="{ symbol: '10' }">
 
-      <h3 class="py-2">Dopo quanto tempo dall’allenamento consumi un pasto (pranzo o cena)?</h3>
+      <h3 class="py-2">Quale regime alimentare segui?</h3>
+
+      <div class="form-check py-2">
+        <input class="form-check-input" type="radio" name="diet" id="omnivorous" value="omnivorous"
+               formControlName="diet">
+        <label class="form-check-label" for="omnivorous">Onnivoro</label>
+      </div>
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="diet" id="vegan" value="vegan"
+               formControlName="diet">
+        <label class="form-check-label" for="vegan">Vegano</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="radio" name="diet" id="vegetarian" value="vegetarian"
+               formControlName="diet">
+        <label class="form-check-label" for="vegetarian">Vegetariano</label>
+      </div>
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="diet" id="glutenFree" value="glutenFree"
+               formControlName="diet">
+        <label class="form-check-label" for="glutenFree">Gluten free</label>
+      </div>
 
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
@@ -630,7 +751,98 @@
         </button>
         <button
           type="button" class="btn btn-primary px-5"
-          [disabled]="true"
+          [disabled]="!wizardForm.get('diet').valid"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Eleventh Question-->
+    <aw-wizard-step stepTitle="Allergie e Intolleranze" [navigationSymbol]="{ symbol: '11' }">
+
+      <h3 class="py-2">Hai una di queste allergie o intolleranze?</h3>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="none" value="none"
+               formControlName="allergy">
+        <label class="form-check-label" for="none">Nessuna</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="lactose" value="lactose"
+               formControlName="allergy">
+        <label class="form-check-label" for="lactose">Lattosio</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="egg" value="egg"
+               formControlName="allergy">
+        <label class="form-check-label" for="egg">Uova</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="fish" value="fish"
+               formControlName="allergy">
+        <label class="form-check-label" for="fish">Pesce</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="clam" value="clam"
+               formControlName="allergy">
+        <label class="form-check-label" for="clam">Molluschi</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="nut" value="nut"
+               formControlName="allergy">
+        <label class="form-check-label" for="nut">Noci</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="peanut" value="peanut"
+               formControlName="allergy">
+        <label class="form-check-label" for="peanut">Arachidi</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="soy" value="soy"
+               formControlName="allergy">
+        <label class="form-check-label" for="soy">Soia</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="gluten" value="gluten"
+               formControlName="allergy">
+        <label class="form-check-label" for="gluten">Glutine</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="allergy" id="nichel" value="nichel"
+               formControlName="allergy">
+        <label class="form-check-label" for="nichel">Nichel</label>
+      </div>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('allergy').valid"
+          (finalize)="finalizeAllergyCheckboxValue()"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Twelth Question-->
+    <aw-wizard-step stepTitle="TEST" [navigationSymbol]="{ symbol: '12' }">
+
+      <h3 class="py-2">Quale regime alimentare segui?</h3>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('diet').valid"
           awNextStep
         >Avanti
         </button>

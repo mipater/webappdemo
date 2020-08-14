@@ -64,7 +64,9 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
       }),
       workoutIntensity: new FormControl(null, [Validators.required, Validators.pattern('([1-5])')]),
       timeToEatAfterWorkout: new FormControl(null, Validators.required),
-      primaryObjectiveDetails: new FormGroup({})
+      primaryObjectiveDetails: new FormGroup({}),
+      diet: new FormControl(null, Validators.required),
+      allergy: new FormControl(null, [Validators.required, Validators.pattern('true'), this.allergyCheckboxValidator.bind(this)]),
     });
   }
 
@@ -99,17 +101,62 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
       const duringWorkoutEl = document.getElementById('duringWorkout');
       const postWorkoutEl = document.getElementById('postWorkout');
 
-          if (neverWeakEl.classList.contains('ng-valid')) {
-            const neverWeakInput = neverWeakEl as HTMLInputElement;
-            if (neverWeakInput.checked) {
-              [beforeWorkoutEl as HTMLInputElement, duringWorkoutEl as HTMLInputElement, postWorkoutEl as HTMLInputElement].forEach(x => {
-                if (x.checked) {
-                  x.checked = false;
-                }
-              })
+      if (neverWeakEl.classList.contains('ng-valid')) {
+        const neverWeakInput = neverWeakEl as HTMLInputElement;
+        if (neverWeakInput.checked) {
+          [beforeWorkoutEl as HTMLInputElement, duringWorkoutEl as HTMLInputElement, postWorkoutEl as HTMLInputElement].forEach(x => {
+            if (x.checked) {
+              x.checked = false;
             }
-          }
+          })
+        }
+      }
 
+    }, 0);
+    return null;
+  }
+
+  muscleRecoveryValidator(): { [s: string]: boolean } {
+    setTimeout(() => {
+      const yesMuscularPainEl = document.getElementById('yesMuscularPain') as HTMLInputElement;
+      const fg = this.wizardForm.get('primaryObjectiveDetails') as FormGroup;
+
+      if (yesMuscularPainEl.checked) {
+        fg.get('painIntensity').enable();
+        fg.get('painIntensity').setValidators([Validators.required, Validators.pattern('([1-5])')])
+      } else {
+        fg.get('painIntensity').disable();
+      }
+    }, 0);
+
+    return null;
+  }
+
+  allergyCheckboxValidator(): { [s: string]: boolean } {
+    setTimeout(() => {
+      const noneEl = document.getElementById('none');
+      const lactoseEl = document.getElementById('lactose');
+      const eggEl = document.getElementById('egg');
+      const fishEl = document.getElementById('fish');
+      const clamEl = document.getElementById('clam');
+      const nutEl = document.getElementById('nut');
+      const peanutEl = document.getElementById('peanut');
+      const soyEl = document.getElementById('soy');
+      const glutenEl = document.getElementById('gluten');
+      const nichelEl = document.getElementById('nichel');
+
+      if (noneEl.classList.contains('ng-valid')) {
+        const noneElInput = noneEl as HTMLInputElement;
+        if (noneElInput.checked) {
+          [lactoseEl as HTMLInputElement, eggEl as HTMLInputElement, fishEl as HTMLInputElement, clamEl as HTMLInputElement,
+            nutEl as HTMLInputElement, peanutEl as HTMLInputElement, soyEl as HTMLInputElement,
+            glutenEl as HTMLInputElement, nichelEl as HTMLInputElement].forEach(x => {
+            if (x.checked) {
+              x.checked = false;
+            }
+          })
+        }
+      }
     }, 0);
     return null;
   }
@@ -228,20 +275,28 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
         break;
       case 'muscleMassGain':
         this.primaryObjective = 'Aumento Massa';
+        fg.addControl('diet', new FormControl(null, Validators.required));
+        fg.addControl('results', new FormControl(null, Validators.required));
         break;
       case 'resistanceGain':
         this.primaryObjective = 'Aumento Resistenza';
+        fg.addControl('goal', new FormControl(null, Validators.required));
+        fg.addControl('fatigue', new FormControl(null, Validators.required));
         break;
       case 'powerGain':
         this.primaryObjective = 'Aumento Forza';
+        fg.addControl('goal', new FormControl(null, Validators.required));
         break;
       case 'muscleRecovery':
         this.primaryObjective = 'Recupero Muscolare';
+        fg.addControl('muscularPain', new FormControl(null, [Validators.required, this.muscleRecoveryValidator.bind(this)]));
+        fg.addControl('painIntensity', new FormControl(null));
         break;
     }
   }
 
-  finalizeCheckboxValue() {
+  // question 10: Energy Gain - Save Checkbox Values
+  finalizeEnergyCheckboxValue() {
     if (this.primaryObjective === 'Aumento Energia') {
       const neverWeakEl = document.getElementById('neverWeak') as HTMLInputElement;
       const beforeWorkoutEl = document.getElementById('beforeWorkout') as HTMLInputElement;
@@ -271,4 +326,39 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
       })
     }
   }
+
+  // question 11: Save Checkbox Values
+  finalizeAllergyCheckboxValue() {
+    const noneEl = document.getElementById('none') as HTMLInputElement;
+    const lactoseEl = document.getElementById('lactose') as HTMLInputElement;
+    const eggEl = document.getElementById('egg') as HTMLInputElement;
+    const fishEl = document.getElementById('fish') as HTMLInputElement;
+    const clamEl = document.getElementById('clam') as HTMLInputElement;
+    const nutEl = document.getElementById('nut') as HTMLInputElement;
+    const peanutEl = document.getElementById('peanut') as HTMLInputElement;
+    const soyEl = document.getElementById('soy') as HTMLInputElement;
+    const glutenEl = document.getElementById('gluten') as HTMLInputElement;
+    const nichelEl = document.getElementById('nichel') as HTMLInputElement;
+    const elArr = [noneEl, lactoseEl, eggEl, fishEl, clamEl, nutEl, peanutEl, soyEl, glutenEl, nichelEl];
+    const checkedEl = [];
+    const values = [];
+
+    elArr.forEach(x => {
+      if (x.checked) {
+        values.push(x.value);
+        checkedEl.push(x)
+      }
+    })
+
+    this.wizardForm.patchValue({
+      allergy: values
+    })
+
+    elArr.forEach(x => {
+      if (x.checked && !checkedEl.includes(x)) {
+        x.checked = false;
+      }
+    })
+  }
+
 }
