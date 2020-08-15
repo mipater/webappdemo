@@ -17,9 +17,9 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
   public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
 
-  private primaryObjectivesValidValues = ['fatMassLoss', 'immunitaryDefense', 'energyGain', 'bonesArticulation', 'muscleMassGain',
+  primaryObjectivesValidValues = ['fatMassLoss', 'immunitaryDefense', 'energyGain', 'bonesArticulation', 'muscleMassGain',
     'resistanceGain', 'powerGain', 'muscleRecovery'];
-  private primaryObjective;
+  primaryObjective;
   progressBarValue = 0;
   lastVisitedStep = 0;
 
