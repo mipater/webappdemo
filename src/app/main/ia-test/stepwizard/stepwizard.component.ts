@@ -5,6 +5,7 @@ import {CanComponentDeactivate} from '../can-deactivate-guard.service';
 import {Observable} from 'rxjs';
 import {ModalService} from '../modal.service';
 import {WizardComponent} from 'angular-archwizard';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-stepwizard',
@@ -24,7 +25,8 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
   lastVisitedStep = 0;
 
   constructor(private wizardService: WizardService,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
 
   onSubmit() {
     console.log(this.wizardForm);
-    this.updateProgressBarValue(true);
+    this.router.navigate(['test/end'])
   }
 
   initForm() {

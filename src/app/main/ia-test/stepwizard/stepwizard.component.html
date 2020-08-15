@@ -168,7 +168,7 @@
       <div formGroupName="fisionomy">
         <div class="form-group">
 
-          <label for="name">Peso</label>
+          <label for="name">Peso (kg)</label>
           <input
             type="number"
             min="40"
@@ -179,7 +179,7 @@
           <small class="form-text text-muted">Fondamentale per la formula.</small>
         </div>
         <div class="form-group">
-          <label for="name">Altezza</label>
+          <label for="name">Altezza (cm)</label>
           <input
             type="number"
             min="80"
@@ -909,7 +909,7 @@
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('healthProblems').valid"
           (finalize)="finalizeHealthProblemsCheckboxValue()"
-          (postFinalize)="updateProgressBarValue()"
+          (postFinalize)="updateProgressBarValue(true)"
           awNextStep
         >Avanti
         </button>

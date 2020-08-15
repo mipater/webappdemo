@@ -20,6 +20,7 @@ import {UnsavedChangesGuard} from './main/ia-test/can-deactivate-guard.service';
 import { ConfirmLeaveComponent } from './main/confirm-leave/confirm-leave.component';
 import { StepwizardComponent } from './main/ia-test/stepwizard/stepwizard.component';
 import {SafeHtmlPipe} from './main/shared/safe-html-pipe';
+import {EndwizardComponent} from './main/ia-test/endwizard/endwizard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {SafeHtmlPipe} from './main/shared/safe-html-pipe';
     HometestComponent,
     ConfirmLeaveComponent,
     StepwizardComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    EndwizardComponent
   ],
   imports: [
     BrowserModule,
