@@ -2,10 +2,10 @@
 
   <div class="progress mb-5" style="background-color: #b3cfcf;">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-         [ngStyle]="{'width.%': 0}"
-         attr.aria-valuenow="0"
+         [ngStyle]="{'width.%': progressBarValue}"
+         attr.aria-valuenow="{{progressBarValue}}"
          attr.aria-valuemin="0"
-         aria-valuemax="100">0%
+         aria-valuemax="100">{{progressBarValue}}%
     </div>
   </div>
 
@@ -57,15 +57,15 @@
             )
           </label>
         </div>
-
-        <div class="pt-4 d-flex flex-row-reverse">
-          <button
-            type="button" class="btn btn-primary px-5"
-            [disabled]="!wizardForm.get('personalInfo').valid"
-            awNextStep
-          >Avanti
-          </button>
-        </div>
+      </div>
+      <div class="pt-4 d-flex flex-row-reverse">
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('personalInfo').valid"
+          (postFinalize)="updateProgressBarValue()"
+          awNextStep
+        >Avanti
+        </button>
       </div>
     </aw-wizard-step>
 
@@ -106,6 +106,7 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
@@ -113,13 +114,14 @@
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('sportCategory').valid"
           (finalize)="finalizeOptionalStep()"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
       </div>
     </aw-wizard-step>
 
-    <!--Second Question: 2.1-->
+    <!--Second Question: Optional-->
     <aw-wizard-step stepTitle="regolarità Pratica" [stepId]="'2.1'" [navigationSymbol]="{ symbol: '2.1' }">
 
       <h3 class="py-2">Con quale regolarità ti alleni?</h3>
@@ -144,12 +146,14 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('trainingRegularity').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -216,16 +220,19 @@
         </div>
 
       </div>
+
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
           awPreviousStep
           (finalize)="finalizeOptionalStep()"
+          (postFinalize)="updateProgressBarValue()"
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('fisionomy').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -292,6 +299,7 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
@@ -299,6 +307,7 @@
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('primaryObjective').valid"
           (finalize)="finalizePrimaryObjectiveValues()"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -349,12 +358,14 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('sportType').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -396,12 +407,14 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('practiceTimeDistribution').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -426,12 +439,14 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('workoutIntensity').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -461,12 +476,14 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('timeToEatAfterWorkout').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -704,6 +721,7 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
@@ -711,6 +729,7 @@
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('primaryObjectiveDetails').valid"
           (finalize)="finalizeEnergyCheckboxValue()"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -746,12 +765,14 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('diet').valid"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -816,6 +837,7 @@
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
@@ -823,6 +845,7 @@
           type="button" class="btn btn-primary px-5"
           [disabled]="!wizardForm.get('allergy').valid"
           (finalize)="finalizeAllergyCheckboxValue()"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
@@ -830,26 +853,99 @@
     </aw-wizard-step>
 
     <!--Twelth Question-->
-    <aw-wizard-step stepTitle="TEST" [navigationSymbol]="{ symbol: '12' }">
+    <aw-wizard-step stepTitle="Problemi di Salute" [navigationSymbol]="{ symbol: '12' }">
 
-      <h3 class="py-2">Quale regime alimentare segui?</h3>
+      <h3 class="py-2">L'ultima domanda, fondamentale per il calcolo personalizzato della tua formula.</h3>
+      <h5 class="pt-4 pb-1">Hai problemi di salute o sei una donna in gravidanza?</h5>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="noHealthProblems" value="noHealthProblems"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="noHealthProblems">Nessuno</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="heart" value="heart"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="heart">Problemi Cardiaci</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="kidney" value="kidney"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="kidney">Problemi Renali</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="hypertension" value="hypertension"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="hypertension">Ipertensione</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="diabetes" value="diabetes"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="diabetes">Diabete</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="insulinResistance" value="insulinResistance"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="insulinResistance">Insulino resistenza</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="pregnancy" value="pregnancy"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="pregnancy">Sei in gravidanza</label>
+      </div>
+      <div class="form-check py-2">
+        <input class="form-check-input" type="checkbox" name="healthProblems" id="breastfeeding" value="breastfeeding"
+               formControlName="healthProblems">
+        <label class="form-check-label" for="breastfeeding">Stai allattando</label>
+      </div>
 
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
           awPreviousStep
         >Indietro
         </button>
         <button
           type="button" class="btn btn-primary px-5"
-          [disabled]="!wizardForm.get('diet').valid"
+          [disabled]="!wizardForm.get('healthProblems').valid"
+          (finalize)="finalizeHealthProblemsCheckboxValue()"
+          (postFinalize)="updateProgressBarValue()"
           awNextStep
         >Avanti
         </button>
       </div>
     </aw-wizard-step>
 
-    <button class="btn btn-primary">Termina</button>
+    <!--Thirteenth Question-->
+    <aw-wizard-step stepTitle="Uso Dati A Fini Statistici" [navigationSymbol]="{ symbol: '13' }">
+
+      <h3 class="py-2">Piccola domanda. Possiamo usare i tuoi dati a fini statistici? Verranno, ovviamente, resi anonimi</h3>
+      <div class="form-check py-3">
+        <input class="form-check-input" type="radio" name="dataUsage" id="yesConsent" value="yesConsent"
+               formControlName="dataUsage">
+        <label class="form-check-label" for="yesConsent">Si</label>
+      </div>
+      <div class="form-check py-3">
+        <input class="form-check-input" type="radio" name="dataUsage" id="noConsent" value="noConsent"
+               formControlName="dataUsage">
+        <label class="form-check-label" for="noConsent">No</label>
+      </div>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          (postFinalize)="updateProgressBarValue()"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="submit" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('dataUsage').valid"
+          awNextStep
+        >Termina
+        </button>
+      </div>
+    </aw-wizard-step>
 
   </form>
 </aw-wizard>

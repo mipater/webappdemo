@@ -4,7 +4,7 @@ import {WizardService} from '../../../services/wizard.service';
 import {CanComponentDeactivate} from '../can-deactivate-guard.service';
 import {Observable} from 'rxjs';
 import {ModalService} from '../modal.service';
-import {MovingDirection, WizardComponent} from 'angular-archwizard';
+import {WizardComponent} from 'angular-archwizard';
 
 @Component({
   selector: 'app-stepwizard',
@@ -19,9 +19,9 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
 
   private primaryObjectivesValidValues = ['fatMassLoss', 'immunitaryDefense', 'energyGain', 'bonesArticulation', 'muscleMassGain',
     'resistanceGain', 'powerGain', 'muscleRecovery'];
-
   private primaryObjective;
-
+  progressBarValue = 0;
+  lastVisitedStep = 0;
 
   constructor(private wizardService: WizardService,
               private modalService: ModalService) {
@@ -34,6 +34,7 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
 
   onSubmit() {
     console.log(this.wizardForm);
+    this.updateProgressBarValue(true);
   }
 
   initForm() {
@@ -67,7 +68,24 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
       primaryObjectiveDetails: new FormGroup({}),
       diet: new FormControl(null, Validators.required),
       allergy: new FormControl(null, [Validators.required, Validators.pattern('true'), this.allergyCheckboxValidator.bind(this)]),
+      healthProblems: new FormControl(null, [Validators.required, Validators.pattern('true'), this.healthProblemsCheckboxValidator.bind(this)]),
+      dataUsage: new FormControl(null, Validators.required)
     });
+  }
+
+  // Update Progress Bar Value
+  updateProgressBarValue(isFinalStep?: boolean) {
+    const curIndex = this.wizardComponent.currentStepIndex;
+    if (isFinalStep) {
+      this.progressBarValue = 99.9;
+    } else {
+      if (curIndex > this.lastVisitedStep) {
+        this.progressBarValue += 7.5;
+      } else {
+        this.progressBarValue -= 7.5;
+      }
+      this.lastVisitedStep = curIndex;
+    }
   }
 
   // CUSTOM VALIDATORS
@@ -151,6 +169,32 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
           [lactoseEl as HTMLInputElement, eggEl as HTMLInputElement, fishEl as HTMLInputElement, clamEl as HTMLInputElement,
             nutEl as HTMLInputElement, peanutEl as HTMLInputElement, soyEl as HTMLInputElement,
             glutenEl as HTMLInputElement, nichelEl as HTMLInputElement].forEach(x => {
+            if (x.checked) {
+              x.checked = false;
+            }
+          })
+        }
+      }
+    }, 0);
+    return null;
+  }
+
+  healthProblemsCheckboxValidator(): { [s: string]: boolean } {
+    setTimeout(() => {
+      const noHealthProblemsEl = document.getElementById('noHealthProblems');
+      const heartEl = document.getElementById('heart');
+      const kidneyEl = document.getElementById('kidney');
+      const hypertensionEl = document.getElementById('hypertension');
+      const diabetesEl = document.getElementById('diabetes');
+      const insulinResistanceEl = document.getElementById('insulinResistance');
+      const pregnancyEl = document.getElementById('pregnancy');
+      const breastfeedingEl = document.getElementById('breastfeeding');
+
+      if (noHealthProblemsEl.classList.contains('ng-valid')) {
+        const noHealthProblemsElInput = noHealthProblemsEl as HTMLInputElement;
+        if (noHealthProblemsElInput.checked) {
+          [heartEl as HTMLInputElement, kidneyEl as HTMLInputElement, hypertensionEl as HTMLInputElement, diabetesEl as HTMLInputElement,
+            insulinResistanceEl as HTMLInputElement, pregnancyEl as HTMLInputElement, breastfeedingEl as HTMLInputElement].forEach(x => {
             if (x.checked) {
               x.checked = false;
             }
@@ -320,7 +364,7 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
       })
 
       elArr.forEach(x => {
-        if (x.checked && !checkedEl.includes(x)) {
+        if (x.checked) {
           x.checked = false;
         }
       })
@@ -355,7 +399,39 @@ export class StepwizardComponent implements OnInit, CanComponentDeactivate {
     })
 
     elArr.forEach(x => {
-      if (x.checked && !checkedEl.includes(x)) {
+      if (x.checked) {
+        x.checked = false;
+      }
+    })
+  }
+
+  // question 12: Save Checkbox Values
+  finalizeHealthProblemsCheckboxValue() {
+    const noHealthProblemsEl = document.getElementById('noHealthProblems') as HTMLInputElement;
+    const heartEl = document.getElementById('heart') as HTMLInputElement;
+    const kidneyEl = document.getElementById('kidney') as HTMLInputElement;
+    const hypertensionEl = document.getElementById('hypertension') as HTMLInputElement;
+    const diabetesEl = document.getElementById('diabetes') as HTMLInputElement;
+    const insulinResistanceEl = document.getElementById('insulinResistance') as HTMLInputElement;
+    const pregnancyEl = document.getElementById('pregnancy') as HTMLInputElement;
+    const breastfeedingEl = document.getElementById('breastfeeding') as HTMLInputElement;
+    const elArr = [noHealthProblemsEl, heartEl, kidneyEl, hypertensionEl, diabetesEl, insulinResistanceEl, pregnancyEl, breastfeedingEl];
+    const checkedEl = [];
+    const values = [];
+
+    elArr.forEach(x => {
+      if (x.checked) {
+        values.push(x.value);
+        checkedEl.push(x)
+      }
+    })
+
+    this.wizardForm.patchValue({
+      healthProblems: values
+    })
+
+    elArr.forEach(x => {
+      if (x.checked) {
         x.checked = false;
       }
     })
