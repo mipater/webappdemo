@@ -13,4 +13,5 @@ export class EndwizardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //TODO aggiungere canEnter Guard per far accedere a questo route solo dopo aver concluso lo step wizard
 }

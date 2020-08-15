@@ -21,6 +21,7 @@ import { ConfirmLeaveComponent } from './main/confirm-leave/confirm-leave.compon
 import { StepwizardComponent } from './main/ia-test/stepwizard/stepwizard.component';
 import {SafeHtmlPipe} from './main/shared/safe-html-pipe';
 import {EndwizardComponent} from './main/ia-test/endwizard/endwizard.component';
+import { ResultComponent } from './main/ia-test/result/result.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {EndwizardComponent} from './main/ia-test/endwizard/endwizard.component';
     ConfirmLeaveComponent,
     StepwizardComponent,
     SafeHtmlPipe,
-    EndwizardComponent
+    EndwizardComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

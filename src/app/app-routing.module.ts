@@ -8,6 +8,7 @@ import {HometestComponent} from './main/ia-test/hometest/hometest.component';
 import {UnsavedChangesGuard} from './main/ia-test/can-deactivate-guard.service';
 import {StepwizardComponent} from './main/ia-test/stepwizard/stepwizard.component';
 import {EndwizardComponent} from './main/ia-test/endwizard/endwizard.component';
+import {ResultComponent} from './main/ia-test/result/result.component';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
@@ -15,7 +16,8 @@ const appRoutes = [
   {path: 'test', component: IaTestComponent, children: [
       {path: '', component: HometestComponent},
       {path: 'wizard', canDeactivate: [UnsavedChangesGuard], component: StepwizardComponent},
-      {path: 'end', component: EndwizardComponent}
+      {path: 'end', component: EndwizardComponent},
+      {path: 'result', component: ResultComponent}
     ]},
   {path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not Found!'}},
   {path: '**', redirectTo: '/not-found'}
