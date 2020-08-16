@@ -1,6 +1,7 @@
 #main-strip {
   padding: 10% 0;
-  background-image: linear-gradient(#5899B6,#5899B6 60%,#efefef);
+  /*background-image: linear-gradient(0deg,#009381,#006D60 24%, #54b4eb);*/
+  background-image: url('/assets/images/background.jpg');
   background-position: center;
   background-size: cover;
 }

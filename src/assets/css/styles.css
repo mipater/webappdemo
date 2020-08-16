@@ -4,12 +4,19 @@
   font-family: 'Roboto', sans-serif;
 }
 
-html {
+html{
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+}
+
+.privacyPage {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 html, body {
@@ -20,6 +27,18 @@ html, body {
 
 body {
   background-color: #E6F4F1;
+}
+
+img:focus, address:focus {
+  outline: none;
+}
+
+address {
+  color: #1d9ce5;
+}
+
+address:hover {
+  color: #4b966a;
 }
 
 .bg-dark {

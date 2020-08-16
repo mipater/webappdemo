@@ -22,6 +22,7 @@ import { StepwizardComponent } from './main/ia-test/stepwizard/stepwizard.compon
 import {SafeHtmlPipe} from './main/shared/safe-html-pipe';
 import {EndwizardComponent} from './main/ia-test/endwizard/endwizard.component';
 import { ResultComponent } from './main/ia-test/result/result.component';
+import { CookieComponent } from './main/cookie/cookie.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ResultComponent } from './main/ia-test/result/result.component';
     StepwizardComponent,
     SafeHtmlPipe,
     EndwizardComponent,
-    ResultComponent
+    ResultComponent,
+    CookieComponent
   ],
   imports: [
     BrowserModule,

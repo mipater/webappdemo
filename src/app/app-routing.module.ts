@@ -9,10 +9,12 @@ import {UnsavedChangesGuard} from './main/ia-test/can-deactivate-guard.service';
 import {StepwizardComponent} from './main/ia-test/stepwizard/stepwizard.component';
 import {EndwizardComponent} from './main/ia-test/endwizard/endwizard.component';
 import {ResultComponent} from './main/ia-test/result/result.component';
+import {CookieComponent} from './main/cookie/cookie.component';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
   {path: 'privacy', component: InformativaComponent},
+  {path: 'cookies', component: CookieComponent},
   {path: 'test', component: IaTestComponent, children: [
       {path: '', component: HometestComponent},
       {path: 'wizard', canDeactivate: [UnsavedChangesGuard], component: StepwizardComponent},
