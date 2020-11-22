@@ -15,8 +15,6 @@ import { InformativaComponent } from './informativa/informativa.component';
 import { HometestComponent } from './ia-test/hometest/hometest.component';
 import { StepwizardComponent } from './ia-test/stepwizard/stepwizard.component';
 import {SafeHtmlPipe} from './shared/safe-html-pipe';
-import {EndwizardComponent} from './ia-test/endwizard/endwizard.component';
-import { ResultComponent } from './ia-test/result/result.component';
 import { CookieComponent } from './cookie/cookie.component';
 
 @NgModule({
@@ -31,8 +29,6 @@ import { CookieComponent } from './cookie/cookie.component';
     HometestComponent,
     StepwizardComponent,
     SafeHtmlPipe,
-    EndwizardComponent,
-    ResultComponent,
     CookieComponent
   ],
   imports: [

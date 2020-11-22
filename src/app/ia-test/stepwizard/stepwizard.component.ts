@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {WizardService} from './wizard.service';
-import {WizardComponent, WizardStep} from 'angular-archwizard';
-import {Router} from '@angular/router';
+import {WizardComponent} from 'angular-archwizard';
+import {ResultModel} from './result.model';
 
 @Component({
   selector: 'app-stepwizard',
@@ -14,20 +14,12 @@ export class StepwizardComponent implements OnInit {
   @ViewChild(WizardComponent)
   public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
+  result: ResultModel = new ResultModel('', '');
 
-  constructor(
-    private wizardService: WizardService,
-    private router: Router
-  ) {}
+  constructor(private wizardService: WizardService) {}
 
   ngOnInit(): void {
-    // inizializzare il wizard con i suoi valori
     this.wizardForm = this.wizardService.initForm();
-  }
-
-  onSubmit() {
-    console.log(this.wizardForm);
-    this.router.navigate(['test/end']);
   }
 
   onNextStep() {
@@ -36,5 +28,9 @@ export class StepwizardComponent implements OnInit {
 
   onPrevStep() {
     this.wizardService.goToPrevStep(this.wizardComponent);
+  }
+
+  onLastStep() {
+    this.result = this.wizardService.goToLastStepAndGetProduct(this.wizardComponent, this.wizardForm);
   }
 }

@@ -1,17 +1,10 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {WizardComponent, WizardStep} from 'angular-archwizard';
+import {WizardComponent} from 'angular-archwizard';
+import {ResultModel} from './result.model';
 
 @Injectable({providedIn: 'root'})
 export class WizardService {
-  stepNavigation = {
-    hasPain: {prevStep: 'personalInfo'},
-    yesPain: {prevStep: 'hasPain'},
-    noPain: {prevStep: 'hasPain'},
-    yesDiagnosis: {prevStep: 'yesPain'},
-    choosedDiagnosis: {prevStep: 'yesDiagnosis'},
-    noDiagnosis: {prevStep: 'yesPain'}
-  };
 
   initForm() {
     return new FormGroup({
@@ -23,32 +16,125 @@ export class WizardService {
         privacy: new FormControl(null, [Validators.required, Validators.pattern('true')])
       }),
       hasPain: new FormControl(null, Validators.required),
-      yesPain: new FormControl(null, Validators.required),
-      noPain: new FormControl(null, Validators.required),
-      yesDiagnosis: new FormControl(null, Validators.required),
-      choosedDiagnosis: new FormControl(null, Validators.required),
-      noDiagnosis: new FormControl(null, Validators.required),
-      test: new FormControl(null, Validators.required),
-      dataUsage: new FormControl(null, Validators.required)
+      hasDiagnosis: new FormControl(null, Validators.required),
+      chooseDiagnosis: new FormControl(null, Validators.required),
+      osteoartrosi: new FormControl(null, Validators.required),
+      osteoartrosiFinal: new FormControl(null, Validators.required),
+      neuropatiaDiabetica: new FormControl(null, Validators.required),
+      neuropatiaDiabeticaFinal: new FormControl(null, Validators.required),
+      neuropatiaIntrappolamento: new FormControl(null, Validators.required),
+      neuropatiaIntrappolamentoFinal: new FormControl(null, Validators.required),
+      neuropatiaCompressione: new FormControl(null, Validators.required),
+      neuropatiaCompressioneFinal: new FormControl(null, Validators.required),
+      neuropatiaErpetica: new FormControl(null, Validators.required),
+      neuropatiaErpeticaFinal: new FormControl(null, Validators.required),
+      cefalea: new FormControl(null, Validators.required),
+      cefaleaFinal: new FormControl(null, Validators.required),
+      nevralgiaTrigeminale: new FormControl(null, Validators.required),
+      nevralgiaTrigeminaleFinal: new FormControl(null, Validators.required),
+      emorroidiRagadi: new FormControl(null, Validators.required),
+      emorroidiRagadiFinal: new FormControl(null, Validators.required),
+      fibromialgia: new FormControl(null, Validators.required),
+      fibromialgiaFinal: new FormControl(null, Validators.required),
+      detectDiagnosis: new FormControl(null, Validators.required),
+      chooseNoPainDisorder: new FormControl(null, Validators.required)
     });
   }
 
   goToNextStep(wizardComponent: WizardComponent, wizardForm: FormGroup) {
-    const stepTitle = wizardComponent.currentStep.stepTitle;
-    const stepValue = wizardForm.get(stepTitle).value;
-    const nextStepIndex = wizardComponent.getIndexOfStepWithId(stepValue);
+    const currentStepId: string = wizardComponent.currentStep.stepId;
+    const currentStepAnswer: string = wizardForm.get(currentStepId).value;
+    let nextStepName: string;
 
-    console.log(stepValue);
+    switch (currentStepAnswer) {
+      case 'yesPain':
+        nextStepName = 'hasDiagnosis';
+        break;
+      case 'yesDiagnosis':
+        nextStepName = 'chooseDiagnosis';
+        break;
+      case 'noDiagnosis':
+        nextStepName = 'detectDiagnosis';
+        break;
+      case 'noPain':
+        nextStepName = 'chooseNoPainDisorder';
+        break;
+      case 'osteoartrosi':
+        nextStepName = 'osteoartrosiFinal';
+        break;
+      case 'neuropatiaDiabetica':
+        nextStepName = 'neuropatiaDiabeticaFinal';
+        break;
+      case 'neuropatiaIntrappolamento':
+        nextStepName = 'neuropatiaIntrappolamentoFinal';
+        break;
+      case 'neuropatiaCompressione':
+        nextStepName = 'neuropatiaCompressioneFinal';
+        break;
+      case 'neuropatiaErpetica':
+        nextStepName = 'neuropatiaErpeticaFinal';
+        break;
+      case 'nevralgiaTrigeminale':
+        nextStepName = 'nevralgiaTrigeminaleFinal';
+        break;
+      case 'cefalea':
+        nextStepName = 'cefaleaFinal';
+        break;
+      case 'emorroidiRagadi':
+        nextStepName = 'emorroidiRagadiFinal';
+        break;
+      case 'fibromialgia':
+        nextStepName = 'fibromialgiaFinal';
+        break;
+      case 'yesOsteoartrosiFinal': case 'noOsteoartrosiFinal': case 'yesNeuropatiaDiabeticaFinal': case 'noNeuropatiaDiabeticaFinal':
+      case 'yesNeuropatiaIntrappolamentoFinal': case 'noNeuropatiaIntrappolamentoFinal': case 'yesNeuropatiaCompressioneFinal': case 'noNeuropatiaCompressioneFinal':
+      case 'yesNeuropatiaErpeticaFinal': case 'noNeuropatiaErpeticaFinal': case 'yesNevralgiaTrigeminaleFinal': case 'noNevralgiaTrigeminaleFinal': case 'yesCefaleaFinal':
+      case 'noCefaleaFinal': case 'yesEmorroidiRagadiFinal': case 'noEmorroidiRagadiFinal': case 'yesFibromialgiaFinal': case 'noFibromialgiaFinal':
+        nextStepName = 'finalStep';
+        break;
+    }
 
+    const nextStepIndex: number = wizardComponent.getIndexOfStepWithId(nextStepName);
+    console.log(wizardForm);
     wizardComponent.goToStep(nextStepIndex);
   }
 
-
   goToPrevStep(wizardComponent: WizardComponent) {
-    const stepTitle = wizardComponent.currentStep.stepTitle;
-    const stepValue = this.stepNavigation[stepTitle].prevStep;
-    const prevStepIndex = wizardComponent.getIndexOfStepWithId(stepValue);
+    const currentStepId: string = wizardComponent.currentStep.stepId;
+    let prevStepName: string;
 
+    switch (currentStepId) {
+      case 'hasDiagnosis': case 'chooseNoPainDisorder':
+        prevStepName = 'hasPain';
+        break;
+      case 'chooseDiagnosis': case 'detectDiagnosis':
+        prevStepName = 'hasDiagnosis';
+        break;
+      case 'osteoartrosiFinal': case 'neuropatiaDiabeticaFinal': case 'fibromialgiaFinal': case 'emorroidiRagadiFinal':
+      case 'cefaleaFinal': case 'neuropatiaErpeticaFinal': case 'neuropatiaCompressioneFinal': case 'neuropatiaIntrappolamentoFinal':
+      case 'nevralgiaTrigeminaleFinal':
+        prevStepName = 'chooseDiagnosis';
+        break;
+    }
+
+    const prevStepIndex: number = wizardComponent.getIndexOfStepWithId(prevStepName);
     wizardComponent.goToStep(prevStepIndex);
+  }
+
+  goToLastStepAndGetProduct(wizardComponent: WizardComponent, wizardForm: FormGroup): ResultModel {
+    const currentStepId: string = wizardComponent.currentStep.stepId;
+    const currentStepAnswer: string = wizardForm.get(currentStepId).value;
+    let result: ResultModel = new ResultModel('', '');
+
+    switch (currentStepAnswer) {
+      case 'yesOsteoartrosiFinal':
+        result = new ResultModel('Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare', 'Condronil® FORTE');
+        break;
+      case 'noOsteoartrosiFinal':
+        result = new ResultModel('L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato', 'Condronil® COMPLEX');
+    }
+    const nextStepIndex: number = wizardComponent.getIndexOfStepWithId('finalStep');
+    wizardComponent.goToStep(nextStepIndex);
+    return result;
   }
 }

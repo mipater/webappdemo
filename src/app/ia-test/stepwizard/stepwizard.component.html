@@ -101,17 +101,17 @@
     </aw-wizard-step>
 
     <!--Yes Pain | Has Diagnosis? - START-->
-    <aw-wizard-step awOptionalStep stepTitle="yesPain" stepId="yesPain">
+    <aw-wizard-step awOptionalStep stepTitle="hasDiagnosis" stepId="hasDiagnosis">
       <h3 class="py-2">Hai già una diagnosi?</h3>
 
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="yesPain" id="yesDiagnosis" value="yesDiagnosis"
-               formControlName="yesPain">
+        <input class="form-check-input" type="radio" name="hasDiagnosis" id="yesDiagnosis" value="yesDiagnosis"
+               formControlName="hasDiagnosis">
         <label class="form-check-label" for="yesDiagnosis">Si</label>
       </div>
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="yesPain" id="noDiagnosis" value="noDiagnosis"
-               formControlName="yesPain">
+        <input class="form-check-input" type="radio" name="hasDiagnosis" id="noDiagnosis" value="noDiagnosis"
+               formControlName="hasDiagnosis">
         <label class="form-check-label" for="noDiagnosis">No</label>
       </div>
 
@@ -125,29 +125,29 @@
         <button
           type="button" class="btn btn-primary px-5"
           (finalize)="onNextStep()"
-          [disabled]="!wizardForm.get('yesDiagnosis').valid"
+          [disabled]="!wizardForm.get('hasDiagnosis').valid"
           awNextStep
         >Avanti
         </button>
       </div>
     </aw-wizard-step>
       <!--Yes Diagnosis | Diagnosis Selection - START-->
-      <aw-wizard-step awOptionalStep stepTitle="yesDiagnosis" stepId="yesDiagnosis">
+      <aw-wizard-step awOptionalStep stepTitle="chooseDiagnosis" stepId="chooseDiagnosis">
         <div class="form-group">
           <h3 class="py-2">Scegli la diagnosi</h3>
-          <label for="choosedDiagnosis" class="py-2">Diagnosi</label>
-          <select class="form-control" id="choosedDiagnosis" formControlName="choosedDiagnosis">
-            <option>OSTEOARTROSI (artrosi del ginocchio, dell’anca, della mano,…)</option>
-            <option>NEUROPATIA DIABETICA</option>
-            <option>NEUROPATIA DA INTRAPPOLAMENTO</option>
-            <option>NEUROPATIA DA COMPRESSIONE</option>
-            <option>NEUROPATIA ERPETICA</option>
-            <option>CEFALEA</option>
-            <option>EMORROIDI, RAGADI</option>
-            <option>FIBROMIALGIA</option>
+          <label for="chooseDiagnosis" class="py-2">Scegli</label>
+          <select class="form-control" id="chooseDiagnosis" formControlName="chooseDiagnosis">
+            <option value="osteoartrosi">OSTEOARTROSI (artrosi del ginocchio, dell’anca, della mano,…)</option>
+            <option value="neuropatiaDiabetica">NEUROPATIA DIABETICA</option>
+            <option value="neuropatiaIntrappolamento">NEUROPATIA DA INTRAPPOLAMENTO</option>
+            <option value="neuropatiaCompressione">NEUROPATIA DA COMPRESSIONE</option>
+            <option value="neuropatiaErpetica">NEUROPATIA ERPETICA</option>
+            <option value="nevralgiaTrigeminale">NEVRALGIA TRIGEMINALE</option>
+            <option value="cefalea">CEFALEA</option>
+            <option value="emorroidiRagadi">EMORROIDI, RAGADI</option>
+            <option value="fibromialgia">FIBROMIALGIA</option>
           </select>
         </div>
-
         <div class="pt-4 d-flex flex-row justify-content-between">
           <button
             type="button" class="btn btn-primary px-5"
@@ -158,24 +158,299 @@
           <button
             type="button" class="btn btn-primary px-5"
             (finalize)="onNextStep()"
-            [disabled]="!wizardForm.get('choosedDiagnosis').valid"
+            [disabled]="!wizardForm.get('chooseDiagnosis').valid"
             awNextStep
           >Avanti
           </button>
         </div>
       </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="osteoartrosiFinal" stepId="osteoartrosiFinal">
+          <h3 class="py-2">Avverti uno stato di debolezza muscolare?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="osteoartrosiFinal" id="yesOsteoartrosiFinal"
+                   value="yesOsteoartrosiFinal"
+                   formControlName="osteoartrosiFinal">
+            <label class="form-check-label" for="yesOsteoartrosiFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="osteoartrosiFinal" id="noOsteoartrosiFinal"
+                   value="noOsteoartrosiFinal"
+                   formControlName="osteoartrosiFinal">
+            <label class="form-check-label" for="noOsteoartrosiFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onLastStep()"
+              [disabled]="!wizardForm.get('osteoartrosiFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="neuropatiaDiabeticaFinal" stepId="neuropatiaDiabeticaFinal">
+          <h3 class="py-2">Soffri di insonnia o ti svegli frequentemente durante la notte?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaDiabeticaFinal" id="yesNeuropatiaDiabeticaFinal"
+                   value="yesNeuropatiaDiabeticaFinal"
+                   formControlName="neuropatiaDiabeticaFinal">
+            <label class="form-check-label" for="yesNeuropatiaDiabeticaFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaDiabeticaFinal" id="noNeuropatiaDiabeticaFinal"
+                   value="noNeuropatiaDiabeticaFinal"
+                   formControlName="neuropatiaDiabeticaFinal">
+            <label class="form-check-label" for="noNeuropatiaDiabeticaFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('neuropatiaDiabeticaFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="neuropatiaIntrappolamentoFinal" stepId="neuropatiaIntrappolamentoFinal">
+          <h3 class="py-2">Soffri di insonnia o ti svegli frequentemente durante la notte?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaIntrappolamentoFinal" id="yesNeuropatiaIntrappolamentoFinal"
+                   value="yesNeuropatiaIntrappolamentoFinal"
+                   formControlName="neuropatiaIntrappolamentoFinal">
+            <label class="form-check-label" for="yesNeuropatiaIntrappolamentoFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaIntrappolamentoFinal" id="noNeuropatiaIntrappolamentoFinal"
+                   value="noNeuropatiaIntrappolamentoFinal"
+                   formControlName="neuropatiaIntrappolamentoFinal">
+            <label class="form-check-label" for="noNeuropatiaIntrappolamentoFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('neuropatiaIntrappolamentoFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="neuropatiaCompressioneFinal" stepId="neuropatiaCompressioneFinal">
+          <h3 class="py-2">Soffri di insonnia o ti svegli frequentemente durante la notte?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaCompressioneFinal" id="yesNeuropatiaCompressioneFinal"
+                   value="yesNeuropatiaCompressioneFinal"
+                   formControlName="neuropatiaCompressioneFinal">
+            <label class="form-check-label" for="yesNeuropatiaCompressioneFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaCompressioneFinal" id="noNeuropatiaCompressioneFinal"
+                   value="noNeuropatiaCompressioneFinal"
+                   formControlName="neuropatiaCompressioneFinal">
+            <label class="form-check-label" for="noNeuropatiaCompressioneFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('neuropatiaCompressioneFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="neuropatiaErpeticaFinal" stepId="neuropatiaErpeticaFinal">
+          <h3 class="py-2">Soffri di insonnia o ti svegli frequentemente durante la notte?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaErpeticaFinal" id="yesNeuropatiaErpeticaFinal"
+                   value="yesNeuropatiaErpeticaFinal"
+                   formControlName="neuropatiaErpeticaFinal">
+            <label class="form-check-label" for="yesNeuropatiaCompressioneFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="neuropatiaErpeticaFinal" id="noNeuropatiaErpeticaFinal"
+                   value="noNeuropatiaErpeticaFinal"
+                   formControlName="neuropatiaErpeticaFinal">
+            <label class="form-check-label" for="noNeuropatiaErpeticaFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('neuropatiaErpeticaFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="nevralgiaTrigeminaleFinal" stepId="nevralgiaTrigeminaleFinal">
+          <h3 class="py-2">Soffri di insonnia o ti svegli frequentemente durante la notte?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="nevralgiaTrigeminaleFinal" id="yesNevralgiaTrigeminaleFinal"
+                   value="yesNevralgiaTrigeminaleFinal"
+                   formControlName="nevralgiaTrigeminaleFinal">
+            <label class="form-check-label" for="yesNevralgiaTrigeminaleFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="nevralgiaTrigeminaleFinal" id="noNevralgiaTrigeminaleFinal"
+                   value="noNevralgiaTrigeminaleFinal"
+                   formControlName="nevralgiaTrigeminaleFinal">
+            <label class="form-check-label" for="noNevralgiaTrigeminaleFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('nevralgiaTrigeminaleFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="cefaleaFinal" stepId="cefaleaFinal">
+          <h3 class="py-2">Breve testo sulle cefalee</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="cefaleaFinal" id="yesCefaleaFinal"
+                   value="yesCefaleaFinal"
+                   formControlName="cefaleaFinal">
+            <label class="form-check-label" for="yesCefaleaFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="cefaleaFinal" id="noCefaleaFinal"
+                   value="noCefaleaFinal"
+                   formControlName="cefaleaFinal">
+            <label class="form-check-label" for="noCefaleaFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('cefaleaFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="emorroidiRagadiFinal" stepId="emorroidiRagadiFinal">
+          <h3 class="py-2">Breve testo proctologico</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="emorroidiRagadiFinal" id="yesEmorroidiRagadiFinal"
+                   value="yesEmorroidiRagadiFinal"
+                   formControlName="emorroidiRagadiFinal">
+            <label class="form-check-label" for="yesEmorroidiRagadiFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="emorroidiRagadiFinal" id="noEmorroidiRagadiFinal"
+                   value="noEmorroidiRagadiFinal"
+                   formControlName="emorroidiRagadiFinal">
+            <label class="form-check-label" for="noEmorroidiRagadiFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('emorroidiRagadiFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
+        <aw-wizard-step awOptionalStep stepTitle="fibromialgiaFinal" stepId="fibromialgiaFinal">
+          <h3 class="py-2">Soffri di insonnia o ti svegli frequentemente durante la notte?</h3>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="fibromialgiaFinal" id="yesFibromialgiaFinal"
+                   value="yesFibromialgiaFinal"
+                   formControlName="fibromialgiaFinal">
+            <label class="form-check-label" for="yesFibromialgiaFinal">Si</label>
+          </div>
+          <div class="form-check py-4">
+            <input class="form-check-input" type="radio" name="fibromialgiaFinal" id="noFibromialgiaFinal"
+                   value="noFibromialgiaFinal"
+                   formControlName="fibromialgiaFinal">
+            <label class="form-check-label" for="noFibromialgiaFinal">No</label>
+          </div>
+          <div class="pt-4 d-flex flex-row justify-content-between">
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onPrevStep()"
+              awPreviousStep
+            >Indietro
+            </button>
+            <button
+              type="button" class="btn btn-primary px-5"
+              (finalize)="onNextStep()"
+              [disabled]="!wizardForm.get('fibromialgiaFinal').valid"
+              awNextStep
+            >Avanti
+            </button>
+          </div>
+        </aw-wizard-step>
       <!--Yes Diagnosis | Diagnosis Selection - END-->
 
       <!--No Diagnosis | Diagnosis Detection - START-->
-      <aw-wizard-step awOptionalStep stepTitle="noDiagnosis" stepId="noDiagnosis">
-        <h3 class="py-2">Proviamo a capire insieme quale sia la natura del tuo dolore</h3>
-
-        <div class="form-check py-4">
-          <input class="form-check-input" type="radio" name="noDiagnosis" id="test" value="test"
-                 formControlName="noDiagnosis">
-          <label class="form-check-label" for="test">Si</label>
+      <aw-wizard-step awOptionalStep stepTitle="detectDiagnosis" stepId="detectDiagnosis">
+        <div class="form-group">
+          <h3 class="py-2">Proviamo a capire insieme quale sia la natura del tuo dolore</h3>
+          <label for="detectDiagnosis" class="py-2">Scegli</label>
+          <select class="form-control" id="detectDiagnosis" formControlName="detectDiagnosis">
+            <option value="doloreArticolazioniMobili">SOFFRO DI DOLORI ALLE ARTICOLAZIONI MOBILI (GINOCCHIO, POLSO, SPALLA)</option>
+            <option value="doloreFormicoliiArtiInferiori">SOFFRO DI DOLORI E FORMICOLII AGLI ARTI INFERIORI</option>
+            <option value="doloreFormicoliiArtiSuperiori">SOFFRO DI DOLORI E FORMICOLII AGLI ARTI SUPERIORI</option>
+            <option value="emorroidi">SOFFRO DI EMORROIDI OPPURE HO UNA EVACUAZIONE DOLOROSA</option>
+            <option value="malDiTesta">SOFFRO DI MAL DI TESTA</option>
+            <option value="doloreSchiena">SOFFRO DI DOLORI ALLA SCHIENA</option>
+            <option value="doloreOrigineTraumatica">SOFFRO DI DOLORI DI ORIGINE TRAUMATICA</option>
+          </select>
         </div>
-
         <div class="pt-4 d-flex flex-row justify-content-between">
           <button
             type="button" class="btn btn-primary px-5"
@@ -186,7 +461,7 @@
           <button
             type="button" class="btn btn-primary px-5"
             (finalize)="onNextStep()"
-            [disabled]="!wizardForm.get('noDiagnosis').valid"
+            [disabled]="!wizardForm.get('detectDiagnosis').valid"
             awNextStep
           >Avanti
           </button>
@@ -195,18 +470,18 @@
       <!--No Diagnosis | Diagnosis Detection - END-->
     <!--Yes Pain | Has Diagnosis? - END-->
 
-    <!--No Pain | Options - START-->
-    <aw-wizard-step awOptionalStep stepTitle="noPain" stepId="noPain">
+    <!--No Pain | chooseNoPainDisorder - START-->
+    <aw-wizard-step awOptionalStep stepTitle="chooseNoPainDisorder" stepId="chooseNoPainDisorder">
       <h3 class="py-2">Options</h3>
 
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="test" id="test1" value="test"
-               formControlName="test">
+        <input class="form-check-input" type="radio" name="chooseNoPainDisorder" id="test1" value="test"
+               formControlName="chooseNoPainDisorder">
         <label class="form-check-label" for="test1">Si</label>
       </div>
       <div class="form-check py-4">
-        <input class="form-check-input" type="radio" name="test" id="test2" value="test2"
-               formControlName="test">
+        <input class="form-check-input" type="radio" name="chooseNoPainDisorder" id="test2" value="test2"
+               formControlName="chooseNoPainDisorder">
         <label class="form-check-label" for="test2">No</label>
       </div>
 
@@ -220,13 +495,29 @@
         <button
           type="button" class="btn btn-primary px-5"
           (finalize)="onNextStep()"
-          [disabled]="!wizardForm.get('hasPain').valid"
+          [disabled]="!wizardForm.get('chooseNoPainDisorder').valid"
           awNextStep
         >Avanti
         </button>
       </div>
     </aw-wizard-step>
-    <!--No Pain | Options - END-->
+    <!--No Pain | chooseNoPainDisorder - END-->
+
+    <!--FINAL STEP -->
+    <aw-wizard-step awOptionalStep stepTitle="finalStep" stepId="finalStep">
+      <div class="form-group">
+        <h3 class="py-2">{{ result.message }}</h3>
+        <p>{{ result.product }}</p>
+      </div>
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          (finalize)="onPrevStep()"
+          awPreviousStep
+        >Indietro
+        </button>
+      </div>
+    </aw-wizard-step>
 
   </form>
 </aw-wizard>
