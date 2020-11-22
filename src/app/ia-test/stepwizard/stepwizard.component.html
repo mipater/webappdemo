@@ -1,0 +1,233 @@
+<aw-wizard [navBarLayout]="'small'" [disableNavigationBar]="true">
+
+<!--  <div class="progress mb-5" style="background-color: #b3cfcf;">-->
+<!--    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"-->
+<!--         [ngStyle]="{'width.%': progressBarValue}"-->
+<!--         attr.aria-valuenow="{{progressBarValue}}"-->
+<!--         attr.aria-valuemin="0"-->
+<!--         aria-valuemax="100">{{progressBarValue}}%-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
+
+    <!--Personal Info-->
+    <aw-wizard-step stepTitle="personalInfo" stepId="personalInfo">
+      <div formGroupName="personalInfo">
+        <h3 class="py-2">Iniziamo dalle tue informazioni personali</h3>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="eta">Età</label>
+          <select class="form-control" id="eta" formControlName="eta">
+            <option>18-25</option>
+            <option>26-35</option>
+            <option>36-45</option>
+            <option>46 in sù</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="sesso">Sesso</label>
+          <select class="form-control" id="sesso" formControlName="sesso">
+            <option>Uomo</option>
+            <option>Donna</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+          <small id="emailHelp" class="form-text text-muted">Non condivideremo mai l'email con nessuno.</small>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="privacy" formControlName="privacy">
+          <label class="form-check-label" for="privacy">
+            Acconsento al trattamento dei miei dati per l'erogazione minima del servizio senza il quale non potrebbe
+            essere erogato (
+            <a routerLink="/privacy">Informativa</a>
+            )
+          </label>
+        </div>
+      </div>
+      <div class="pt-4 d-flex flex-row-reverse">
+        <button
+          type="button" class="btn btn-primary px-5"
+          [disabled]="!wizardForm.get('personalInfo').valid"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Has Pain?-->
+    <aw-wizard-step awOptionalStep stepTitle="hasPain" stepId="hasPain">
+      <h3 class="py-2">Senti dolore?</h3>
+
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="hasPain" id="yesPain" value="yesPain"
+               formControlName="hasPain">
+        <label class="form-check-label" for="yesPain">Si</label>
+      </div>
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="hasPain" id="noPain" value="noPain"
+               formControlName="hasPain">
+        <label class="form-check-label" for="noPain">No</label>
+      </div>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          (finalize)="onNextStep()"
+          [disabled]="!wizardForm.get('hasPain').valid"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+
+    <!--Yes Pain | Has Diagnosis? - START-->
+    <aw-wizard-step awOptionalStep stepTitle="yesPain" stepId="yesPain">
+      <h3 class="py-2">Hai già una diagnosi?</h3>
+
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="yesPain" id="yesDiagnosis" value="yesDiagnosis"
+               formControlName="yesPain">
+        <label class="form-check-label" for="yesDiagnosis">Si</label>
+      </div>
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="yesPain" id="noDiagnosis" value="noDiagnosis"
+               formControlName="yesPain">
+        <label class="form-check-label" for="noDiagnosis">No</label>
+      </div>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          (finalize)="onPrevStep()"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          (finalize)="onNextStep()"
+          [disabled]="!wizardForm.get('yesDiagnosis').valid"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+      <!--Yes Diagnosis | Diagnosis Selection - START-->
+      <aw-wizard-step awOptionalStep stepTitle="yesDiagnosis" stepId="yesDiagnosis">
+        <div class="form-group">
+          <h3 class="py-2">Scegli la diagnosi</h3>
+          <label for="choosedDiagnosis" class="py-2">Diagnosi</label>
+          <select class="form-control" id="choosedDiagnosis" formControlName="choosedDiagnosis">
+            <option>OSTEOARTROSI (artrosi del ginocchio, dell’anca, della mano,…)</option>
+            <option>NEUROPATIA DIABETICA</option>
+            <option>NEUROPATIA DA INTRAPPOLAMENTO</option>
+            <option>NEUROPATIA DA COMPRESSIONE</option>
+            <option>NEUROPATIA ERPETICA</option>
+            <option>CEFALEA</option>
+            <option>EMORROIDI, RAGADI</option>
+            <option>FIBROMIALGIA</option>
+          </select>
+        </div>
+
+        <div class="pt-4 d-flex flex-row justify-content-between">
+          <button
+            type="button" class="btn btn-primary px-5"
+            (finalize)="onPrevStep()"
+            awPreviousStep
+          >Indietro
+          </button>
+          <button
+            type="button" class="btn btn-primary px-5"
+            (finalize)="onNextStep()"
+            [disabled]="!wizardForm.get('choosedDiagnosis').valid"
+            awNextStep
+          >Avanti
+          </button>
+        </div>
+      </aw-wizard-step>
+      <!--Yes Diagnosis | Diagnosis Selection - END-->
+
+      <!--No Diagnosis | Diagnosis Detection - START-->
+      <aw-wizard-step awOptionalStep stepTitle="noDiagnosis" stepId="noDiagnosis">
+        <h3 class="py-2">Proviamo a capire insieme quale sia la natura del tuo dolore</h3>
+
+        <div class="form-check py-4">
+          <input class="form-check-input" type="radio" name="noDiagnosis" id="test" value="test"
+                 formControlName="noDiagnosis">
+          <label class="form-check-label" for="test">Si</label>
+        </div>
+
+        <div class="pt-4 d-flex flex-row justify-content-between">
+          <button
+            type="button" class="btn btn-primary px-5"
+            (finalize)="onPrevStep()"
+            awPreviousStep
+          >Indietro
+          </button>
+          <button
+            type="button" class="btn btn-primary px-5"
+            (finalize)="onNextStep()"
+            [disabled]="!wizardForm.get('noDiagnosis').valid"
+            awNextStep
+          >Avanti
+          </button>
+        </div>
+      </aw-wizard-step>
+      <!--No Diagnosis | Diagnosis Detection - END-->
+    <!--Yes Pain | Has Diagnosis? - END-->
+
+    <!--No Pain | Options - START-->
+    <aw-wizard-step awOptionalStep stepTitle="noPain" stepId="noPain">
+      <h3 class="py-2">Options</h3>
+
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="test" id="test1" value="test"
+               formControlName="test">
+        <label class="form-check-label" for="test1">Si</label>
+      </div>
+      <div class="form-check py-4">
+        <input class="form-check-input" type="radio" name="test" id="test2" value="test2"
+               formControlName="test">
+        <label class="form-check-label" for="test2">No</label>
+      </div>
+
+      <div class="pt-4 d-flex flex-row justify-content-between">
+        <button
+          type="button" class="btn btn-primary px-5"
+          (finalize)="onPrevStep()"
+          awPreviousStep
+        >Indietro
+        </button>
+        <button
+          type="button" class="btn btn-primary px-5"
+          (finalize)="onNextStep()"
+          [disabled]="!wizardForm.get('hasPain').valid"
+          awNextStep
+        >Avanti
+        </button>
+      </div>
+    </aw-wizard-step>
+    <!--No Pain | Options - END-->
+
+  </form>
+</aw-wizard>
+
