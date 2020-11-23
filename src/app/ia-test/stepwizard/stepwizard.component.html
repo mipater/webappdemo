@@ -217,7 +217,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('neuropatiaDiabeticaFinal').valid"
               awNextStep
             >Avanti
@@ -247,7 +247,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('neuropatiaIntrappolamentoFinal').valid"
               awNextStep
             >Avanti
@@ -277,7 +277,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('neuropatiaCompressioneFinal').valid"
               awNextStep
             >Avanti
@@ -307,7 +307,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('neuropatiaErpeticaFinal').valid"
               awNextStep
             >Avanti
@@ -337,7 +337,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('nevralgiaTrigeminaleFinal').valid"
               awNextStep
             >Avanti
@@ -367,7 +367,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('cefaleaFinal').valid"
               awNextStep
             >Avanti
@@ -397,7 +397,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('emorroidiRagadiFinal').valid"
               awNextStep
             >Avanti
@@ -427,7 +427,7 @@
             </button>
             <button
               type="button" class="btn btn-primary px-5"
-              (finalize)="onNextStep()"
+              (finalize)="onLastStep()"
               [disabled]="!wizardForm.get('fibromialgiaFinal').valid"
               awNextStep
             >Avanti
@@ -506,15 +506,16 @@
     <!--FINAL STEP -->
     <aw-wizard-step awOptionalStep stepTitle="finalStep" stepId="finalStep">
       <div class="form-group">
-        <h3 class="py-2">{{ result.message }}</h3>
-        <p>{{ result.product }}</p>
+        <h2 class="py-2 color-dark">{{ result.message }}</h2>
+        <div *ngFor="let product of result.products">
+          <h3 class="pt-2">{{ product }}</h3>
+        </div>
       </div>
       <div class="pt-4 d-flex flex-row justify-content-between">
         <button
           type="button" class="btn btn-primary px-5"
-          (finalize)="onPrevStep()"
-          awPreviousStep
-        >Indietro
+          [awGoToStep]="{stepId: 'hasPain'}"
+        >Torna all'inizio
         </button>
       </div>
     </aw-wizard-step>

@@ -14,7 +14,7 @@ export class StepwizardComponent implements OnInit {
   @ViewChild(WizardComponent)
   public wizardComponent: WizardComponent;
   wizardForm: FormGroup;
-  result: ResultModel = new ResultModel('', '');
+  result: ResultModel = new ResultModel('', ['']);
 
   constructor(private wizardService: WizardService) {}
 
@@ -32,5 +32,9 @@ export class StepwizardComponent implements OnInit {
 
   onLastStep() {
     this.result = this.wizardService.goToLastStepAndGetProduct(this.wizardComponent, this.wizardForm);
+  }
+
+  onSubmit() {
+
   }
 }

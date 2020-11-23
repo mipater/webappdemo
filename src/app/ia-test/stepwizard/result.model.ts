@@ -1,5 +1,5 @@
 export class ResultModel {
-  constructor(private _message: string, private _product: string) {}
+  constructor(private _message: string, private _products: string[]) {}
 
   get message(): string {
     return this._message;
@@ -9,12 +9,11 @@ export class ResultModel {
     this._message = value;
   }
 
-  get product(): string {
-    return this._product;
+  get products(): string[] {
+    return this._products;
   }
 
-  set product(value: string) {
-    this._product = value;
+  set products(value: string[]) {
+    this._products = value;
   }
-
 }

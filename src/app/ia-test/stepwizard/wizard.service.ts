@@ -124,17 +124,67 @@ export class WizardService {
   goToLastStepAndGetProduct(wizardComponent: WizardComponent, wizardForm: FormGroup): ResultModel {
     const currentStepId: string = wizardComponent.currentStep.stepId;
     const currentStepAnswer: string = wizardForm.get(currentStepId).value;
-    let result: ResultModel = new ResultModel('', '');
+    let result: ResultModel = new ResultModel('', ['']);
 
     switch (currentStepAnswer) {
       case 'yesOsteoartrosiFinal':
-        result = new ResultModel('Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare', 'Condronil® FORTE');
+        result = new ResultModel('Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare', ['Condronil® FORTE']);
         break;
       case 'noOsteoartrosiFinal':
-        result = new ResultModel('L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato', 'Condronil® COMPLEX');
+        result = new ResultModel('L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato', ['Condronil® COMPLEX']);
+        break;
+      case 'yesNeuropatiaDiabeticaFinal':
+        result = new ResultModel('La neuropatia diabetica è uno stato di sofferenza dei nervi periferici dovuta alle elevate concentrazioni di glucosio nel sangue. Tali disfunzioni possono incidere pesantemente sulla qualità della vita delle persone', ['Micronil® ACT']);
+        break;
+      case 'noNeuropatiaDiabeticaFinal':
+        result = new ResultModel('La neuropatia è una complicazione frequente nel paziente diabetico. La gravità e la precocità dei sintomi dipendono dal grado di osservanza alle prescrizioni dietetiche e farmacologiche suggerite al paziente', ['Micronil® Dol']);
+        break;
+      case 'yesNeuropatiaIntrappolamentoFinal':
+        result = new ResultModel('La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono caratterizzate dai disturbi nella sensibilità delle estremità che, in alcuni casi, limitano la capacità di riposo del paziente', ['Micronil® ACT']);
+        break;
+      case 'noNeuropatiaIntrappolamentoFinal':
+        result = new ResultModel('La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono dovute al restringimento di un canale anatomico che causa la sofferenza del nervo che lo occupa', ['Micronil® Dol']);
+        break;
+      case 'yesNeuropatiaCompressioneFinal':
+        result = new ResultModel('Breve testo', ['Micronil® ACT']);
+        break;
+      case 'noNeuropatiaCompressioneFinal':
+        result = new ResultModel('Breve testo', ['Micronil® Dol']);
+        break;
+      case 'yesNeuropatiaErpeticaFinal':
+        result = new ResultModel('Breve testo', ['Micronil® ACT']);
+        break;
+      case 'noNeuropatiaErpeticaFinal':
+        result = new ResultModel('Breve testo', ['Micronil® Dol']);
+        break;
+      case 'yesNevralgiaTrigeminaleFinal':
+        result = new ResultModel('Breve testo', ['Micronil® ACT']);
+        break;
+      case 'noNevralgiaTrigeminaleFinal':
+        result = new ResultModel('Breve testo', ['Micronil® Dol']);
+        break;
+      case 'yesCefaleaFinal':
+        result = new ResultModel('Breve testo cefalee', ['PEAMag®']);
+        break;
+      case 'noCefaleaFinal':
+        result = new ResultModel('Breve testo cefalee', ['PEAMag®']);
+        break;
+      case 'yesEmorroidiRagadiFinal':
+        result = new ResultModel('Breve testo proctologico', ['Deflanil® PLUS']);
+        break;
+      case 'noEmorroidiRagadiFinal':
+        result = new ResultModel('Breve testo proctologico', ['Deflanil® PLUS']);
+        break;
+      case 'yesFibromialgiaFinal':
+        result = new ResultModel('Breve testo', ['Micronil® ACT', 'PEAMag® al riacutizzarsi del dolore']);
+        break;
+      case 'noFibromialgiaFinal':
+        result = new ResultModel('Breve testo', ['Micronil® Dol', 'PEAMag® al riacutizzarsi del dolore']);
+        break;
     }
     const nextStepIndex: number = wizardComponent.getIndexOfStepWithId('finalStep');
     wizardComponent.goToStep(nextStepIndex);
     return result;
   }
+
 }
