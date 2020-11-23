@@ -61,16 +61,9 @@ address:hover {
   color: #954B00;
 }
 
-.progress-bar[aria-valuenow="10"] {
-  background-color: #354A54;
-}
-
 aw-wizard .wizard-steps {
   display: block;
 }
-
-aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current .step-indicator {
-  background-color: #cdd021; }
 
 aw-wizard-navigation-bar {
   display: none;
