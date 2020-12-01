@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import {SupplementsTestComponent} from './supplements-test.component';
 import {HometestComponent} from './hometest/hometest.component';
 import {DecisionTreeFormComponent} from './decision-tree-form/decision-tree-form.component';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ],
   exports: []

@@ -1,1 +1,68 @@
-test
+<div class="jumbotron bg-white min-vh-50">
+  <form *ngIf="!hidePersonalInfo" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <h3 class="pb-4 color-dark">Iniziamo dalle tue informazioni personali</h3>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        ngModel
+        required
+        name="name"
+        type="text"
+        id="name"
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="eta">Età</label>
+      <select ngModel required name="eta" class="form-control" id="eta">
+        <option>18-25</option>
+        <option>26-35</option>
+        <option>36-45</option>
+        <option>46 in sù</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sesso">Sesso</label>
+      <select ngModel required name="sesso" class="form-control" id="sesso">
+        <option>Uomo</option>
+        <option>Donna</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input ngModel required email name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">Non condivideremo mai l'email con nessuno.</small>
+    </div>
+
+    <div class="form-check">
+      <input ngModel required pattern="true" name="privacy" class="form-check-input" type="checkbox" value="" id="privacy">
+      <label class="form-check-label" for="privacy">
+        Acconsento al trattamento dei miei dati per l'erogazione minima del servizio senza il quale non potrebbe
+        essere erogato (
+        <a routerLink="/privacy">Informativa</a>
+        )
+      </label>
+    </div>
+    <div class="pt-4 d-flex flex-row-reverse">
+      <button type="submit" class="btn btn-outline-dark px-4" [disabled]="!form.valid">
+        Avanti
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"></path>
+        </svg>
+      </button>
+    </div>
+  </form>
+
+<ng-template [ngIf]="hidePersonalInfo">
+  <button type="button" class="btn btn-outline-dark px-4">
+    Avanti
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"></path>
+    </svg>
+  </button>
+</ng-template>
+
+</div>
