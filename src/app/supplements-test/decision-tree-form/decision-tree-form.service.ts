@@ -8,7 +8,21 @@ export class DecisionTreeFormService {
       'hasPain',
       'Senti dolore?',
       null,
-      [{id: 'yesPain', msg: 'Si'}, {id: 'noPain', msg: 'No'}],
+      [{id: 'hasDiagnosis', msg: 'Si'}, {id: 'selectNoPainDisorder', msg: 'No'}],
+      false
+    ),
+    new TreeNode(
+      'hasDiagnosis',
+      'Hai già una diagnosi?',
+      'hasPain',
+      [{id: 'selectDiagnosis', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
+      false
+    ),
+    new TreeNode(
+      'selectNoPainDisorder',
+      'Seleziona un problema:',
+      'hasPain',
+      [{id: 'gonfiore', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
       false
     )
   ];

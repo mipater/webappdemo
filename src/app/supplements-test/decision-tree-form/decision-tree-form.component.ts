@@ -18,8 +18,15 @@ export class DecisionTreeFormComponent implements OnInit {
     this.currentTreeNode = this.decisionTreeFormService.getNodeById('hasPain');
   }
 
-  onSubmit(form: NgForm) {
+  onSubmitPersonalInfo(form: NgForm) {
     console.log(form);
     this.hidePersonalInfo = true;
+  }
+
+  onAnswerSubmit(form: NgForm) {
+    console.log(form.value[this.currentTreeNode.id]);
+  }
+
+  onNextQuestion() {
   }
 }
