@@ -8,7 +8,10 @@ export class DecisionTreeFormService {
       'hasPain',
       'Senti dolore?',
       null,
-      [{id: 'hasDiagnosis', msg: 'Si'}, {id: 'selectNoPainDisorder', msg: 'No'}],
+      [
+        {id: 'hasDiagnosis', msg: 'Si'},
+        {id: 'selectNoPainDisorder', msg: 'No'}
+      ],
       AnswerType.Radio,
       false
     ),
@@ -16,7 +19,10 @@ export class DecisionTreeFormService {
       'hasDiagnosis',
       'Hai già una diagnosi?',
       'hasPain',
-      [{id: 'selectDiagnosis', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
+      [
+        {id: 'selectDiagnosis', msg: 'Si'},
+        {id: 'detectDiagnosis', msg: 'No'}
+      ],
       AnswerType.Radio,
       false
     ),
@@ -24,7 +30,10 @@ export class DecisionTreeFormService {
       'selectNoPainDisorder',
       'Seleziona un problema',
       'hasPain',
-      [{id: 'gonfiore', msg: 'Gonfiore'}, {id: 'malDiTesta', msg: 'Mal di testa'}],
+      [
+        {id: 'gonfiore', msg: 'Gonfiore'},
+        {id: 'malDiTesta', msg: 'Mal di testa'}
+      ],
       AnswerType.Select,
       false
     ),
@@ -32,7 +41,10 @@ export class DecisionTreeFormService {
       'selectDiagnosis',
       'Seleziona la diagnosi',
       'hasDiagnosis',
-      [{id: 'hasOsteoartrosi', msg: 'Osteoartrosi'}, {id: 'detectDiagnosis', msg: 'Altro'}],
+      [
+        {id: 'hasOsteoartrosi', msg: 'Osteoartrosi'},
+        {id: 'detectDiagnosis', msg: 'Altro'}
+      ],
       AnswerType.Select,
       false
     ),

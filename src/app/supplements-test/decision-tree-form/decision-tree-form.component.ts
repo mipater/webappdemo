@@ -19,16 +19,15 @@ export class DecisionTreeFormComponent implements OnInit {
   }
 
   onSubmitPersonalInfo(form: NgForm) {
-    console.log(form);
     this.hidePersonalInfo = true;
   }
 
   onAnswerSubmit(form: NgForm) {
-    console.log(form.value[this.currentTreeNode.id]);
-    const nextNode = this.decisionTreeFormService.getNodeById(form.value[this.currentTreeNode.id]);
+    console.log(form);
+    const nextNodeId = form.value[this.currentTreeNode.id];
+    const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
     if (nextNode) {
       this.currentTreeNode = nextNode;
-      return;
     }
   }
 
