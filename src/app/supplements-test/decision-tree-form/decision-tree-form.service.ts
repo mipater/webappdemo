@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TreeNode} from './treenode.model';
+import {AnswerType, TreeNode} from './treenode.model';
 
 @Injectable({providedIn: 'root'})
 export class DecisionTreeFormService {
@@ -9,7 +9,7 @@ export class DecisionTreeFormService {
       'Senti dolore?',
       null,
       [{id: 'hasDiagnosis', msg: 'Si'}, {id: 'selectNoPainDisorder', msg: 'No'}],
-      'radio',
+      AnswerType.Radio,
       false
     ),
     new TreeNode(
@@ -17,16 +17,44 @@ export class DecisionTreeFormService {
       'Hai già una diagnosi?',
       'hasPain',
       [{id: 'selectDiagnosis', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
-      'radio',
+      AnswerType.Radio,
       false
     ),
     new TreeNode(
       'selectNoPainDisorder',
-      'Seleziona un problema:',
+      'Seleziona un problema',
       'hasPain',
-      [{id: 'gonfiore', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
-      'select',
+      [{id: 'gonfiore', msg: 'Gonfiore'}, {id: 'malDiTesta', msg: 'Mal di testa'}],
+      AnswerType.Select,
       false
+    ),
+    new TreeNode(
+      'selectDiagnosis',
+      'Seleziona la diagnosi',
+      'hasDiagnosis',
+      [{id: 'hasOsteoartrosi', msg: 'Osteoartrosi'}, {id: 'detectDiagnosis', msg: 'Altro'}],
+      AnswerType.Select,
+      false
+    ),
+    new TreeNode(
+      'detectDiagnosis',
+      'Proviamo a capire insieme quale sia la natura del tuo dolore',
+      'hasDiagnosis',
+      [
+        {id: 'doloreArticolazioniMobili', msg: 'soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
+        {id: 'doloreFormicoliiArtiInferiori', msg: 'soffri di dolori e formicolii agli arti inferiori?'},
+        {id: 'contactUs', msg: 'Altro'}
+      ],
+      AnswerType.Select,
+      false
+    ),
+    new TreeNode(
+      'contactUs',
+      'Contatti',
+      'detectDiagnosis',
+      [],
+      null,
+      true
     )
   ];
 

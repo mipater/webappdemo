@@ -3,6 +3,11 @@ interface Answer {
   msg: string;
 }
 
+export enum AnswerType {
+  Radio = 'radio',
+  Select = 'select'
+}
+
 export class TreeNode {
   constructor(
     private _id: string,

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
 import {NgForm} from '@angular/forms';
@@ -25,8 +25,18 @@ export class DecisionTreeFormComponent implements OnInit {
 
   onAnswerSubmit(form: NgForm) {
     console.log(form.value[this.currentTreeNode.id]);
+    const nextNode = this.decisionTreeFormService.getNodeById(form.value[this.currentTreeNode.id]);
+    if (nextNode) {
+      this.currentTreeNode = nextNode;
+      return;
+    }
   }
 
-  onNextQuestion() {
+  onPrevQuestion() {
+    if (this.currentTreeNode.id === 'hasPain') {
+      this.hidePersonalInfo = false;
+      return;
+    }
+    this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.currentTreeNode.prevQuestion);
   }
 }
