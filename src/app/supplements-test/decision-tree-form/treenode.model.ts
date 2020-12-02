@@ -9,7 +9,8 @@ export class TreeNode {
     private _msg: string,
     private _prevQuestion: string,
     private _answers: Answer[],
-    private _isLeaf: boolean
+    private _answerType: string,
+    private _isLeaf: boolean,
   ) {}
 
   get id(): string {
@@ -26,6 +27,10 @@ export class TreeNode {
 
   get answers(): Answer[] {
     return this._answers;
+  }
+
+  get answerType(): string {
+    return this._answerType;
   }
 
   get isLeaf(): boolean {

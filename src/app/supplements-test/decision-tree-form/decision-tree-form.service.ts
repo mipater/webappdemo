@@ -9,6 +9,7 @@ export class DecisionTreeFormService {
       'Senti dolore?',
       null,
       [{id: 'hasDiagnosis', msg: 'Si'}, {id: 'selectNoPainDisorder', msg: 'No'}],
+      'radio',
       false
     ),
     new TreeNode(
@@ -16,6 +17,7 @@ export class DecisionTreeFormService {
       'Hai già una diagnosi?',
       'hasPain',
       [{id: 'selectDiagnosis', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
+      'radio',
       false
     ),
     new TreeNode(
@@ -23,6 +25,7 @@ export class DecisionTreeFormService {
       'Seleziona un problema:',
       'hasPain',
       [{id: 'gonfiore', msg: 'Si'}, {id: 'detectDiagnosis', msg: 'No'}],
+      'select',
       false
     )
   ];
