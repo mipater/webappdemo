@@ -54,7 +54,7 @@ export class DecisionTreeFormService {
       'hasDiagnosis',
       [
         {id: 'doloreArticolazioniMobili', msg: 'soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
-        {id: 'doloreFormicoliiArtiInferiori', msg: 'soffri di dolori e formicolii agli arti inferiori?'},
+        {id: 'doloreFormicoliiArtiInferiori', msg: 'soffro di dolori e formicolii agli arti inferiori?'},
         {id: 'contactUs', msg: 'Altro'}
       ],
       AnswerType.Select,
