@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
-import {NgForm} from '@angular/forms';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-decision-tree-form',
@@ -11,6 +11,7 @@ import {NgForm} from '@angular/forms';
 export class DecisionTreeFormComponent implements OnInit {
   currentTreeNode: TreeNode;
   hidePersonalInfo = false;
+  control: FormControl = new FormControl('value', Validators.required);
 
   constructor(private decisionTreeFormService: DecisionTreeFormService) {}
 
@@ -22,9 +23,9 @@ export class DecisionTreeFormComponent implements OnInit {
     this.hidePersonalInfo = true;
   }
 
-  onAnswerSubmit(form: NgForm) {
-    console.log(form);
-    const nextNodeId = form.value[this.currentTreeNode.id];
+  onAnswerSubmit() {
+    console.log(this.control);
+    const nextNodeId = this.control.value;
     const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
     if (nextNode) {
       this.currentTreeNode = nextNode;
@@ -38,4 +39,5 @@ export class DecisionTreeFormComponent implements OnInit {
     }
     this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.currentTreeNode.prevQuestion);
   }
+
 }
