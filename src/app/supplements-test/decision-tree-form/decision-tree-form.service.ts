@@ -7,7 +7,6 @@ export class DecisionTreeFormService {
     new TreeNode(
       'hasPain',
       'Senti dolore?',
-      null,
       [
         {id: 'hasDiagnosis', msg: 'Si'},
         {id: 'selectNoPainDisorder', msg: 'No'}
@@ -18,7 +17,6 @@ export class DecisionTreeFormService {
     new TreeNode(
       'hasDiagnosis',
       'Hai già una diagnosi?',
-      'hasPain',
       [
         {id: 'selectDiagnosis', msg: 'Si'},
         {id: 'detectDiagnosis', msg: 'No'}
@@ -29,7 +27,6 @@ export class DecisionTreeFormService {
     new TreeNode(
       'selectNoPainDisorder',
       'Seleziona un problema',
-      'hasPain',
       [
         {id: 'gonfiore', msg: 'Gonfiore'},
         {id: 'malDiTesta', msg: 'Mal di testa'}
@@ -40,9 +37,16 @@ export class DecisionTreeFormService {
     new TreeNode(
       'selectDiagnosis',
       'Seleziona la diagnosi',
-      'hasDiagnosis',
       [
-        {id: 'hasOsteoartrosi', msg: 'Osteoartrosi'},
+        {id: 'osteoarthritis', msg: 'Osteoartrosi'},
+        {id: 'diabeticNeuropathy', msg: 'Neuropatia Diabetica'},
+        {id: 'entrapmentNeuropathy', msg: 'Neuropatia Da Intrappolamento'},
+        {id: 'compressionNeuropathy', msg: 'Neuropatia Da Compressione'},
+        {id: 'herpeticNeuropathy', msg: 'Neuropatia Erpetica'},
+        {id: 'trigeminalNeuralgia', msg: 'Nevralgia Trigeminale'},
+        {id: 'cephalalgy', msg: 'Cefalea'},
+        {id: 'hemorrhoidsFissures', msg: 'Emorroidi, Ragadi'},
+        {id: 'fibromyalgia', msg: 'Fibromialgia'},
         {id: 'detectDiagnosis', msg: 'Altro'}
       ],
       AnswerType.Select,
@@ -51,10 +55,14 @@ export class DecisionTreeFormService {
     new TreeNode(
       'detectDiagnosis',
       'Proviamo a capire insieme quale sia la natura del tuo dolore',
-      'hasDiagnosis',
       [
-        {id: 'doloreArticolazioniMobili', msg: 'soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
-        {id: 'doloreFormicoliiArtiInferiori', msg: 'soffro di dolori e formicolii agli arti inferiori?'},
+        {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
+        {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori'},
+        {id: 'painUpperJoints', msg: 'Soffro di dolori e formicolii agli arti superiori'},
+        {id: 'painEvacuation', msg: 'Soffro di emorroidi / Ho una evacuazione dolorosa'},
+        {id: 'painHead', msg: 'Soffro di mal di testa'},
+        {id: 'painBack', msg: 'Soffro di dolori alla schiena'},
+        {id: 'painTraumatic', msg: 'Soffro di dolori di origine traumatica'},
         {id: 'contactUs', msg: 'Altro'}
       ],
       AnswerType.Select,
@@ -63,7 +71,6 @@ export class DecisionTreeFormService {
     new TreeNode(
       'contactUs',
       'Contatti',
-      'detectDiagnosis',
       [],
       null,
       true

@@ -12,7 +12,6 @@ export class TreeNode {
   constructor(
     private _id: string,
     private _msg: string,
-    private _prevQuestion: string,
     private _answers: Answer[],
     private _answerType: string,
     private _isLeaf: boolean,
@@ -24,10 +23,6 @@ export class TreeNode {
 
   get msg(): string {
     return this._msg;
-  }
-
-  get prevQuestion(): string {
-    return this._prevQuestion;
   }
 
   get answers(): Answer[] {

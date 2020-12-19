@@ -10,6 +10,7 @@ import {FormControl, NgForm, Validators} from '@angular/forms';
 })
 export class DecisionTreeFormComponent implements OnInit {
   currentTreeNode: TreeNode;
+  prevTreeNodes: TreeNode[] = [];
   hidePersonalInfo = false;
   control: FormControl = new FormControl('value', Validators.required);
 
@@ -17,6 +18,7 @@ export class DecisionTreeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentTreeNode = this.decisionTreeFormService.getNodeById('hasPain');
+    this.prevTreeNodes.push(this.decisionTreeFormService.getNodeById('hasPain'));
   }
 
   onSubmitPersonalInfo(form: NgForm) {
@@ -28,6 +30,7 @@ export class DecisionTreeFormComponent implements OnInit {
     const nextNodeId = this.control.value;
     const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
     if (nextNode) {
+      this.prevTreeNodes.push(this.currentTreeNode);
       this.currentTreeNode = nextNode;
     }
   }
@@ -37,7 +40,7 @@ export class DecisionTreeFormComponent implements OnInit {
       this.hidePersonalInfo = false;
       return;
     }
-    this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.currentTreeNode.prevQuestion);
+    this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.prevTreeNodes.pop().id);
   }
 
 }
