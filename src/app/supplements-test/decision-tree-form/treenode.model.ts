@@ -3,26 +3,39 @@ interface Answer {
   msg: string;
 }
 
+interface QuestionMessage {
+  title: string;
+  question: string;
+  label?: string;
+}
+
 export enum AnswerType {
   Radio = 'radio',
-  Select = 'select'
+  Select = 'select',
+  Final = 'final'
 }
 
 export class TreeNode {
   constructor(
     private _id: string,
-    private _msg: string,
+    private _msg: QuestionMessage,
     private _answers: Answer[],
     private _answerType: string,
     private _isLeaf: boolean,
+    private _subAdv?: string[],
+    private _finalMsg?: string
   ) {}
 
   get id(): string {
     return this._id;
   }
 
-  get msg(): string {
-    return this._msg;
+  get question(): string {
+    return this._msg.question;
+  }
+
+  get title(): string {
+    return this._msg.title;
   }
 
   get answers(): Answer[] {
@@ -35,5 +48,13 @@ export class TreeNode {
 
   get isLeaf(): boolean {
     return this._isLeaf;
+  }
+
+  get subAdv(): string[] {
+    return this._subAdv;
+  }
+
+  get finalMsg(): string {
+    return this._finalMsg;
   }
 }

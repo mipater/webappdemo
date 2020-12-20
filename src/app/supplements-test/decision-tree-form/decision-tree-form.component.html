@@ -62,7 +62,7 @@
 
   <ng-template [ngIf]="hidePersonalInfo">
     <form class="w-75 mx-auto mt-5">
-      <h3 class="pb-4 color-dark">{{currentTreeNode.msg}}</h3>
+      <h3 class="pb-4 color-dark">{{currentTreeNode.question}}</h3>
 
       <div *ngIf="currentTreeNode.answerType==='radio'" style="min-height: 15vh !important;">
         <div *ngFor="let answer of currentTreeNode.answers" class="form-check py-4">
@@ -78,7 +78,7 @@
 
       <div *ngIf="currentTreeNode.answerType==='select'" style="min-height: 15vh !important;">
         <div class="form-group py-5">
-          <label for="{{currentTreeNode.id}}">{{currentTreeNode.msg}}:</label>
+          <label for="{{currentTreeNode.id}}">{{currentTreeNode.question}}:</label>
           <select [formControl]="control" class="form-control" name="{{currentTreeNode.id}}" id="{{currentTreeNode.id}}">
             <option *ngFor="let answer of currentTreeNode.answers" value="{{answer.id}}">{{answer.msg}}</option>
           </select>

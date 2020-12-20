@@ -6,7 +6,7 @@ export class DecisionTreeFormService {
   private nodes: TreeNode[] = [
     new TreeNode(
       'hasPain',
-      'Senti dolore?',
+      {title: 'Senti dolore?', question: 'Senti dolore?'},
       [
         {id: 'hasDiagnosis', msg: 'Si'},
         {id: 'selectNoPainDisorder', msg: 'No'}
@@ -16,7 +16,7 @@ export class DecisionTreeFormService {
     ),
     new TreeNode(
       'hasDiagnosis',
-      'Hai già una diagnosi?',
+      {title: 'Diagnosi', question: 'Hai già una diagnosi?'},
       [
         {id: 'selectDiagnosis', msg: 'Si'},
         {id: 'detectDiagnosis', msg: 'No'}
@@ -26,7 +26,7 @@ export class DecisionTreeFormService {
     ),
     new TreeNode(
       'selectNoPainDisorder',
-      'Seleziona un problema',
+      {title: 'Malessere', question: 'Seleziona un problema'},
       [
         {id: 'gonfiore', msg: 'Gonfiore'},
         {id: 'malDiTesta', msg: 'Mal di testa'}
@@ -36,7 +36,7 @@ export class DecisionTreeFormService {
     ),
     new TreeNode(
       'selectDiagnosis',
-      'Seleziona la diagnosi',
+      {title: 'Selezione Diagnosi', question: 'Seleziona la diagnosi'},
       [
         {id: 'osteoarthritis', msg: 'Osteoartrosi'},
         {id: 'diabeticNeuropathy', msg: 'Neuropatia Diabetica'},
@@ -54,7 +54,7 @@ export class DecisionTreeFormService {
     ),
     new TreeNode(
       'detectDiagnosis',
-      'Proviamo a capire insieme quale sia la natura del tuo dolore',
+      {title: 'Dolore: Maggiori Informazioni', question: 'Proviamo a capire insieme quale sia la natura del tuo dolore'},
       [
         {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
         {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori'},
@@ -69,8 +69,18 @@ export class DecisionTreeFormService {
       false
     ),
     new TreeNode(
+      'osteoarthritis',
+      {title: 'Osteoartrosi: Maggiori Informazioni', question: 'Avverti uno stato di debolezza muscolare?'},
+      [
+        {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
+        {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori'}
+      ],
+      AnswerType.Select,
+      false
+    ),
+    new TreeNode(
       'contactUs',
-      'Contatti',
+      {title: 'Contatti', question: 'Se hai dubbi puoi contattarci tramite mail al seguente indirizzo'},
       [],
       null,
       true
