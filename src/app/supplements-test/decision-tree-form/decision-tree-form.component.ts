@@ -12,7 +12,7 @@ export class DecisionTreeFormComponent implements OnInit {
   currentTreeNode: TreeNode;
   prevTreeNodes: TreeNode[] = [];
   hidePersonalInfo = false;
-  control: FormControl = new FormControl('value', Validators.required);
+  control: FormControl = new FormControl(null, Validators.required);
 
   constructor(private decisionTreeFormService: DecisionTreeFormService) {}
 
@@ -33,6 +33,7 @@ export class DecisionTreeFormComponent implements OnInit {
       this.prevTreeNodes.push(this.currentTreeNode);
       this.currentTreeNode = nextNode;
     }
+    this.control = new FormControl(null, Validators.required);
   }
 
   onPrevQuestion() {

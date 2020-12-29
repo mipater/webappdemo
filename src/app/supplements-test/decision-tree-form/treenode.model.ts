@@ -22,8 +22,7 @@ export class TreeNode {
     private _answers: Answer[],
     private _answerType: string,
     private _isLeaf: boolean,
-    private _subAdv?: string[],
-    private _finalMsg?: string
+    private _subAdv?: string[]
   ) {}
 
   get id(): string {
@@ -54,7 +53,4 @@ export class TreeNode {
     return this._subAdv;
   }
 
-  get finalMsg(): string {
-    return this._finalMsg;
-  }
 }
