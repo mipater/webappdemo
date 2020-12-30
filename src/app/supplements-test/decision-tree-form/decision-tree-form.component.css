@@ -13,3 +13,7 @@ label {
 .min-vh-45 {
   min-height: 45vh !important;
 }
+
+.disable-btn-focus {
+  box-shadow: none;
+}

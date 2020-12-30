@@ -1,4 +1,9 @@
 <div class="jumbotron bg-white">
+  <ng-template [ngIf]="hidePersonalInfo">
+    <h4 class="font-roboto color-blue font-weight-bold mb-3">{{currentTreeNode.title}}</h4>
+    <hr>
+  </ng-template>
+
   <form  class="min-vh-50" *ngIf="!hidePersonalInfo" (ngSubmit)="onSubmitPersonalInfo(form)" #form="ngForm">
     <h3 class="pb-4 color-dark">Iniziamo dalle tue informazioni personali</h3>
 
@@ -62,9 +67,9 @@
 
   <ng-template [ngIf]="hidePersonalInfo">
     <form class="w-75 mx-auto mt-5">
-      <h3 class="pb-4 color-dark">{{currentTreeNode.question}}</h3>
 
       <div *ngIf="currentTreeNode.answerType==='radio'" style="min-height: 15vh !important;">
+        <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
         <div *ngFor="let answer of currentTreeNode.answers" class="form-check py-4">
           <input class="form-check-input" type="radio"
                  name="{{currentTreeNode.id}}"
@@ -77,16 +82,47 @@
       </div>
 
       <div *ngIf="currentTreeNode.answerType==='select'" style="min-height: 15vh !important;">
+        <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
         <div class="form-group py-5">
-          <label for="{{currentTreeNode.id}}">{{currentTreeNode.question}}:</label>
+          <label for="{{currentTreeNode.id}}">{{currentTreeNode.text}}:</label>
           <select [formControl]="control" class="form-control" name="{{currentTreeNode.id}}" id="{{currentTreeNode.id}}">
             <option *ngFor="let answer of currentTreeNode.answers" value="{{answer.id}}">{{answer.msg}}</option>
           </select>
         </div>
       </div>
 
-      <div *ngIf="currentTreeNode.isLeaf" style="min-height: 15vh !important;">
+      <div *ngIf="currentTreeNode.answerType==='contact'" style="min-height: 15vh !important;">
         <div class="form-group py-5"></div>
+      </div>
+
+      <div *ngIf="currentTreeNode.answerType==='substance'" style="min-height: 15vh !important;">
+        <div class="form-group py-0">
+          <h5 class="text-dark">Spiegazione</h5>
+          <p>{{currentTreeNode.text}}</p>
+          <br>
+          <h5 class="text-dark mb-3">Alcune sostanze naturali che possono essere utili in queste circostanze</h5>
+          <div id="accordion">
+            <div class="card" *ngFor="let substance of currentTreeNode.subAdv; let i = index">
+              <div class="card-header" id="{{substance.name}}">
+                <h5 class="mb-0">
+                  <button class="btn color-green font-weight-bold disable-btn-focus" data-toggle="collapse" attr.data-target="{{'#i'+i}}" aria-expanded="false" attr.aria-controls="{{'i'+i}}">
+                    {{substance.name}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                      <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg>
+                  </button>
+                </h5>
+              </div>
+              <div id="{{'i'+i}}" class="collapse" attr.aria-labelledby="{{substance.name}}" data-parent="#accordion">
+                <div class="card-body">
+                  {{substance.text}}
+                  <hr>
+                  <p class="font-italic">{{substance.rif}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pt-5 d-flex flex-row justify-content-between">

@@ -3,34 +3,42 @@ interface Answer {
   msg: string;
 }
 
-interface QuestionMessage {
+interface NodeTexts {
   title: string;
-  question: string;
+  text: string;
   label?: string;
 }
 
-export enum AnswerType {
+interface Substances {
+  name: string;
+  text: string;
+  rif: string;
+}
+
+export enum NodeType {
   Radio = 'radio',
   Select = 'select',
-  Final = 'final'
+  Substance = 'substance',
+  Advice = 'advice',
+  Contact = 'contact'
 }
 
 export class TreeNode {
   constructor(
     private _id: string,
-    private _msg: QuestionMessage,
+    private _msg: NodeTexts,
     private _answers: Answer[],
     private _answerType: string,
     private _isLeaf: boolean,
-    private _subAdv?: string[]
+    private _subAdv?: Substances[]
   ) {}
 
   get id(): string {
     return this._id;
   }
 
-  get question(): string {
-    return this._msg.question;
+  get text(): string {
+    return this._msg.text;
   }
 
   get title(): string {
@@ -49,8 +57,7 @@ export class TreeNode {
     return this._isLeaf;
   }
 
-  get subAdv(): string[] {
+  get subAdv(): Substances[] {
     return this._subAdv;
   }
-
 }
