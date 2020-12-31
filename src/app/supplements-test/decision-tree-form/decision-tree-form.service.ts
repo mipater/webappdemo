@@ -54,7 +54,7 @@ export class DecisionTreeFormService {
     ),
     new TreeNode(
       'detectDiagnosis',
-      {title: 'Dolore: Maggiori Informazioni', text: 'Proviamo a capire insieme quale sia la natura del tuo dolore'},
+      {title: 'Dolore: Maggiori Informazioni', text: 'Proviamo a capire insieme quale sia la natura del tuo dolore', label: 'Seleziona il malessere'},
       [
         {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)'},
         {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori'},

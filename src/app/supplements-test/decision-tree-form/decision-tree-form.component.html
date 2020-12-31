@@ -1,6 +1,6 @@
-<div class="jumbotron bg-white">
+<div class="jumbotron bg-white border border-dark rounded-sm">
   <ng-template [ngIf]="hidePersonalInfo">
-    <h4 class="font-roboto color-blue font-weight-bold mb-3">{{currentTreeNode.title}}</h4>
+    <h4 style="color: #33829b;" class="font-roboto font-weight-bold mb-3">{{currentTreeNode.title}}</h4>
     <hr>
   </ng-template>
 
@@ -70,21 +70,23 @@
 
       <div *ngIf="currentTreeNode.answerType==='radio'" style="min-height: 15vh !important;">
         <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
-        <div *ngFor="let answer of currentTreeNode.answers" class="form-check py-4">
-          <input class="form-check-input" type="radio"
-                 name="{{currentTreeNode.id}}"
-                 id="{{answer.id}}"
-                 value="{{answer.id}}"
-                 [formControl]="control"
-          >
-          <label class="form-check-label" for="{{answer.id}}">{{answer.msg}}</label>
+        <div *ngFor="let answer of currentTreeNode.answers" class="form-check py-1">
+          <div class="inputGroup">
+            <input class="form-check-input" type="radio"
+                   name="{{currentTreeNode.id}}"
+                   id="{{answer.id}}"
+                   value="{{answer.id}}"
+                   [formControl]="control"
+            >
+            <label class="form-check-label border border-dark rounded-sm" for="{{answer.id}}">{{answer.msg}}</label>
+          </div>
         </div>
       </div>
 
       <div *ngIf="currentTreeNode.answerType==='select'" style="min-height: 15vh !important;">
         <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
         <div class="form-group py-5">
-          <label for="{{currentTreeNode.id}}">{{currentTreeNode.text}}:</label>
+          <label for="{{currentTreeNode.id}}">{{currentTreeNode.label || currentTreeNode.text}}:</label>
           <select [formControl]="control" class="form-control" name="{{currentTreeNode.id}}" id="{{currentTreeNode.id}}">
             <option *ngFor="let answer of currentTreeNode.answers" value="{{answer.id}}">{{answer.msg}}</option>
           </select>
@@ -92,7 +94,16 @@
       </div>
 
       <div *ngIf="currentTreeNode.answerType==='contact'" style="min-height: 15vh !important;">
-        <div class="form-group py-5"></div>
+        <div class="form-group py-5">
+          <div class="inputGroup">
+            <input id="radio1" name="radio" type="radio"/>
+            <label for="radio1">Yes</label>
+          </div>
+          <div class="inputGroup">
+            <input id="radio2" name="radio" type="radio"/>
+            <label for="radio2">No</label>
+          </div>
+        </div>
       </div>
 
       <div *ngIf="currentTreeNode.answerType==='substance'" style="min-height: 15vh !important;">
@@ -101,7 +112,7 @@
           <p>{{currentTreeNode.text}}</p>
           <br>
           <h5 class="text-dark mb-3">Alcune sostanze naturali che possono essere utili in queste circostanze</h5>
-          <div id="accordion">
+          <div id="accordion" class="mb-4">
             <div class="card" *ngFor="let substance of currentTreeNode.subAdv; let i = index">
               <div class="card-header" id="{{substance.name}}">
                 <h5 class="mb-0">
@@ -124,7 +135,7 @@
           </div>
         </div>
       </div>
-
+      <hr>
       <div class="pt-5 d-flex flex-row justify-content-between">
         <button type="button" class="btn btn-outline-dark px-4" (click)="onPrevQuestion()">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

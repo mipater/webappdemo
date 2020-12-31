@@ -41,6 +41,10 @@ export class TreeNode {
     return this._msg.text;
   }
 
+  get label(): string {
+    return this._msg.label;
+  }
+
   get title(): string {
     return this._msg.title;
   }
