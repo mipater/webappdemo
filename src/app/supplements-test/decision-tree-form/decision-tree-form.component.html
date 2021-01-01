@@ -95,14 +95,7 @@
 
       <div *ngIf="currentTreeNode.answerType==='contact'" style="min-height: 15vh !important;">
         <div class="form-group py-5">
-          <div class="inputGroup">
-            <input id="radio1" name="radio" type="radio"/>
-            <label for="radio1">Yes</label>
-          </div>
-          <div class="inputGroup">
-            <input id="radio2" name="radio" type="radio"/>
-            <label for="radio2">No</label>
-          </div>
+          <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
         </div>
       </div>
 
@@ -135,6 +128,7 @@
           </div>
         </div>
       </div>
+
       <hr>
       <div class="pt-5 d-flex flex-row justify-content-between">
         <button type="button" class="btn btn-outline-dark px-4" (click)="onPrevQuestion()">

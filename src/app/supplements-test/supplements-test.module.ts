@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 import {SupplementsTestComponent} from './supplements-test.component';
 import {HometestComponent} from './hometest/hometest.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AutoCompleteModule,
     RouterModule.forChild(routes)
   ],
   exports: []
