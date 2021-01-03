@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TreeNode} from './treenode.model';
+import {Answer, TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 
@@ -13,6 +13,9 @@ export class DecisionTreeFormComponent implements OnInit {
   prevTreeNodes: TreeNode[] = [];
   hidePersonalInfo = false;
   control: FormControl = new FormControl(null, Validators.required);
+
+  text: string;
+  results: string[];
 
   constructor(private decisionTreeFormService: DecisionTreeFormService) {}
 
@@ -42,6 +45,17 @@ export class DecisionTreeFormComponent implements OnInit {
       return;
     }
     this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.prevTreeNodes.pop().id);
+  }
+
+  search(event: any) {
+    const query = event.query;
+    let filtered : string[] = [];
+    this.currentTreeNode.answers.filter((answer) => {
+      if (answer.msg.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+        filtered.push(answer.msg);
+      }
+    });
+    this.results = filtered;
   }
 
 }

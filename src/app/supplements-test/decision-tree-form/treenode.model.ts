@@ -1,4 +1,4 @@
-interface Answer {
+export interface Answer {
   id: string;
   msg: string;
 }

@@ -1,4 +1,3 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
@@ -11,6 +10,7 @@ import {FooterComponent} from './footer/footer.component';
 import {InformativaComponent} from './informativa/informativa.component';
 import {CookieComponent} from './cookie/cookie.component';
 import {SupplementsTestModule} from './supplements-test/supplements-test.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import {SupplementsTestModule} from './supplements-test/supplements-test.module'
     CookieComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     SupplementsTestModule,

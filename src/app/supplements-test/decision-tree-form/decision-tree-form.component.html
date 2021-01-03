@@ -86,16 +86,21 @@
       <div *ngIf="currentTreeNode.answerType==='select'" style="min-height: 15vh !important;">
         <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
         <div class="form-group py-5">
-          <label for="{{currentTreeNode.id}}">{{currentTreeNode.label || currentTreeNode.text}}:</label>
+<!--          <label for="{{currentTreeNode.id}}">{{currentTreeNode.label || currentTreeNode.text}}:</label>
           <select [formControl]="control" class="form-control" name="{{currentTreeNode.id}}" id="{{currentTreeNode.id}}">
             <option *ngFor="let answer of currentTreeNode.answers" value="{{answer.id}}">{{answer.msg}}</option>
-          </select>
+          </select>-->
+          <p-autoComplete class="bg-color-light-blue" [formControl]="control" name="search"
+                          [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [dropdown]="true"
+                          size="300" required="true" autofocus="true" dropdownMode="current" placeholder="Cerca..."
+          >
+          </p-autoComplete>
         </div>
       </div>
 
       <div *ngIf="currentTreeNode.answerType==='contact'" style="min-height: 15vh !important;">
         <div class="form-group py-5">
-          <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
+          <p-autoComplete class="bg-color-light-blue" [formControl]="control" name="search" [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [dropdown]="true"></p-autoComplete>
         </div>
       </div>
 

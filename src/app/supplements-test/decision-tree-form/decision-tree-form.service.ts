@@ -102,7 +102,10 @@ export class DecisionTreeFormService {
     new TreeNode(
       'contactUs',
       {title: 'Contatti', text: 'Se hai dubbi puoi contattarci tramite mail al seguente indirizzo'},
-      [],
+      [
+        {id: 'osteoarthritisFinal1', msg: 'Si'},
+        {id: 'osteoarthritisFinal2', msg: 'No'}
+      ],
       NodeType.Contact,
       true
     )
