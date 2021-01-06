@@ -1,6 +1,7 @@
 export interface Answer {
   id: string;
   msg: string;
+  synonyms?: string[];
 }
 
 interface NodeTexts {

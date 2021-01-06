@@ -14,8 +14,8 @@ export class DecisionTreeFormComponent implements OnInit {
   hidePersonalInfo = false;
   control: FormControl = new FormControl(null, Validators.required);
 
-  text: string;
-  results: string[];
+  text: any;
+  results: any[];
 
   constructor(private decisionTreeFormService: DecisionTreeFormService) {}
 
@@ -30,6 +30,9 @@ export class DecisionTreeFormComponent implements OnInit {
 
   onAnswerSubmit() {
     console.log(this.control);
+    if (this.control.value.hasOwnProperty('id')) {
+      this.control.setValue(this.control.value.id);
+    }
     const nextNodeId = this.control.value;
     const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
     if (nextNode) {
@@ -48,11 +51,19 @@ export class DecisionTreeFormComponent implements OnInit {
   }
 
   search(event: any) {
-    const query = event.query;
-    let filtered : string[] = [];
+    const query = event.query.toLowerCase().replace(/\s/g, '');
+    let filtered : any[] = [];
     this.currentTreeNode.answers.filter((answer) => {
-      if (answer.msg.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-        filtered.push(answer.msg);
+      if (answer.msg.toLowerCase().replace(/\s/g, '').indexOf(query) > -1) {
+        filtered.push(answer);
+      } else if (answer.synonyms){
+        answer.synonyms.forEach(synonym => {
+          // remove last letter from synonym for catching both singular/plural words
+          const _synonym = synonym.toLowerCase().replace(/\s/g, '');
+          if (_synonym.indexOf(query.slice(0, -1)) > -1 || _synonym.indexOf(query) > -1 ) {
+            filtered.push(answer);
+          }
+        });
       }
     });
     this.results = filtered;

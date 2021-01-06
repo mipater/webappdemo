@@ -93,6 +93,7 @@
           <p-autoComplete class="bg-color-light-blue" [formControl]="control" name="search"
                           [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [dropdown]="true"
                           size="300" required="true" autofocus="true" dropdownMode="current" placeholder="Cerca..."
+                          field="msg" (onBlur)="control.reset()"
           >
           </p-autoComplete>
         </div>
