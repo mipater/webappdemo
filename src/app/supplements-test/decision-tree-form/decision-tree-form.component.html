@@ -1,3 +1,4 @@
+<button (click)="onFetchSubstances()">SAVE TO DB</button>
 <div class="jumbotron bg-white border border-dark rounded-sm">
   <ng-template [ngIf]="hidePersonalInfo">
     <h4 style="color: #33829b;" class="font-roboto font-weight-bold mb-3">{{currentTreeNode.title}}</h4>
@@ -93,7 +94,7 @@
           <p-autoComplete class="bg-color-light-blue" [formControl]="control" name="search"
                           [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [dropdown]="true"
                           size="300" required="true" autofocus="true" dropdownMode="current" placeholder="Cerca..."
-                          field="msg" (onBlur)="control.reset()"
+                          field="msg"
           >
           </p-autoComplete>
         </div>

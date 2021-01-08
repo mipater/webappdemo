@@ -10,10 +10,11 @@ interface NodeTexts {
   label?: string;
 }
 
-interface Substances {
-  name: string;
+export interface Substances {
+  id: string;
+  name?: string;
   text: string;
-  rif: string;
+  rif?: string;
 }
 
 export enum NodeType {
@@ -31,7 +32,7 @@ export class TreeNode {
     private _answers: Answer[],
     private _answerType: string,
     private _isLeaf: boolean,
-    private _subAdv?: Substances[]
+    private _subAdv?: string[]
   ) {}
 
   get id(): string {
@@ -62,7 +63,7 @@ export class TreeNode {
     return this._isLeaf;
   }
 
-  get subAdv(): Substances[] {
+  get subAdv(): string[] {
     return this._subAdv;
   }
 }

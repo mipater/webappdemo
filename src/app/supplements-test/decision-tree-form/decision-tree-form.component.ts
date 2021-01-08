@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Answer, TreeNode} from './treenode.model';
+import {Answer, Substances, TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
 import {FormControl, NgForm, Validators} from '@angular/forms';
+import {DataStorageService} from '../data-storage.service';
 
 @Component({
   selector: 'app-decision-tree-form',
@@ -11,13 +12,14 @@ import {FormControl, NgForm, Validators} from '@angular/forms';
 export class DecisionTreeFormComponent implements OnInit {
   currentTreeNode: TreeNode;
   prevTreeNodes: TreeNode[] = [];
+  substances: Substances[];
   hidePersonalInfo = false;
   control: FormControl = new FormControl(null, Validators.required);
 
   text: any;
   results: any[];
 
-  constructor(private decisionTreeFormService: DecisionTreeFormService) {}
+  constructor(private decisionTreeFormService: DecisionTreeFormService, private dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
     this.currentTreeNode = this.decisionTreeFormService.getNodeById('hasPain');
@@ -43,11 +45,20 @@ export class DecisionTreeFormComponent implements OnInit {
   }
 
   onPrevQuestion() {
+    this.control.reset();
     if (this.currentTreeNode.id === 'hasPain') {
       this.hidePersonalInfo = false;
       return;
     }
     this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.prevTreeNodes.pop().id);
+  }
+
+  onFetchSubstances() {
+      this.dataStorageService.fetchSubAdv().subscribe(responseData => {
+        console.log(responseData);
+      }, error => {
+        console.error(error);
+      });
   }
 
   search(event: any) {
@@ -69,4 +80,7 @@ export class DecisionTreeFormComponent implements OnInit {
     this.results = filtered;
   }
 
+  saveData() {
+    this.dataStorageService.saveSubAdv();
+  }
 }
