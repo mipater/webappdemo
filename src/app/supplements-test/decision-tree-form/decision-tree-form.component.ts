@@ -80,7 +80,4 @@ export class DecisionTreeFormComponent implements OnInit {
     this.results = filtered;
   }
 
-  saveData() {
-    this.dataStorageService.saveSubAdv();
-  }
 }
