@@ -22,6 +22,7 @@ export class DecisionTreeFormComponent implements OnInit {
   constructor(private decisionTreeFormService: DecisionTreeFormService, private dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
+    this.fetchSubstances();
     this.currentTreeNode = this.decisionTreeFormService.getNodeById('hasPain');
     this.prevTreeNodes.push(this.decisionTreeFormService.getNodeById('hasPain'));
   }
@@ -32,15 +33,18 @@ export class DecisionTreeFormComponent implements OnInit {
 
   onAnswerSubmit() {
     console.log(this.control);
+    // force formcontrol value
     if (this.control.value.hasOwnProperty('id')) {
       this.control.setValue(this.control.value.id);
     }
     const nextNodeId = this.control.value;
     const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
+    // get next node
     if (nextNode) {
       this.prevTreeNodes.push(this.currentTreeNode);
       this.currentTreeNode = nextNode;
     }
+    // reset formcontrol value
     this.control = new FormControl(null, Validators.required);
   }
 
@@ -53,12 +57,17 @@ export class DecisionTreeFormComponent implements OnInit {
     this.currentTreeNode = this.decisionTreeFormService.getNodeById(this.prevTreeNodes.pop().id);
   }
 
-  onFetchSubstances() {
-      this.dataStorageService.fetchSubAdv().subscribe(responseData => {
-        console.log(responseData);
+  fetchSubstances() {
+    if (this.dataStorageService.handleRefreshData() === true) {
+      this.dataStorageService.fetchData().subscribe(subAdv => {
+        this.substances = subAdv;
+        console.log(this.substances);
+        return;
       }, error => {
         console.error(error);
       });
+    }
+    this.substances = this.dataStorageService.getSubAdv();
   }
 
   search(event: any) {
