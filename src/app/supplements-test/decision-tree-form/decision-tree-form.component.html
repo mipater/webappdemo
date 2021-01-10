@@ -1,4 +1,8 @@
-<div class="jumbotron bg-white border border-dark rounded-sm">
+<div class="jumbotron bg-white border border-dark rounded-sm position-relative">
+  <ng-template [ngIf]="spinnerIsActive">
+    <div class="spinner-container position-absolute"><div class="lds-facebook align-self-center"><div></div><div></div><div></div></div></div>
+  </ng-template>
+
   <ng-template [ngIf]="hidePersonalInfo">
     <h4 style="color: #33829b;" class="font-roboto font-weight-bold mb-3">{{currentTreeNode.title}}</h4>
     <hr>
@@ -112,11 +116,11 @@
           <br>
           <h5 class="text-dark mb-3">Alcune sostanze naturali che possono essere utili in queste circostanze</h5>
           <div id="accordion" class="mb-4">
-            <div class="card" *ngFor="let substance of currentTreeNode.subAdv; let i = index">
-              <div class="card-header" id="{{substance.name}}">
+            <div class="card" *ngFor="let substance of substances; let i = index">
+              <div class="card-header" id="{{substance.id}}">
                 <h5 class="mb-0">
                   <button class="btn color-green font-weight-bold disable-btn-focus" data-toggle="collapse" attr.data-target="{{'#i'+i}}" aria-expanded="false" attr.aria-controls="{{'i'+i}}">
-                    {{substance.name}}
+                    {{substance.name || "Consiglio"}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                       <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                     </svg>

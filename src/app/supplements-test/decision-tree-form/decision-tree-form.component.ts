@@ -12,8 +12,10 @@ import {DataStorageService} from '../data-storage.service';
 export class DecisionTreeFormComponent implements OnInit {
   currentTreeNode: TreeNode;
   prevTreeNodes: TreeNode[] = [];
-  substances: Substances[];
+  substancesAll: Substances[];
+  substances: Substances[] = [];
   hidePersonalInfo = false;
+  spinnerIsActive = false;
   control: FormControl = new FormControl(null, Validators.required);
 
   text: any;
@@ -43,6 +45,15 @@ export class DecisionTreeFormComponent implements OnInit {
     if (nextNode) {
       this.prevTreeNodes.push(this.currentTreeNode);
       this.currentTreeNode = nextNode;
+      // find substances for the next node
+      this.substances = [];
+      this.currentTreeNode.subAdv?.forEach(searchedId => {
+        this.substancesAll.forEach(substance => {
+          if (substance.id === searchedId){
+            this.substances.push(substance);
+          }
+        });
+      });
     }
     // reset formcontrol value
     this.control = new FormControl(null, Validators.required);
@@ -50,6 +61,7 @@ export class DecisionTreeFormComponent implements OnInit {
 
   onPrevQuestion() {
     this.control.reset();
+    this.substances = [];
     if (this.currentTreeNode.id === 'hasPain') {
       this.hidePersonalInfo = false;
       return;
@@ -60,14 +72,14 @@ export class DecisionTreeFormComponent implements OnInit {
   fetchSubstances() {
     if (this.dataStorageService.handleRefreshData() === true) {
       this.dataStorageService.fetchData().subscribe(subAdv => {
-        this.substances = subAdv;
-        console.log(this.substances);
+        this.substancesAll = subAdv;
+        console.log(this.substancesAll);
         return;
       }, error => {
         console.error(error);
       });
     }
-    this.substances = this.dataStorageService.getSubAdv();
+    this.substancesAll = this.dataStorageService.getSubAdv();
   }
 
   search(event: any) {
