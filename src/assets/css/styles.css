@@ -1,10 +1,13 @@
 @import '~angular-archwizard/archwizard.css';
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/bootstrap4-light-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
 
 .font-roboto {
   font-family: 'Roboto', sans-serif;
 }
 
-html{
+.disable-text-selection {
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -61,10 +64,6 @@ address:hover {
   color: #954B00;
 }
 
-aw-wizard .wizard-steps {
-  display: block;
-}
-
-aw-wizard-navigation-bar {
-  display: none;
+.p-autocomplete-dropdown{
+  background-color: #54b4eb !important;
 }
