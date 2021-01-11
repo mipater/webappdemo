@@ -74,7 +74,7 @@
 
       <div *ngIf="currentTreeNode.answerType==='radio'" style="min-height: 15vh !important;">
         <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
-        <div *ngFor="let answer of currentTreeNode.answers" class="form-check py-1">
+        <div *ngFor="let answer of currentTreeNode.answers;" class="form-check py-1">
           <div class="inputGroup">
             <input class="form-check-input" type="radio"
                    name="{{currentTreeNode.id}}"

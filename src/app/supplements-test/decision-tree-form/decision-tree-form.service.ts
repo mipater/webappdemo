@@ -67,7 +67,7 @@ export class DecisionTreeFormService {
           {id: 'painMovableJointsFinal', msg: 'Sera'},
           {id: 'painMovableJointsFinal', msg: 'Non So'}
         ],
-        NodeType.Radio,
+        NodeType.Select,
         false
       ),
       new TreeNode(
