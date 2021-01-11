@@ -40,6 +40,49 @@ export class DecisionTreeFormService {
       NodeType.Select,
       false
     ),
+    // DIAGNOSIS DETECTION
+    new TreeNode(
+      'detectDiagnosis',
+      {title: 'Dolore: Maggiori Informazioni', text: 'Proviamo a capire insieme quale sia la natura del tuo dolore', label: 'Seleziona il malessere'},
+      [
+        {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)', synonyms: ['ginocchio', 'polso', 'spalla']},
+        {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori', synonyms: ['gamba']},
+        {id: 'painUpperJoints', msg: 'Soffro di dolori e formicolii agli arti superiori', synonyms: ['braccia', 'mani']},
+        {id: 'painEvacuation', msg: 'Soffro di emorroidi / Ho una evacuazione dolorosa', synonyms: ['plesso', 'anale', 'infiammazione']},
+        {id: 'painHead', msg: 'Soffro di mal di testa'},
+        {id: 'painBack', msg: 'Soffro di dolori alla schiena'},
+        {id: 'painTraumatic', msg: 'Soffro di dolori di origine traumatica'},
+        {id: 'contactUs', msg: 'Altro'}
+      ],
+      NodeType.Select,
+      false
+    ),
+    // -- PAINMOVABLEJOINTS
+      new TreeNode(
+        'painMovableJoints',
+        {title: 'Articolazioni Mobili: Maggiori Informazioni', text: 'In che momento della giornata il dolore è più intenso?'},
+        [
+          {id: 'osteoarthritis', msg: 'Mattino'},
+          {id: 'painMovableJointsFinal', msg: 'Pomeriggio'},
+          {id: 'painMovableJointsFinal', msg: 'Sera'},
+          {id: 'painMovableJointsFinal', msg: 'Non So'}
+        ],
+        NodeType.Radio,
+        false
+      ),
+      new TreeNode(
+        'painMovableJointsFinal',
+        {
+          title: 'Articolazioni Mobili: Consiglio Utile',
+          text: 'I dolori articolari rappresentano sensazioni dolorose a carico di una o più articolazioni quali spalla, gomito, polso, mano, anca, ginocchio, caviglia e piede. Traumi o fratture potrebbe determinare l’insorgere di questo disturbo.' +
+            'Bagni caldi, massaggi, sedute di fisioterapia, applicazioni con ultrasuoni e riposo sono alcuni dei rimedi suggeriti per combattere i dolori articolari. I dolori articolari possono presentarsi associati a fitte alle ossa, gonfiore e infiammazione.'
+        },
+        [],
+        NodeType.Substance,
+        true,
+        ['-MQWfQILmGHdbHqxl0Cr']
+      ),
+    // DIAGNOSIS SELECTION
     new TreeNode(
       'selectDiagnosis',
       {title: 'Selezione Diagnosi', text: 'Seleziona la diagnosi'},
@@ -58,23 +101,6 @@ export class DecisionTreeFormService {
       NodeType.Select,
       false
     ),
-    new TreeNode(
-      'detectDiagnosis',
-      {title: 'Dolore: Maggiori Informazioni', text: 'Proviamo a capire insieme quale sia la natura del tuo dolore', label: 'Seleziona il malessere'},
-      [
-        {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)', synonyms: ['ginocchio', 'polso', 'spalla']},
-        {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori', synonyms: ['gamba']},
-        {id: 'painUpperJoints', msg: 'Soffro di dolori e formicolii agli arti superiori', synonyms: ['braccia', 'mani']},
-        {id: 'painEvacuation', msg: 'Soffro di emorroidi / Ho una evacuazione dolorosa', synonyms: ['plesso', 'anale', 'infiammazione']},
-        {id: 'painHead', msg: 'Soffro di mal di testa'},
-        {id: 'painBack', msg: 'Soffro di dolori alla schiena'},
-        {id: 'painTraumatic', msg: 'Soffro di dolori di origine traumatica'},
-        {id: 'contactUs', msg: 'Altro'}
-      ],
-      NodeType.Select,
-      false
-    ),
-    // DIAGNOSIS SELECTION
     // -- OSTEOARTHRITIS
       new TreeNode(
         'osteoarthritis',
