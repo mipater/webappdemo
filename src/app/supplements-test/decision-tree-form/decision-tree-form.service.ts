@@ -187,7 +187,18 @@ export class DecisionTreeFormService {
         [],
         NodeType.Substance,
         true,
-        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKaQjRUdWrNg1QP']
+        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKaQjRUdWrNg1QP', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKfI_XPt813EUU3']
+      ),
+      new TreeNode(
+        'entrapmentNeuropathyFinal2',
+        {
+          title: 'Neuropatia Da Intrappolamento: Sostanze Utili',
+          text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono dovute al restringimento di un canale anatomico che causa la sofferenza del nervo che lo occupa.'
+        },
+        [],
+        NodeType.Substance,
+        true,
+        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKaQjRUdWrNg1QP', '-MQWfQKhuhqGpt-GX9Jz']
       ),
     // -- COMPRESSIONNEUROPATHY
       new TreeNode(
