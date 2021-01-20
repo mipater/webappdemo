@@ -116,7 +116,8 @@ export class DecisionTreeFormService {
         'osteoarthritisFinal1',
         {
           title: 'Osteoartrosi: Sostanze Utili',
-          text: 'Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare'
+          text: 'Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare',
+          productLink: 'https://geopharma.eu/categoria-prodotto/osteoarticolari/'
         },
         [],
         NodeType.Substance,
@@ -127,7 +128,8 @@ export class DecisionTreeFormService {
         'osteoarthritisFinal2',
         {
           title: 'Osteoartrosi: Sostanze Utili',
-          text: 'L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato.'
+          text: 'L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/osteoarticolari/'
         },
         [],
         NodeType.Substance,
@@ -187,7 +189,18 @@ export class DecisionTreeFormService {
         [],
         NodeType.Substance,
         true,
-        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKaQjRUdWrNg1QP']
+        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKaQjRUdWrNg1QP', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKfI_XPt813EUU3']
+      ),
+      new TreeNode(
+        'entrapmentNeuropathyFinal2',
+        {
+          title: 'Neuropatia Da Intrappolamento: Sostanze Utili',
+          text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono dovute al restringimento di un canale anatomico che causa la sofferenza del nervo che lo occupa.'
+        },
+        [],
+        NodeType.Substance,
+        true,
+        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKaQjRUdWrNg1QP', '-MQWfQKhuhqGpt-GX9Jz']
       ),
     // -- COMPRESSIONNEUROPATHY
       new TreeNode(
