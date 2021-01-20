@@ -101,4 +101,7 @@ export class DecisionTreeFormComponent implements OnInit {
     this.results = filtered;
   }
 
+  onFindMore(url: string) {
+    window.open(url, '_blank');
+  }
 }

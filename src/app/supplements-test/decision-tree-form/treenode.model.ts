@@ -8,6 +8,7 @@ interface NodeTexts {
   title: string;
   text: string;
   label?: string;
+  productLink?: string;
 }
 
 export interface Substances {
@@ -48,6 +49,10 @@ export class TreeNode {
 
   get title(): string {
     return this._msg.title;
+  }
+
+  get productLink(): string {
+    return this._msg.productLink;
   }
 
   get answers(): Answer[] {

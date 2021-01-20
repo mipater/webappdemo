@@ -116,7 +116,8 @@ export class DecisionTreeFormService {
         'osteoarthritisFinal1',
         {
           title: 'Osteoartrosi: Sostanze Utili',
-          text: 'Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare'
+          text: 'Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare',
+          productLink: 'https://geopharma.eu/categoria-prodotto/osteoarticolari/'
         },
         [],
         NodeType.Substance,
@@ -127,7 +128,8 @@ export class DecisionTreeFormService {
         'osteoarthritisFinal2',
         {
           title: 'Osteoartrosi: Sostanze Utili',
-          text: 'L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato.'
+          text: 'L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/osteoarticolari/'
         },
         [],
         NodeType.Substance,
