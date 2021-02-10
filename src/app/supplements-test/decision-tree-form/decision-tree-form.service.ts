@@ -6,7 +6,7 @@ export class DecisionTreeFormService {
   private nodes: TreeNode[] = [
     new TreeNode(
       'hasPain',
-      {title: 'Dolore', text: 'Senti dolore?'},
+      {title: 'Dolore', text: 'Sentire dolore è il principale nemico del nostro benessere. Senti dolore?'},
       [
         {id: 'hasDiagnosis', msg: 'Si'},
         {id: 'selectNoPainDisorder', msg: 'No'}
