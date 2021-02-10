@@ -6,7 +6,7 @@ export class DecisionTreeFormService {
   private nodes: TreeNode[] = [
     new TreeNode(
       'hasPain',
-      {title: 'Dolore', text: 'Senti dolore?'},
+      {title: 'Dolore', text: 'Sentire dolore è il principale nemico del nostro benessere. Senti dolore?'},
       [
         {id: 'hasDiagnosis', msg: 'Si'},
         {id: 'selectNoPainDisorder', msg: 'No'}
@@ -151,7 +151,8 @@ export class DecisionTreeFormService {
         'diabeticNeuropathyFinal1',
         {
           title: 'Neuropatia Diabetica: Sostanze Utili',
-          text: 'La neuropatia diabetica è uno stato di sofferenza dei nervi periferici dovuta alle elevate concentrazioni di glucosio nel sangue. Tali disfunzioni possono incidere pesantemente sulla qualità della vita delle persone'
+          text: 'La neuropatia diabetica è uno stato di sofferenza dei nervi periferici dovuta alle elevate concentrazioni di glucosio nel sangue. Tali disfunzioni possono incidere pesantemente sulla qualità della vita delle persone',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -162,7 +163,8 @@ export class DecisionTreeFormService {
         'diabeticNeuropathyFinal2',
         {
           title: 'Neuropatia Diabetica: Sostanze Utili',
-          text: 'La neuropatia è una complicazione frequente nel paziente diabetico. La gravità e la precocità dei sintomi dipendono dal grado di osservanza alle prescrizioni dietetiche e farmacologiche suggerite al paziente.'
+          text: 'La neuropatia è una complicazione frequente nel paziente diabetico. La gravità e la precocità dei sintomi dipendono dal grado di osservanza alle prescrizioni dietetiche e farmacologiche suggerite al paziente.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -172,7 +174,10 @@ export class DecisionTreeFormService {
     // -- ENTRAPMENTNEUROPATHY
       new TreeNode(
         'entrapmentNeuropathy',
-        {title: 'Neuropatia Da Intrappolamento: Maggiori Informazioni', text: 'Soffri di insonnia o ti svegli frequentemente durante la notte?'},
+        {
+          title: 'Neuropatia Da Intrappolamento: Maggiori Informazioni',
+          text: 'Soffri di insonnia o ti svegli frequentemente durante la notte?'
+        },
         [
           {id: 'entrapmentNeuropathyFinal1', msg: 'Si'},
           {id: 'entrapmentNeuropathyFinal2', msg: 'No'}
@@ -184,7 +189,8 @@ export class DecisionTreeFormService {
         'entrapmentNeuropathyFinal1',
         {
           title: 'Neuropatia Da Intrappolamento: Sostanze Utili',
-          text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono caratterizzate dai disturbi nella sensibilità delle estremità che, in alcuni casi, limitano la capacità di riposo del paziente.'
+          text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono caratterizzate dai disturbi nella sensibilità delle estremità che, in alcuni casi, limitano la capacità di riposo del paziente.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -195,7 +201,8 @@ export class DecisionTreeFormService {
         'entrapmentNeuropathyFinal2',
         {
           title: 'Neuropatia Da Intrappolamento: Sostanze Utili',
-          text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono dovute al restringimento di un canale anatomico che causa la sofferenza del nervo che lo occupa.'
+          text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono dovute al restringimento di un canale anatomico che causa la sofferenza del nervo che lo occupa.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -217,7 +224,8 @@ export class DecisionTreeFormService {
         'compressionNeuropathyFinal1',
         {
           title: 'Neuropatia Da Compressione: Sostanze Utili',
-          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso. Il dolore provocato dalla lesione può causare disturbi del sonno, peggiorando la qualità della vita.'
+          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso. Il dolore provocato dalla lesione può causare disturbi del sonno, peggiorando la qualità della vita.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -228,7 +236,8 @@ export class DecisionTreeFormService {
         'compressionNeuropathyFinal2',
         {
           title: 'Neuropatia Da Compressione: Sostanze Utili',
-          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso\n'
+          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -250,7 +259,8 @@ export class DecisionTreeFormService {
         'herpeticNeuropathyFinal1',
         {
           title: 'Neuropatia Erpetica: Sostanze Utili',
-          text: 'La nevralgia posterpetica è una complicanza frequente dell\'infezione da Herpes zoster, meglio conosciuta come fuoco di sant\'Antonio. A causarla è la «riattivazione» dello stesso virus responsabile della varicella, che rimane silente nel sistema nervoso dopo aver superato la malattia.'
+          text: 'La nevralgia posterpetica è una complicanza frequente dell\'infezione da Herpes zoster, meglio conosciuta come fuoco di sant\'Antonio. A causarla è la «riattivazione» dello stesso virus responsabile della varicella, che rimane silente nel sistema nervoso dopo aver superato la malattia.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -261,7 +271,8 @@ export class DecisionTreeFormService {
         'herpeticNeuropathyFinal2',
         {
           title: 'Neuropatia Erpetica: Sostanze Utili',
-          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso\n'
+          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -283,7 +294,8 @@ export class DecisionTreeFormService {
         'trigeminalNeuralgiaFinal1',
         {
           title: 'Nevralgia Trigeminale: Sostanze Utili',
-          text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.'
+          text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -294,7 +306,8 @@ export class DecisionTreeFormService {
         'trigeminalNeuralgiaFinal2',
         {
           title: 'Nevralgia Trigeminale: Sostanze Utili',
-          text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.'
+          text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
         NodeType.Substance,
@@ -312,7 +325,8 @@ export class DecisionTreeFormService {
             'Cefalee primarie: non causate da un altro disturbo' +
             'Cefalee secondarie: causate da un altro disturbo' +
             'I disturbi della cefalea primaria includono emicrania, cefalea a grappolo e cefalea muscolo-tensiva.' +
-            'Le cefalee secondarie possono derivare da disturbi a cervello, occhi, naso, gola, seni nasali, denti, mascelle, orecchie o nuca o da un disturbo diffuso in tutto il corpo (sistemico).'
+            'Le cefalee secondarie possono derivare da disturbi a cervello, occhi, naso, gola, seni nasali, denti, mascelle, orecchie o nuca o da un disturbo diffuso in tutto il corpo (sistemico).',
+          productLink: 'https://geopharma.eu/categoria-prodotto/pain/'
         },
         [],
         NodeType.Substance,
@@ -325,7 +339,8 @@ export class DecisionTreeFormService {
         {
           title: 'Emorroidi/Ragadi: Sostanze Utili',
           text: 'Le emorroidi sono dei cuscinetti vascolari fisiologicamente presenti nel nostro corpo. Quando non sono soggette a gonfiore e infiammazione, quindi, svolgono la loro funzione di aiuto nel contenimento delle feci mantenendo l\'ano chiuso, senza che ci accorgiamo della loro presenza. Il loro gonfiore eccessivo genera fastidio e sintomi quali prolasso, dolore, bruciore, prurito o sanguinamento. Il termine emorroidi designa sia le strutture venose sia la disfunzione, più correttamente indicata come patologia o malattia emorroidaria.\n' +
-            'La patologia emorroidaria è una disfunzione legata all\'infiammazione delle vene emorroidali, le emorroidi, che scivolano all\'esterno della loro sede naturale nell\'ano per il cedimento della mucosa rettale. In alcuni casi si produce la formazione di un grumo di sangue (coagulo o trombo) che amplifica i sintomi dolorosi.'
+            'La patologia emorroidaria è una disfunzione legata all\'infiammazione delle vene emorroidali, le emorroidi, che scivolano all\'esterno della loro sede naturale nell\'ano per il cedimento della mucosa rettale. In alcuni casi si produce la formazione di un grumo di sangue (coagulo o trombo) che amplifica i sintomi dolorosi.',
+          productLink: 'https://geopharma.eu/categoria-prodotto/flebotonici/'
         },
         [],
         NodeType.Substance,
