@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Answer, Substances, TreeNode} from './treenode.model';
+import {Substances, TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 import {DataStorageService} from '../data-storage.service';

@@ -63,22 +63,20 @@ export class DecisionTreeFormService {
         {title: 'Articolazioni Mobili: Maggiori Informazioni', text: 'In che momento della giornata il dolore è più intenso?'},
         [
           {id: 'osteoarthritis', msg: 'Mattino'},
-          {id: 'painMovableJointsFinal', msg: 'Pomeriggio'},
-          {id: 'painMovableJointsFinal', msg: 'Sera'},
-          {id: 'painMovableJointsFinal', msg: 'Non So'}
+          {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'}
         ],
-        NodeType.Select,
+        NodeType.Radio,
         false
       ),
       new TreeNode(
         'painMovableJointsFinal',
         {
-          title: 'Articolazioni Mobili: Consiglio Utile',
+          title: 'Articolazioni Mobili',
           text: 'I dolori articolari rappresentano sensazioni dolorose a carico di una o più articolazioni quali spalla, gomito, polso, mano, anca, ginocchio, caviglia e piede. Traumi o fratture potrebbe determinare l’insorgere di questo disturbo.' +
             'Bagni caldi, massaggi, sedute di fisioterapia, applicazioni con ultrasuoni e riposo sono alcuni dei rimedi suggeriti per combattere i dolori articolari. I dolori articolari possono presentarsi associati a fitte alle ossa, gonfiore e infiammazione.'
         },
         [],
-        NodeType.Substance,
+        NodeType.Advice,
         true,
         ['-MQWfQILmGHdbHqxl0Cr']
       ),
@@ -115,7 +113,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'osteoarthritisFinal1',
         {
-          title: 'Osteoartrosi: Sostanze Utili',
+          title: 'Osteoartrosi',
           text: 'Il fenomeno artrosico è spesso innescato e/o aggravato da una compromissione della muscolatura associata all’articolazione colpita. In questi casi è utile stimolare la funzione muscolare',
           productLink: 'https://geopharma.eu/categoria-prodotto/osteoarticolari/'
         },
@@ -127,7 +125,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'osteoarthritisFinal2',
         {
-          title: 'Osteoartrosi: Sostanze Utili',
+          title: 'Osteoartrosi',
           text: 'L’artrosi è una patologia di tipo degenerativo che trae origine dalla perdita dell’equilibrio tra i meccanismi che stimolano la crescita delle cartilagini e quelli che facilitano lo smaltimento dl tessuto usurato.',
           productLink: 'https://geopharma.eu/categoria-prodotto/osteoarticolari/'
         },
@@ -150,7 +148,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'diabeticNeuropathyFinal1',
         {
-          title: 'Neuropatia Diabetica: Sostanze Utili',
+          title: 'Neuropatia Diabetica',
           text: 'La neuropatia diabetica è uno stato di sofferenza dei nervi periferici dovuta alle elevate concentrazioni di glucosio nel sangue. Tali disfunzioni possono incidere pesantemente sulla qualità della vita delle persone',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -162,7 +160,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'diabeticNeuropathyFinal2',
         {
-          title: 'Neuropatia Diabetica: Sostanze Utili',
+          title: 'Neuropatia Diabetica',
           text: 'La neuropatia è una complicazione frequente nel paziente diabetico. La gravità e la precocità dei sintomi dipendono dal grado di osservanza alle prescrizioni dietetiche e farmacologiche suggerite al paziente.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -188,7 +186,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'entrapmentNeuropathyFinal1',
         {
-          title: 'Neuropatia Da Intrappolamento: Sostanze Utili',
+          title: 'Neuropatia Da Intrappolamento',
           text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono caratterizzate dai disturbi nella sensibilità delle estremità che, in alcuni casi, limitano la capacità di riposo del paziente.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -200,7 +198,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'entrapmentNeuropathyFinal2',
         {
-          title: 'Neuropatia Da Intrappolamento: Sostanze Utili',
+          title: 'Neuropatia Da Intrappolamento',
           text: 'La sindrome del tunnel carpale o le altre neuropatie da intrappolamento sono dovute al restringimento di un canale anatomico che causa la sofferenza del nervo che lo occupa.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -223,7 +221,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'compressionNeuropathyFinal1',
         {
-          title: 'Neuropatia Da Compressione: Sostanze Utili',
+          title: 'Neuropatia Da Compressione',
           text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso. Il dolore provocato dalla lesione può causare disturbi del sonno, peggiorando la qualità della vita.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -235,7 +233,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'compressionNeuropathyFinal2',
         {
-          title: 'Neuropatia Da Compressione: Sostanze Utili',
+          title: 'Neuropatia Da Compressione',
           text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -258,7 +256,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'herpeticNeuropathyFinal1',
         {
-          title: 'Neuropatia Erpetica: Sostanze Utili',
+          title: 'Neuropatia Erpetica',
           text: 'La nevralgia posterpetica è una complicanza frequente dell\'infezione da Herpes zoster, meglio conosciuta come fuoco di sant\'Antonio. A causarla è la «riattivazione» dello stesso virus responsabile della varicella, che rimane silente nel sistema nervoso dopo aver superato la malattia.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -270,7 +268,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'herpeticNeuropathyFinal2',
         {
-          title: 'Neuropatia Erpetica: Sostanze Utili',
+          title: 'Neuropatia Erpetica',
           text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -293,7 +291,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'trigeminalNeuralgiaFinal1',
         {
-          title: 'Nevralgia Trigeminale: Sostanze Utili',
+          title: 'Nevralgia Trigeminale',
           text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -305,7 +303,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'trigeminalNeuralgiaFinal2',
         {
-          title: 'Nevralgia Trigeminale: Sostanze Utili',
+          title: 'Nevralgia Trigeminale',
           text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
@@ -318,7 +316,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'cephalalgy',
         {
-          title: 'Cefalea: Sostanze Utili',
+          title: 'Cefalea',
           text: 'La cefalea è un dolore a qualsiasi parte della testa, incluso il cuoio capelluto, la parte superiore del collo, il viso e l’interno del cranio. Le cefalee sono uno dei motivi più comuni di consultazione medica.' +
             'Interferiscono con la possibilità di lavorare e di compiere le attività quotidiane.' +
             'Sebbene le cefalee possano essere dolorose e stressanti, di rado sono causate da una patologia grave. Le cefalee possono essere suddivise in due tipi:' +
@@ -337,7 +335,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'hemorrhoidsFissures',
         {
-          title: 'Emorroidi/Ragadi: Sostanze Utili',
+          title: 'Emorroidi/Ragadi',
           text: 'Le emorroidi sono dei cuscinetti vascolari fisiologicamente presenti nel nostro corpo. Quando non sono soggette a gonfiore e infiammazione, quindi, svolgono la loro funzione di aiuto nel contenimento delle feci mantenendo l\'ano chiuso, senza che ci accorgiamo della loro presenza. Il loro gonfiore eccessivo genera fastidio e sintomi quali prolasso, dolore, bruciore, prurito o sanguinamento. Il termine emorroidi designa sia le strutture venose sia la disfunzione, più correttamente indicata come patologia o malattia emorroidaria.\n' +
             'La patologia emorroidaria è una disfunzione legata all\'infiammazione delle vene emorroidali, le emorroidi, che scivolano all\'esterno della loro sede naturale nell\'ano per il cedimento della mucosa rettale. In alcuni casi si produce la formazione di un grumo di sangue (coagulo o trombo) che amplifica i sintomi dolorosi.',
           productLink: 'https://geopharma.eu/categoria-prodotto/flebotonici/'
@@ -361,7 +359,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'fibromyalgiaFinal1',
         {
-          title: 'Fibromialgia: Sostanze Utili',
+          title: 'Fibromialgia',
           text: 'La SF è una condizione patologica complessa caratterizzata da un quadro clinico non stereotipabile e che presenta una certa varietà di sintomi che possono presentarsi con incidenza ed intensità che dipendono da manifestazioni soggettive. La sintomatologia riportata spesso si sovrappone a quella tipica di altre patologie per cui le prime indagini analitiche non servono alla diagnosi di fibromialgia (infatti non esistono marker specifici per la FM), piuttosto sono utili per escludere la presenza di patologie di natura infiammatoria o reumatica.'
         },
         [],
@@ -372,7 +370,7 @@ export class DecisionTreeFormService {
       new TreeNode(
         'fibromyalgiaFinal2',
         {
-          title: 'Fibromialgia: Sostanze Utili',
+          title: 'Fibromialgia',
           text: 'La SF è una condizione patologica complessa caratterizzata da un quadro clinico non stereotipabile e che presenta una certa varietà di sintomi che possono presentarsi con incidenza ed intensità che dipendono da manifestazioni soggettive. La sintomatologia riportata spesso si sovrappone a quella tipica di altre patologie per cui le prime indagini analitiche non servono alla diagnosi di fibromialgia (infatti non esistono marker specifici per la FM), piuttosto sono utili per escludere la presenza di patologie di natura infiammatoria o reumatica.'
         },
         [],
