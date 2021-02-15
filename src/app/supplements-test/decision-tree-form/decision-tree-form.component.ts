@@ -3,6 +3,7 @@ import {Substances, TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 import {DataStorageService} from '../data-storage.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-decision-tree-form',
@@ -21,7 +22,7 @@ export class DecisionTreeFormComponent implements OnInit {
   text: any;
   results: any[];
 
-  constructor(private decisionTreeFormService: DecisionTreeFormService, private dataStorageService: DataStorageService) {}
+  constructor(private decisionTreeFormService: DecisionTreeFormService, private dataStorageService: DataStorageService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.fetchSubstances();
@@ -103,5 +104,23 @@ export class DecisionTreeFormComponent implements OnInit {
 
   onFindMore(url: string) {
     window.open(url, '_blank');
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log(`Closed with: ${result}`);
+    }, (reason) => {
+      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
