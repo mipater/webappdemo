@@ -48,8 +48,8 @@ export class DecisionTreeFormService {
         {id: 'painMovableJoints', msg: 'Soffro di dolori alle articolazioni mobili (ginocchio, polso, spalla)', synonyms: ['ginocchio', 'polso', 'spalla']},
         {id: 'painLowerJoints', msg: 'Soffro di dolori e formicolii agli arti inferiori', synonyms: ['gamba']},
         {id: 'painUpperJoints', msg: 'Soffro di dolori e formicolii agli arti superiori', synonyms: ['braccia', 'mani']},
-        {id: 'painEvacuation', msg: 'Soffro di emorroidi / Ho una evacuazione dolorosa', synonyms: ['plesso', 'anale', 'infiammazione']},
-        {id: 'painHead', msg: 'Soffro di mal di testa'},
+        {id: 'hemorrhoidsFissures', msg: 'Soffro di emorroidi / Ho una evacuazione dolorosa', synonyms: ['plesso', 'anale', 'infiammazione']},
+        {id: 'cephalalgy', msg: 'Soffro di mal di testa'},
         {id: 'painBack', msg: 'Soffro di dolori alla schiena'},
         {id: 'painTraumatic', msg: 'Soffro di dolori di origine traumatica'},
         {id: 'contactUs', msg: 'Altro'}
@@ -63,6 +63,8 @@ export class DecisionTreeFormService {
         {title: 'Articolazioni Mobili: Maggiori Informazioni', text: 'In che momento della giornata il dolore è più intenso?'},
         [
           {id: 'osteoarthritis', msg: 'Mattino'},
+          {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'},
+          {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'},
           {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'}
         ],
         NodeType.Radio,
@@ -80,6 +82,93 @@ export class DecisionTreeFormService {
         true,
         ['-MQWfQILmGHdbHqxl0Cr']
       ),
+      // -- PAINLOWERJOINTS
+      new TreeNode(
+        'painLowerJoints',
+        {title: 'Articolazioni Inferiori: Maggiori Informazioni', text: 'Hai il diabete?'},
+        [
+          {id: 'diabeticNeuropathy', msg: 'Si'},
+          {id: 'painLowerJointsFinal', msg: 'No'}
+        ],
+        NodeType.Radio,
+        false
+      ),
+      new TreeNode(
+        'painLowerJointsFinal',
+        {
+          title: 'Articolazioni Inferiori',
+          text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia se trascurata può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+        },
+        [],
+        NodeType.Advice,
+        true,
+        ['-MQWfQMwpHObJmvQDYNq']
+      ),
+      // -- PAINUPPERJOINTS
+      new TreeNode(
+        'painUpperJoints',
+        {title: 'Articolazioni Superiori: Maggiori Informazioni', text: 'Svolgi abitualmente lavori manuali?'},
+        [
+          {id: 'painUpperJointsSub', msg: 'Si'},
+          {id: 'painUpperJointsFinal2', msg: 'No'}
+        ],
+        NodeType.Radio,
+        false
+      ),
+      new TreeNode(
+        'painUpperJointsSub',
+        {title: 'Articolazioni Superiori: Maggiori Informazioni', text: 'Soffri di insonnia o ti svegli frequentemente durante la notte?'},
+        [
+          {id: 'painUpperJointsSubFinal1', msg: 'Si'},
+          {id: 'painUpperJointsSubFinal2', msg: 'No'}
+        ],
+        NodeType.Radio,
+        false
+      ),
+      new TreeNode(
+        'painUpperJointsFinal2',
+        {
+          title: 'Articolazioni Inferiori',
+          text: 'Il formicolio è un fenomeno che colpisce soprattutto le estremità degli arti superiori e inferiori, ossia mani e piedi. Tuttavia, bisogna prestare la massima attenzione anche alla testa, alle braccia e alle gambe, altre parti del corpo umano che rischiano di essere soggette ad un problema di questo tipo. Conosciuto anche con la denominazione di parestesia, si tratta di una sensazione di vero e proprio intorpidimento che può manifestarsi da un momento all\'altro, provocando grandi limitazioni nei movimenti quotidiani. Alcuni libri di medicina definiscono questo fenomeno molto simile ad un\'invasione di formiche pronte a camminare all\'interno della pelle. Questo disturbo può essere dovuto a problemi della circolazione sanguigna periferica.'
+        },
+        [],
+        NodeType.Advice,
+        true,
+        ['-MQWfQMwpHObJmvQDYNq']
+      ),
+      new TreeNode(
+        'painUpperJointsSubFinal1',
+        {
+          title: 'Articolazioni Inferiori',
+          text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia se trascurata può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+        },
+        [],
+        NodeType.Substance,
+        true,
+        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKaQjRUdWrNg1QP', '-MQWfQKfI_XPt813EUU3']
+      ),
+      new TreeNode(
+        'painUpperJointsSubFinal2',
+        {
+          title: 'Articolazioni Inferiori',
+          text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia se trascurata può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+        },
+        [],
+        NodeType.Substance,
+        true,
+        ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKaQjRUdWrNg1QP']
+      ),
+    // -- PAINBACK
+    new TreeNode(
+      'painBack',
+      {title: 'Dolori Alla Schiena: Maggiori Informazioni', text: 'Come definiresti questo dolore?'},
+      [
+        {id: 'painUpperJointsSub', msg: 'Si'},
+        {id: 'painUpperJointsFinal2', msg: 'No'}
+      ],
+      NodeType.Radio,
+      false
+    ),
     // DIAGNOSIS SELECTION
     new TreeNode(
       'selectDiagnosis',
@@ -139,8 +228,8 @@ export class DecisionTreeFormService {
         'diabeticNeuropathy',
         {title: 'Neuropatia Diabetica: Maggiori Informazioni', text: 'Soffri di insonnia o ti svegli frequentemente durante la notte?'},
         [
-          {id: 'osteoarthritisFinal1', msg: 'Si'},
-          {id: 'osteoarthritisFinal2', msg: 'No'}
+          {id: 'diabeticNeuropathyFinal1', msg: 'Si'},
+          {id: 'diabeticNeuropathyFinal2', msg: 'No'}
         ],
         NodeType.Radio,
         false
@@ -341,7 +430,7 @@ export class DecisionTreeFormService {
           productLink: 'https://geopharma.eu/categoria-prodotto/flebotonici/'
         },
         [],
-        NodeType.Substance,
+        NodeType.Advice,
         true,
         ['-MQWfQMwpHObJmvQDYNq']
       ),
@@ -350,8 +439,8 @@ export class DecisionTreeFormService {
         'fibromyalgia',
         {title: 'Fibromialgia: Maggiori Informazioni', text: 'Soffri di insonnia o ti svegli frequentemente durante la notte?'},
         [
-          {id: 'trigeminalNeuralgiaFinal1', msg: 'Si'},
-          {id: 'trigeminalNeuralgiaFinal2', msg: 'No'}
+          {id: 'fibromyalgiaFinal1', msg: 'Si'},
+          {id: 'fibromyalgiaFinal2', msg: 'No'}
         ],
         NodeType.Radio,
         false

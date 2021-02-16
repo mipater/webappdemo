@@ -56,6 +56,8 @@ export class DecisionTreeFormComponent implements OnInit {
         });
       });
     }
+    this.results = [];
+    this.text = '';
     // reset formcontrol value
     this.control = new FormControl(null, Validators.required);
   }

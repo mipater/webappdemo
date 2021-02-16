@@ -110,11 +110,11 @@
           <div class="inputGroup">
             <input class="form-check-input" type="radio"
                    name="{{currentTreeNode.id}}"
-                   id="{{answer.id}}"
+                   [id]="i"
                    value="{{answer.id}}"
                    [formControl]="control"
             >
-            <label class="form-check-label border border-dark rounded-sm" for="{{answer.id}}">{{answer.msg}}</label>
+            <label class="form-check-label border border-dark rounded-sm" [for]="i">{{answer.msg}}</label>
           </div>
         </div>
       </div>
