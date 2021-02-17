@@ -63,9 +63,9 @@ export class DecisionTreeFormService {
         {title: 'Articolazioni Mobili: Maggiori Informazioni', text: 'In che momento della giornata il dolore è più intenso?'},
         [
           {id: 'osteoarthritis', msg: 'Mattino'},
-          {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'},
-          {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'},
-          {id: 'painMovableJointsFinal', msg: 'Pomeriggio/Sera/Non So'}
+          {id: 'painMovableJointsFinal', msg: 'Pomeriggio'},
+          {id: 'painMovableJointsFinal', msg: 'Sera'},
+          {id: 'painMovableJointsFinal', msg: 'Non So'}
         ],
         NodeType.Radio,
         false
@@ -158,17 +158,42 @@ export class DecisionTreeFormService {
         true,
         ['-MQWfQKDF7884MFAbYvb', '-MQWfQKSfD6dg1i2A3Xd', '-MQWfQKaQjRUdWrNg1QQ', '-MQWfQIM6PDiK84cwR0x', '-MQWfQKhuhqGpt-GX9Jz', '-MQWfQKaQjRUdWrNg1QP']
       ),
-    // -- PAINBACK
-    new TreeNode(
-      'painBack',
-      {title: 'Dolori Alla Schiena: Maggiori Informazioni', text: 'Come definiresti questo dolore?'},
-      [
-        {id: 'painUpperJointsSub', msg: 'Si'},
-        {id: 'painUpperJointsFinal2', msg: 'No'}
-      ],
-      NodeType.Radio,
-      false
-    ),
+      // -- PAINBACK
+      new TreeNode(
+        'painBack',
+        {title: 'Dolori Alla Schiena: Maggiori Informazioni', text: 'Come definiresti questo dolore?'},
+        [
+          {id: 'painBackJointsFinal', msg: 'Continuo'},
+          {id: 'compressionNeuropathy', msg: 'Scossa Elettrica'},
+          {id: 'compressionNeuropathy', msg: 'Localizzato Nel Gluteo'},
+          {id: 'compressionNeuropathy', msg: 'Lungo La Gamba'}
+        ],
+        NodeType.Radio,
+        false
+      ),
+      new TreeNode(
+        'painBackJointsFinal',
+        {
+          title: 'Dolori Alla Schiena',
+          text: 'L’irrigidimento dei muscoli della schiena è causa di dolore nella regione lombare. Questo dolore può svilupparsi in modo graduale o repentino, come nel caso della lombalgia. Non sono solo le persone anziane a esserne affette. I danni posturali causati dallo svolgimento di attività sedentarie, mancanza di esercizio fisico e aumento dello stress hanno avuto come conseguenza un aumento della frequenza dei casi di irrigidimento dei muscoli della schiena anche nella popolazione giovane adulta compresi i bambini.'
+        },
+        [],
+        NodeType.Advice,
+        true,
+        ['-MQWfQILmGHdbHqxl0Cr']
+      ),
+      // -- PAINTRAUMATIC
+      new TreeNode(
+        'painTraumatic',
+        {
+          title: 'Dolori Di Origine Traumatica',
+          text: 'La borsite è una condizione dolorosa che interessa le piccole sacche (o vescichette) ripiene di liquido, chiamate “borse”, che proteggono le articolazioni e anche altre parti anatomiche. Le borse si possono trovare tra ossa e tendini, ma anche fra diversi piani tendinei, fasciali o muscolari; in tal modo possono fungere da ammortizzatori naturali, rendendo fluido il movimento e assicurando la protezione delle diverse strutture interessate, che altrimenti andrebbero incontro a usura e traumi, scatenando infiammazione e dolore. Le borse più esposte al rischio di infiammazione sono quelle della spalla, del gomito, del ginocchio e dell\'anca. Quando si infiamma il liquido sieroso (liquido sinoviale) all\'interno delle borse, si ha una condizione patologica chiamata borsite, con sintomi dolorosi che rendono difficile o impossibile il movimento'
+        },
+        [],
+        NodeType.Substance,
+        true,
+        ['-MQWfQMv4KlHC3TPfIUM', '-MQWfQN0-b2CIPaMw1f_', '-MQWfQIM6PDiK84cwR0x' ]
+      ),
     // DIAGNOSIS SELECTION
     new TreeNode(
       'selectDiagnosis',

@@ -40,12 +40,17 @@ export class DecisionTreeFormComponent implements OnInit {
     if (this.control.value.hasOwnProperty('id')) {
       this.control.setValue(this.control.value.id);
     }
-    const nextNodeId = this.control.value;
+    // Clean id
+    const nextNodeId = this.control.value.split('#')[0];
     const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
     // get next node
     if (nextNode) {
       this.prevTreeNodes.push(this.currentTreeNode);
       this.currentTreeNode = nextNode;
+      // Add dynamic id to avoid multiple radio button value issue
+      for (let i = 0; i < this.currentTreeNode.answers.length; i++) {
+        this.currentTreeNode.answers[i].id += '#id-' + i;
+      }
       // find substances for the next node
       this.substances = [];
       this.currentTreeNode.subAdv?.forEach(searchedId => {
