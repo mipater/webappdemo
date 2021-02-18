@@ -1,15 +1,15 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Prodotti</h4>
+    <h4 class="modal-title text-dark" id="modal-basic-title">Prodotti Consigliati</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form>
-      <div class="form-group">
-      </div>
-    </form>
+    <div class="d-flex justify-content-center flex-wrap">
+      <img class="w-75" src="https://geofarma.it/wp-content/uploads/2017/11/Condronil-complex-bustine.jpg" alt="">
+      <img class="w-75" src="https://geofarma.it/wp-content/uploads/2018/11/Condronil-forte.jpg" alt="">
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>

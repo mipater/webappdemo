@@ -24,6 +24,7 @@ export class DecisionTreeFormService {
       NodeType.Radio,
       false
     ),
+    // NOPAINDISORDER
     new TreeNode(
       'selectNoPainDisorder',
       {title: 'Malessere', text: 'Seleziona un problema'},
@@ -39,6 +40,102 @@ export class DecisionTreeFormService {
       ],
       NodeType.Select,
       false
+    ),
+    // -- ABDOMINALBLOATING
+    new TreeNode(
+      'abdominalBloating',
+      {
+        title: 'Gonfiore Addominale',
+        text: 'Dolore addominale, sensazione di gonfiore, flatulenza, difficoltà nella digestione possono essere le manifestazioni di una condizione chiamata disbiosi. Il dismicrobismo intestinale è un’alterazione della flora batterica intestinale ed è conosciuto anche come disbiosi. Questo squilibrio può essere generato per numerosi motivi e può portare conseguenze non proprio piacevoli per chi ne è affetto.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMz5nTkj3SBEu0c']
+    ),
+    // -- CONSTIPATION
+    new TreeNode(
+      'constipation',
+      {
+        title: 'Stitichezza',
+        text: 'Dolore addominale, sensazione di gonfiore, flatulenza, difficoltà nella digestione possono essere le manifestazioni di una condizione chiamata disbiosi. Il dismicrobismo intestinale è un’alterazione della flora batterica intestinale ed è conosciuto anche come disbiosi. Questo squilibrio può essere generato per numerosi motivi e può portare conseguenze non proprio piacevoli per chi ne è affetto.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMz5nTkj3SBEu0c']
+    ),
+    // -- SLOWDIGESTION
+    new TreeNode(
+      'slowDigestion',
+      {
+        title: 'Digestione Lenta',
+        text: 'Dolore addominale, sensazione di gonfiore, flatulenza, difficoltà nella digestione possono essere le manifestazioni di una condizione chiamata disbiosi. Il dismicrobismo intestinale è un’alterazione della flora batterica intestinale ed è conosciuto anche come disbiosi. Questo squilibrio può essere generato per numerosi motivi e può portare conseguenze non proprio piacevoli per chi ne è affetto.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMz5nTkj3SBEu0c']
+    ),
+    // -- STATESOFWEAKNESS
+    new TreeNode(
+      'statesOfWeakness',
+      {
+        title: 'Stati Di Debolezza',
+        text: 'La stanchezza prolungata e costante e la sensazione di spossatezza che sembra senza soluzione, sono condizioni molto frequenti in tutta la popolazione non solo adulta. Chi ne soffre lamenta spesso anche dolori muscolari e articolari, spesso migranti, un sonno non ristoratore, cefalee frequenti ed ansia.'
+      },
+      [],
+      NodeType.Substance,
+      true,
+      ['-MQWfQOiFZka-bwkj6Cn', '-MQWfQP3f4FlDYy-IZu7', '-MQWfQIJV4l_HQT8gBxu', '-MQWfQKaQjRUdWrNg1QP']
+    ),
+    // -- CIRCULATIONDISORDER
+    new TreeNode(
+      'circulationDisorder',
+      {
+        title: 'Disturbi Della Circolazione',
+        text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia – se trascurata – può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMwpHObJmvQDYNq']
+    ),
+    // -- BLEMISHESTELEANGECTASIA
+    new TreeNode(
+      'blemishesTeleangectasia',
+      {
+        title: 'Inestesismi/Teleangectasia',
+        text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia – se trascurata – può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMwpHObJmvQDYNq']
+    ),
+    // -- SWOLLENLEGS
+    new TreeNode(
+      'swollenLegs',
+      {
+        title: 'Gambe Gonfie/Pesanti',
+        text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia – se trascurata – può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMwpHObJmvQDYNq']
+    ),
+    // -- SWOLLENLEGS
+    new TreeNode(
+      'stiffneckPosturalpain',
+      {
+        title: 'Torcicollo/Dolori Posturali',
+        text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia – se trascurata – può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+      },
+      [],
+      NodeType.Advice,
+      true,
+      ['-MQWfQMwpHObJmvQDYNq']
     ),
     // DIAGNOSIS DETECTION
     new TreeNode(

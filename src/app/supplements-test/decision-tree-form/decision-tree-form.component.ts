@@ -114,7 +114,7 @@ export class DecisionTreeFormComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {centered: true, scrollable: true, ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       console.log(`Closed with: ${result}`);
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
