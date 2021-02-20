@@ -1,6 +1,30 @@
-<div class="jumbotron bg-white border border-dark rounded-sm position-relative">
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-dark" id="modal-basic-title">Prodotti Consigliati</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex justify-content-center flex-wrap">
+      <img class="w-75" src="https://geofarma.it/wp-content/uploads/2017/11/Condronil-complex-bustine.jpg" alt="">
+      <img class="w-75" src="https://geofarma.it/wp-content/uploads/2018/11/Condronil-forte.jpg" alt="">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+  </div>
+</ng-template>
+
+<div class="jumbotron col-12 col-md-9 mx-auto bg-white border border-dark rounded-sm position-relative">
   <ng-template [ngIf]="spinnerIsActive">
-    <div class="spinner-container position-absolute"><div class="lds-facebook align-self-center"><div></div><div></div><div></div></div></div>
+    <div class="spinner-container position-absolute">
+      <div class="lds-facebook align-self-center">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </ng-template>
 
   <ng-template [ngIf]="hidePersonalInfo">
@@ -8,7 +32,7 @@
     <hr>
   </ng-template>
 
-  <form  class="min-vh-50" *ngIf="!hidePersonalInfo" (ngSubmit)="onSubmitPersonalInfo(form)" #form="ngForm">
+  <form class="min-vh-50" *ngIf="!hidePersonalInfo" (ngSubmit)="onSubmitPersonalInfo(form)" #form="ngForm">
     <h3 class="pb-4 color-dark">Iniziamo dalle tue informazioni personali</h3>
 
     <div class="form-group">
@@ -33,11 +57,19 @@
     </div>
 
     <div class="form-group">
-      <label for="sesso">Sesso</label>
-      <select ngModel required name="sesso" class="form-control" id="sesso">
-        <option>Uomo</option>
-        <option>Donna</option>
-      </select>
+      <label>Genere</label>
+      <div class="form-check">
+        <input ngModel required class="form-check-input" type="radio" name="genere" id="maschio" value="male">
+        <label class="form-check-label" for="maschio">
+          Maschio
+        </label>
+      </div>
+      <div class="form-check">
+        <input ngModel required class="form-check-input" type="radio" name="genere" id="femmina" value="female">
+        <label class="form-check-label" for="femmina">
+          Femmina
+        </label>
+      </div>
     </div>
 
     <div class="form-group">
@@ -60,7 +92,7 @@
     <div class="pt-4 d-flex flex-row-reverse">
       <button type="submit" class="btn btn-outline-dark px-4" [disabled]="!form.valid">
         Avanti
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill" fill="currentColor"
+        <svg style="top:-1px;position: relative;" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill" fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"
                 d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"></path>
@@ -70,19 +102,19 @@
   </form>
 
   <ng-template [ngIf]="hidePersonalInfo">
-    <form class="w-75 mx-auto mt-5">
+    <form class="w-100 mx-auto mt-5">
 
       <div *ngIf="currentTreeNode.answerType==='radio'" style="min-height: 15vh !important;">
         <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
-        <div *ngFor="let answer of currentTreeNode.answers;" class="form-check py-1">
+        <div *ngFor="let answer of currentTreeNode.answers; let i = index" class="py-1">
           <div class="inputGroup">
             <input class="form-check-input" type="radio"
-                   name="{{currentTreeNode.id}}"
-                   id="{{answer.id}}"
-                   value="{{answer.id}}"
+                   [name]="currentTreeNode.id"
+                   [id]="'id-'+i"
+                   [value]="answer.id"
                    [formControl]="control"
             >
-            <label class="form-check-label border border-dark rounded-sm" for="{{answer.id}}">{{answer.msg}}</label>
+            <label class="form-check-label border border-dark rounded-sm" [for]="'id-'+i">{{answer.msg}}</label>
           </div>
         </div>
       </div>
@@ -90,10 +122,6 @@
       <div *ngIf="currentTreeNode.answerType==='select'" style="min-height: 15vh !important;">
         <h4 class="pb-4 color-dark">{{currentTreeNode.text}}</h4>
         <div class="form-group py-5">
-<!--          <label for="{{currentTreeNode.id}}">{{currentTreeNode.label || currentTreeNode.text}}:</label>
-          <select [formControl]="control" class="form-control" name="{{currentTreeNode.id}}" id="{{currentTreeNode.id}}">
-            <option *ngFor="let answer of currentTreeNode.answers" value="{{answer.id}}">{{answer.msg}}</option>
-          </select>-->
           <p-autoComplete class="bg-color-light-blue" [formControl]="control" name="search"
                           [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [dropdown]="true"
                           size="300" required="true" autofocus="true" dropdownMode="current" placeholder="Cerca..."
@@ -104,25 +132,56 @@
       </div>
 
       <div *ngIf="currentTreeNode.answerType==='contact'" style="min-height: 15vh !important;">
-        <div class="form-group py-5">
-          <p-autoComplete class="bg-color-light-blue" [formControl]="control" name="search" [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" [dropdown]="true"></p-autoComplete>
+        <div class="form-group">
+          <h5 class="text-dark pb-1">Se non riesci a trovare quello che cerchi puoi contattarci tramite le modalità sotto indicate:</h5>
+          <a class="d-block" href="tel:+39-080-4742175">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+            </svg>
+            +39 080 4742175
+          </a>
+          <a class="d-block py-2" href="tel:+39-080-4731315">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+            </svg>
+            +39 080 4731315
+          </a>
+          <a class="d-block pb-3" href="mailto:info@geopharma.eu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+            </svg>
+            info@geopharma.eu
+          </a>
+          <h5 class="text-dark pt-2 pb-1">Puoi trovarci qui</h5>
+          <a target="_blank" href="https://www.google.com/maps?ll=41.064854,17.07989&z=16&t=m&hl=it-IT&gl=US&mapclient=embed&daddr=Geofarma+S.r.l.+Corso+Italia,+6+70042+Mola+di+Bari+BA@41.0648536,17.0798904">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+              <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+              <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+            Corso Italia, 6
+            70042 Mola di Bari (BA)
+            ITALY
+          </a>
         </div>
       </div>
 
-      <div *ngIf="currentTreeNode.answerType==='substance'" style="min-height: 15vh !important;">
+      <div *ngIf="currentTreeNode.answerType==='substance' || currentTreeNode.answerType==='advice'" style="min-height: 15vh !important;">
         <div class="form-group py-0">
-          <h5 class="text-dark">Spiegazione</h5>
           <p>{{currentTreeNode.text}}</p>
           <br>
-          <h5 class="text-dark mb-3">Alcune sostanze naturali che possono essere utili in queste circostanze</h5>
+          <h5 class="text-dark mb-3">{{currentTreeNode.answerType==='substance' ? 'Alcune sostanze naturali' : 'Alcuni rimedi naturali'}}
+            che possono essere utili in queste circostanze</h5>
           <div id="accordion" class="mb-4">
             <div class="card" *ngFor="let substance of substances; let i = index">
               <div class="card-header" id="{{substance.id}}">
                 <h5 class="mb-0">
-                  <button class="btn color-green font-weight-bold disable-btn-focus" data-toggle="collapse" attr.data-target="{{'#i'+i}}" aria-expanded="false" attr.aria-controls="{{'i'+i}}">
+                  <button class="btn color-green font-weight-bold disable-btn-focus" data-toggle="collapse"
+                          attr.data-target="{{'#i'+i}}" aria-expanded="false" attr.aria-controls="{{'i'+i}}">
                     {{substance.name || "Consiglio"}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                      <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                     </svg>
                   </button>
                 </h5>
@@ -137,27 +196,44 @@
             </div>
           </div>
           <h5 class="text-dark mb-3">Scopri cosa Geopharma può fare per te</h5>
-          <button (click)="onFindMore(currentTreeNode.productLink)" class="btn btn-outline-info">Scopri di più
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right align-baseline" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
-              <path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+          <button (click)="open(content)" class="btn btn-outline-info">Scopri di più
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-box-arrow-in-up-right align-baseline" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+              <path fill-rule="evenodd"
+                    d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
             </svg>
           </button>
+<!--          <button (click)="onFindMore(currentTreeNode.productLink)" class="btn btn-outline-info">Scopri di più
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-box-arrow-in-up-right align-baseline" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+              <path fill-rule="evenodd"
+                    d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+            </svg>
+          </button>-->
         </div>
       </div>
 
       <hr>
       <div class="pt-5 d-flex flex-row justify-content-between">
         <button type="button" class="btn btn-outline-dark px-4" (click)="onPrevQuestion()">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10a.5.5 0 0 1-.832.374l-4.5-4a.5.5 0 0 1 0-.748l4.5-4A.5.5 0 0 1 10.5 4v8z"/>
+          <svg style="top:-1px;position: relative;" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-square-fill" fill="currentColor"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10a.5.5 0 0 1-.832.374l-4.5-4a.5.5 0 0 1 0-.748l4.5-4A.5.5 0 0 1 10.5 4v8z"/>
           </svg>
           Indietro
         </button>
-        <button [disabled]="!this.control.valid" *ngIf="!currentTreeNode.isLeaf" type="submit" class="btn btn-outline-dark px-4" (click)="onAnswerSubmit()">
+        <button [disabled]="!this.control.valid" *ngIf="!currentTreeNode.isLeaf" type="submit"
+                class="btn btn-outline-dark px-4" (click)="onAnswerSubmit()">
           Avanti
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"></path>
+          <svg style="top:-1px;position: relative;" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill" fill="currentColor"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"></path>
           </svg>
         </button>
       </div>

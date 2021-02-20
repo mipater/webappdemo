@@ -11,6 +11,7 @@ import {InformativaComponent} from './informativa/informativa.component';
 import {CookieComponent} from './cookie/cookie.component';
 import {SupplementsTestModule} from './supplements-test/supplements-test.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     AppRoutingModule,
     SupplementsTestModule,
+    NgbModule,
   ],
   bootstrap: [AppComponent]
 })

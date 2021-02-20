@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Answer, Substances, TreeNode} from './treenode.model';
+import {Substances, TreeNode} from './treenode.model';
 import {DecisionTreeFormService} from './decision-tree-form.service';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 import {DataStorageService} from '../data-storage.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-decision-tree-form',
@@ -21,7 +22,7 @@ export class DecisionTreeFormComponent implements OnInit {
   text: any;
   results: any[];
 
-  constructor(private decisionTreeFormService: DecisionTreeFormService, private dataStorageService: DataStorageService) {}
+  constructor(private decisionTreeFormService: DecisionTreeFormService, private dataStorageService: DataStorageService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.fetchSubstances();
@@ -39,12 +40,17 @@ export class DecisionTreeFormComponent implements OnInit {
     if (this.control.value.hasOwnProperty('id')) {
       this.control.setValue(this.control.value.id);
     }
-    const nextNodeId = this.control.value;
+    // Clean id
+    const nextNodeId = this.control.value.split('#')[0];
     const nextNode = this.decisionTreeFormService.getNodeById(nextNodeId);
     // get next node
     if (nextNode) {
       this.prevTreeNodes.push(this.currentTreeNode);
       this.currentTreeNode = nextNode;
+      // Add dynamic id to avoid multiple radio button value issue
+      for (let i = 0; i < this.currentTreeNode.answers.length; i++) {
+        this.currentTreeNode.answers[i].id += '#id-' + i;
+      }
       // find substances for the next node
       this.substances = [];
       this.currentTreeNode.subAdv?.forEach(searchedId => {
@@ -55,6 +61,8 @@ export class DecisionTreeFormComponent implements OnInit {
         });
       });
     }
+    this.results = [];
+    this.text = '';
     // reset formcontrol value
     this.control = new FormControl(null, Validators.required);
   }
@@ -103,5 +111,23 @@ export class DecisionTreeFormComponent implements OnInit {
 
   onFindMore(url: string) {
     window.open(url, '_blank');
+  }
+
+  open(content) {
+    this.modalService.open(content, {centered: true, scrollable: true, ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log(`Closed with: ${result}`);
+    }, (reason) => {
+      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

@@ -22,6 +22,7 @@ export enum NodeType {
   Radio = 'radio',
   Select = 'select',
   Substance = 'substance',
+  Advice = 'advice',
   Contact = 'contact'
 }
 
