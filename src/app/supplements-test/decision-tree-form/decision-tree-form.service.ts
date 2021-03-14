@@ -99,7 +99,7 @@ export class DecisionTreeFormService {
       [],
       NodeType.Advice,
       true,
-      ['-MQWfQMwpHObJmvQDYNq']
+      ['-MTlasdxse6nF-Y4yNie']
     ),
     // -- BLEMISHESTELEANGECTASIA
     new TreeNode(
@@ -130,12 +130,12 @@ export class DecisionTreeFormService {
       'stiffneckPosturalpain',
       {
         title: 'Torcicollo/Dolori Posturali',
-        text: 'Una circolazione insufficiente alle gambe si manifesta con sintomi inequivocabili e con evidenze che creano seri problemi estetici. Ciò è tanto più vero se si pensa che le persone più colpite da questi disturbi sono le donne. La manifestazione di un’insufficienza venosa, infatti, si manifesta con i capillari dilatati che, via via, possono formare vene varicose e varici. La circolazione superficiale appare, dunque, palpabile, più o meno estesa e dall’andamento tortuoso, su gambe che finiscono per essere non belle da vedere. Ma il problema non è solo estetico, perché la patologia – se trascurata – può diventare cronica ed aggravarsi, nei soggetti predisposti, dando vita a ulteriori complicazioni, come dermatiti, trombosi superficiali e flebiti.'
+        text: 'Numerosissime manifestazioni dolorose dipendono da problemi di natura muscolare (contratture, stiramenti, spasmi o indolenzimenti) che si manifestano nelle zone del corpo che sono più stressate (schiena, collo, spalle e gambe) rispetto a posture errate, esposizione a correnti d\'aria fredda o sforzi fisici ai quali non si è opportunamente preparati.'
       },
       [],
       NodeType.Advice,
       true,
-      ['-MQWfQMwpHObJmvQDYNq']
+      ['-AUlardxse4nF-K6yKjt']
     ),
     // DIAGNOSIS DETECTION
     new TreeNode(
@@ -468,7 +468,7 @@ export class DecisionTreeFormService {
         'herpeticNeuropathyFinal1',
         {
           title: 'Neuropatia Erpetica',
-          text: 'La nevralgia posterpetica è una complicanza frequente dell\'infezione da Herpes zoster, meglio conosciuta come fuoco di sant\'Antonio. A causarla è la «riattivazione» dello stesso virus responsabile della varicella, che rimane silente nel sistema nervoso dopo aver superato la malattia.',
+          text: 'La nevralgia posterpetica è una complicanza frequente dell\'infezione da Herpes zoster, meglio conosciuta come fuoco di sant\'Antonio. A causarla è la «riattivazione» dello stesso virus responsabile della varicella, che rimane silente nel sistema nervoso dopo aver superato la malattia. A seconda della durata e dell’intensità del dolore, le persone con nevralgia post-erpetica possono sviluppare altri sintomi che sono comuni alle condizioni di dolore cronico e comprendono: depressione, stanchezza, insonnia, mancanza di appetito, e difficoltà di concentrazione.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
@@ -480,7 +480,7 @@ export class DecisionTreeFormService {
         'herpeticNeuropathyFinal2',
         {
           title: 'Neuropatia Erpetica',
-          text: 'Le mononeuropatie sono disturbi funzionali che colpiscono singoli nervi in aree ben definite e spesso sono conseguenza di una lesione traumatica, di una compressione locale (con "schiacciamento" del nervo) o di processi infiammatori o ischemici. La sintomatologia è pertanto localizzata e limitata al territorio di innervazione del nervo leso',
+          text: 'La nevralgia posterpetica è una complicanza frequente dell\'infezione da Herpes zoster, meglio conosciuta come fuoco di sant\'Antonio. A causarla è la «riattivazione» dello stesso virus responsabile della varicella, che rimane silente nel sistema nervoso dopo aver superato la malattia.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
@@ -503,7 +503,7 @@ export class DecisionTreeFormService {
         'trigeminalNeuralgiaFinal1',
         {
           title: 'Nevralgia Trigeminale',
-          text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.',
+          text: 'La neuropatia del nervo trigemino è dovuta alla sofferenza delle strutture nervose sensitive del volto che si manifesta con fenomeni dolorosi importanti che impattano profondamente nella qualità della vita del paziente modificando l’umore e diminuendo la qualità del sonno.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
@@ -515,7 +515,7 @@ export class DecisionTreeFormService {
         'trigeminalNeuralgiaFinal2',
         {
           title: 'Nevralgia Trigeminale',
-          text: 'La nevralgia del trigemino è una sindrome cronica, un disordine neuropatico che si manifesta con crisi di dolore lancinante nelle aree del volto innervate dal quinto nervo cranico: fronte e occhio, mandibola fino al mento o alla parte superiore della guancia.',
+          text: 'La neuropatia del nervo trigemino è dovuta alla sofferenza delle strutture nervose sensitive del volto che si manifesta con fenomeni dolorosi importanti che impattano profondamente nella qualità della vita del paziente.',
           productLink: 'https://geopharma.eu/categoria-prodotto/neurotrofici/'
         },
         [],
@@ -528,13 +528,7 @@ export class DecisionTreeFormService {
         'cephalalgy',
         {
           title: 'Cefalea',
-          text: 'La cefalea è un dolore a qualsiasi parte della testa, incluso il cuoio capelluto, la parte superiore del collo, il viso e l’interno del cranio. Le cefalee sono uno dei motivi più comuni di consultazione medica.' +
-            'Interferiscono con la possibilità di lavorare e di compiere le attività quotidiane.' +
-            'Sebbene le cefalee possano essere dolorose e stressanti, di rado sono causate da una patologia grave. Le cefalee possono essere suddivise in due tipi:' +
-            'Cefalee primarie: non causate da un altro disturbo' +
-            'Cefalee secondarie: causate da un altro disturbo' +
-            'I disturbi della cefalea primaria includono emicrania, cefalea a grappolo e cefalea muscolo-tensiva.' +
-            'Le cefalee secondarie possono derivare da disturbi a cervello, occhi, naso, gola, seni nasali, denti, mascelle, orecchie o nuca o da un disturbo diffuso in tutto il corpo (sistemico).',
+          text: 'Si definisce cefalea una qualsiasi manifestazione dolorosa a livello della testa, comprendendo il cuoio capelluto, la parte superiore del collo e l’interno del cranio. Sebbene siano di rado associate a patologie gravi, sono fenomeni dolorosi e stressanti che hanno un notevole impatto sulle attività quotidiane e sulla capacità lavorativa delle persone. Per questo sono uno dei motivi per cui si consulta il medico.',
           productLink: 'https://geopharma.eu/categoria-prodotto/pain/'
         },
         [],
@@ -547,8 +541,7 @@ export class DecisionTreeFormService {
         'hemorrhoidsFissures',
         {
           title: 'Emorroidi/Ragadi',
-          text: 'Le emorroidi sono dei cuscinetti vascolari fisiologicamente presenti nel nostro corpo. Quando non sono soggette a gonfiore e infiammazione, quindi, svolgono la loro funzione di aiuto nel contenimento delle feci mantenendo l\'ano chiuso, senza che ci accorgiamo della loro presenza. Il loro gonfiore eccessivo genera fastidio e sintomi quali prolasso, dolore, bruciore, prurito o sanguinamento. Il termine emorroidi designa sia le strutture venose sia la disfunzione, più correttamente indicata come patologia o malattia emorroidaria.\n' +
-            'La patologia emorroidaria è una disfunzione legata all\'infiammazione delle vene emorroidali, le emorroidi, che scivolano all\'esterno della loro sede naturale nell\'ano per il cedimento della mucosa rettale. In alcuni casi si produce la formazione di un grumo di sangue (coagulo o trombo) che amplifica i sintomi dolorosi.',
+          text: 'Le emorroidi sono strutture vascolari presenti alla fine del retto e nell’ano che hanno il compito di tenerlo chiuso per il contenimento delle feci. L’irritazione delle emorroidi dovuta a fenomeni di attrito o da processi infiammatori locali può provocare prurito, bruciori, dolore e sanguinamento. Il progredire della patologia aumenta la sintomatologia dolorosa rendendo difficile la seduta e la normale evacuazione',
           productLink: 'https://geopharma.eu/categoria-prodotto/flebotonici/'
         },
         [],
@@ -571,7 +564,7 @@ export class DecisionTreeFormService {
         'fibromyalgiaFinal1',
         {
           title: 'Fibromialgia',
-          text: 'La SF è una condizione patologica complessa caratterizzata da un quadro clinico non stereotipabile e che presenta una certa varietà di sintomi che possono presentarsi con incidenza ed intensità che dipendono da manifestazioni soggettive. La sintomatologia riportata spesso si sovrappone a quella tipica di altre patologie per cui le prime indagini analitiche non servono alla diagnosi di fibromialgia (infatti non esistono marker specifici per la FM), piuttosto sono utili per escludere la presenza di patologie di natura infiammatoria o reumatica.'
+          text: 'La SF è una condizione patologica complessa caratterizzata da un quadro clinico non stereotipabile e che presenta una certa varietà di sintomi che possono presentarsi con incidenza ed intensità che dipendono da manifestazioni soggettive. La sintomatologia riportata spesso si sovrappone a quella tipica di altre patologie per cui le prime indagini analitiche non servono alla diagnosi di fibromialgia (infatti non esistono marker specifici per la FM), piuttosto sono utili per escludere la presenza di patologie di natura infiammatoria o reumatica.Benché la causa della SF non sia ancora chiara, la sintomatologia ad essa associata può impattare negativamente sulla sfera emotiva e può causare il peggioramento della qualità del riposo notturno.'
         },
         [],
         NodeType.Substance,
