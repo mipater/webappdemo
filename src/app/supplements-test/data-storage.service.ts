@@ -45,7 +45,7 @@ export class DataStorageService {
     if (localStorageRefreshData?.lastRefresh) {
       const ONE_DAY = 1140 * 60 * 1000; /* ms */
       const expirationDuration = new Date().getTime() - new Date(localStorageRefreshData.lastRefresh).getTime();
-      if (expirationDuration >= ONE_DAY) {
+      if (expirationDuration >= ONE_DAY || !localStorage.getItem('subAdv')) {
         this.setLocalStorageRefreshData(true);
         return true;
       }
