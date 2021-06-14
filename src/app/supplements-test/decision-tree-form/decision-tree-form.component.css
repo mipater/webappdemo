@@ -32,6 +32,10 @@ label {
   box-shadow: unset;
 }
 
+.jumbotron {
+  background-color: ghostwhite;
+}
+
 /* START - CUSTOM RADIO */
 .inputGroup {
   background-color: #fff;
